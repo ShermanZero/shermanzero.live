@@ -1,10 +1,10 @@
 <nav>
+  <span><a href="/">shermanzero.live</a></span>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/projects">Projects</a></li>
-    <li><a href="/portfolio">Portfolio</a></li>
-    <li><a href="/downloads">Downloads</a></li>
     <li><a href="/api">API</a></li>
+    <li><a href="/downloads">Downloads</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/projects">Projects</a></li>
     <li><a href="/upcoming">Upcoming</a></li>
   </ul>
 </nav>
@@ -12,14 +12,36 @@
 <slot />
 
 <style>
+  span {
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+
+    margin: 20px 0px;
+    color: white;
+
+    font-family: "Raleway", sans-serif;
+  }
+
+  span a {
+    font-family: "Raleway", sans-serif;
+    margin: 20px 0px;
+    color: white;
+    text-decoration: none;
+    text-transform: lowercase;
+  }
+
   nav {
     width: 180px;
     height: 100%;
     position: fixed;
     background-color: rgb(20, 20, 20);
 
-    margin: 0;
+    margin-left: -100px;
     overflow: hidden;
+
+    border-right: 2px solid white;
   }
 
   ul {
@@ -48,11 +70,14 @@
   }
 
   li:hover * {
+    font-family: "Raleway", sans-serif;
     color: black;
-    font-weight: 600;
+    font-weight: 800;
   }
 
-  a {
+  li a {
+    display: block;
+
     color: rgb(124, 185, 209);
     text-decoration: none;
     text-transform: uppercase;
