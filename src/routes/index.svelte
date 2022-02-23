@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div>
+  <h1>ShermanZero</h1>
+</div>
+
+<style>
+  div {
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+  }
+</style>
