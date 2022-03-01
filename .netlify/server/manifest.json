@@ -32,9 +32,6 @@
     "isEntry": true,
     "imports": [
       "_index-1e54ea6c.js"
-    ],
-    "css": [
-      "assets/entries/pages/index.svelte-4c46d4c5.css"
     ]
   },
   "src/routes/downloads.svelte": {

@@ -25,13 +25,7 @@ __export(stdin_exports, {
   default: () => Routes
 });
 var import_index_1e54ea6c = require("../../chunks/index-1e54ea6c.js");
-var index_svelte_svelte_type_style_lang = "";
-const css = {
-  code: "div.svelte-1krw869{width:100%}",
-  map: null
-};
 const Routes = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css);
-  return `<div class="${"svelte-1krw869"}"></div>`;
+  return ``;
 });
 module.exports = __toCommonJS(stdin_exports);

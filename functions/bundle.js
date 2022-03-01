@@ -44338,9 +44338,9 @@ const templateImagePath   = "/res/imgs/template.png";
 const circleImagePath     = "/res/imgs/circle.png";
 const fontPath            = "/res/fonts/font_24.fnt";
 
-const descriptorPresets   = require("../../static/res/json/descriptors.json");
-const questionPresets     = require("../../static/res/json/questions.json");
-const alignmentPresets    = require("../../static/res/json/alignments.json");
+const descriptorPresets   = require("../static/res/json/descriptors.json");
+const questionPresets     = require("../static/res/json/questions.json");
+const alignmentPresets    = require("../static/res/json/alignments.json");
 const Jimp                = require("jimp");
 
 const cardsToGenerate     = 8;
@@ -44614,7 +44614,7 @@ Jimp.read(circleImagePath, onLoadCircle);
 Jimp.loadFont(fontPath, onLoadFont);
 
 module.exports.generateCards = generateCards;
-},{"../../static/res/json/alignments.json":248,"../../static/res/json/descriptors.json":249,"../../static/res/json/questions.json":250,"jimp":187}],248:[function(require,module,exports){
+},{"../static/res/json/alignments.json":248,"../static/res/json/descriptors.json":249,"../static/res/json/questions.json":250,"jimp":187}],248:[function(require,module,exports){
 module.exports=[
   "e-boy", "e-girl", "tree", "badger", "t-rex", "noodle", "butter", "flower",
   "apple", "suit", "sandal", "cheese", "plate", "watch", "hat",

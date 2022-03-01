@@ -507,16 +507,21 @@ function writable(value, start = noop) {
 function coalesce_to_error(err) {
   return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
 }
-const escape_json_in_html_dict = {
+const render_json_payload_script_dict = {
   "<": "\\u003C",
-  ">": "\\u003E",
-  "/": "\\u002F",
   "\u2028": "\\u2028",
   "\u2029": "\\u2029"
 };
-const escape_json_in_html_regex = new RegExp(`[${Object.keys(escape_json_in_html_dict).join("")}]`, "g");
-function escape_json_in_html(val) {
-  return JSON.stringify(val).replace(escape_json_in_html_regex, (match) => escape_json_in_html_dict[match]);
+const render_json_payload_script_regex = new RegExp(`[${Object.keys(render_json_payload_script_dict).join("")}]`, "g");
+function render_json_payload_script(attrs, payload) {
+  const safe_payload = JSON.stringify(payload).replace(render_json_payload_script_regex, (match) => render_json_payload_script_dict[match]);
+  let safe_attrs = "";
+  for (const [key2, value] of Object.entries(attrs)) {
+    if (value === void 0)
+      continue;
+    safe_attrs += ` sveltekit:data-${key2}=${escape_html_attr(value)}`;
+  }
+  return `<script type="application/json"${safe_attrs}>${safe_payload}<\/script>`;
 }
 const escape_html_attr_dict = {
   "&": "&amp;",
@@ -973,14 +978,9 @@ ${rendered.css.code}`;
       }
       body += `
 		<script ${attributes.join(" ")}>${init_app}<\/script>`;
-      body += serialized_data.map(({ url: url2, body: body2, json }) => {
-        let attributes2 = `type="application/json" data-type="svelte-data" data-url=${escape_html_attr(url2)}`;
-        if (body2)
-          attributes2 += ` data-body="${hash(body2)}"`;
-        return `<script ${attributes2}>${json}<\/script>`;
-      }).join("\n	");
+      body += serialized_data.map(({ url: url2, body: body2, response }) => render_json_payload_script({ type: "data", url: url2, body: typeof body2 === "string" ? hash(body2) : void 0 }, response)).join("\n	");
       if (shadow_props) {
-        body += `<script type="application/json" data-type="svelte-props">${escape_json_in_html(shadow_props)}<\/script>`;
+        body += render_json_payload_script({ type: "props" }, shadow_props);
       }
     }
     if (options.service_worker) {
@@ -989,7 +989,7 @@ ${rendered.css.code}`;
 				<script${csp.script_needs_nonce ? ` nonce="${csp.nonce}"` : ""}>${init_service_worker}<\/script>`;
     }
   }
-  if (state.prerender) {
+  if (state.prerender && !options.amp) {
     const http_equiv = [];
     const csp_headers = csp.get_meta();
     if (csp_headers) {
@@ -1199,7 +1199,6 @@ async function load_node({
             opts.headers.set(key2, value);
           }
         }
-        opts.headers.set("referer", event.url.href);
         const resolved = resolve(event.url.pathname, requested.split("?")[0]);
         let response;
         let dependency;
@@ -1274,7 +1273,12 @@ async function load_node({
                 fetched.push({
                   url: requested,
                   body: opts.body,
-                  json: `{"status":${status_number},"statusText":${s(response2.statusText)},"headers":${s(headers)},"body":${escape_json_in_html(body)}}`
+                  response: {
+                    status: status_number,
+                    statusText: response2.statusText,
+                    headers,
+                    body
+                  }
                 });
               }
               if (dependency) {
@@ -1955,7 +1959,7 @@ var user_hooks = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module"
 });
-const template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    <script src="/src/lib/bundle.js" type="text/javascript" onload="loaded=1"><\/script>\r\n\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
+const template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    <script src="./scripts/bundle.js" type="text/javascript" onload="loaded=1"><\/script>\r\n\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
 let read = null;
 set_paths({ "base": "", "assets": "" });
 const get_hooks = (hooks) => ({

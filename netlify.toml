@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
-  publish = "build/"
+  publish = "/build"
+  base = "/"
 
 [functions]
-  directory = "src/lib/"
+  directory = "/functions"
