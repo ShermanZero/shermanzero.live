@@ -3,4 +3,6 @@
   publish = "build/"
 
 [functions]
+  node_bundler = "esbuild"
   directory = "functions/"
+  external_node_modules = ["object-assign"]
