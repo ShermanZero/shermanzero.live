@@ -1,6 +1,4 @@
-<div>
-  <h1>ShermanZero</h1>
-</div>
+<div />
 
 <style>
   div {
