@@ -24140,7 +24140,7 @@ var _default = function _default() {
 exports["default"] = _default;
 module.exports = exports.default;
 
-}).call(this)}).call(this,require('_process'),"/../../node_modules/@jimp/plugin-print/dist")
+}).call(this)}).call(this,require('_process'),"/node_modules/@jimp/plugin-print/dist")
 },{"./measure-text":149,"@babel/runtime/helpers/interopRequireDefault":105,"@babel/runtime/helpers/toConsumableArray":115,"@babel/runtime/helpers/typeof":116,"@jimp/utils":161,"_process":45,"load-bmfont":191,"path":44}],149:[function(require,module,exports){
 "use strict";
 
