@@ -38,7 +38,7 @@
     position: fixed;
     background-color: rgb(20, 20, 20);
 
-    margin-left: -100px;
+    margin-left: -180px;
     overflow: hidden;
 
     border-right: 2px solid white;
