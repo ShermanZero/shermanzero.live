@@ -1,14 +1,12 @@
-const templateImagePath   = "/src/lib/res/imgs/template.png";
-const circleImagePath     = "/src/lib/res/imgs/circle.png";
-const fontPath            = "/src/lib/res/fonts/font_24.fnt";
+const templateImagePath   = "/res/imgs/template.png";
+const circleImagePath     = "/res/imgs/circle.png";
+const fontPath            = "/res/fonts/font_24.fnt";
 
-const descriptorPresets   = require("./res/json/descriptors.json");
-const questionPresets     = require("./res/json/questions.json");
-const alignmentPresets    = require("./res/json/alignments.json");
+const descriptorPresets   = require("../../static/res/json/descriptors.json");
+const questionPresets     = require("../../static/res/json/questions.json");
+const alignmentPresets    = require("../../static/res/json/alignments.json");
 const Jimp                = require("jimp");
-const { MIME_JPEG } = require("jimp");
 
-const cardPath            = "/src/lib/cards/individual/cw_out";
 const cardsToGenerate     = 8;
 
 let IMAGE = null;
