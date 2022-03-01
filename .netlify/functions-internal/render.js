@@ -5,7 +5,7 @@ exports.handler = init({
 	assets: new Set(["favicon.png","global.css","res/fonts/dH07_tfV5sRln3Z38OGbaBoL.ttf_0.png","res/fonts/font.bmp","res/fonts/font.ttf","res/fonts/font_24.fnt","res/imgs/circle.png","res/imgs/cw_generic.png","res/imgs/template.png","res/json/alignments.json","res/json/descriptors.json","res/json/questions.json"]),
 	_: {
 		mime: {".png":"image/png",".css":"text/css",".bmp":"image/bmp",".ttf":"font/ttf",".json":"application/json"},
-		entry: {"file":"start-4de09c20.js","js":["start-4de09c20.js","chunks/vendor-b8589598.js"],"css":[]},
+		entry: {"file":"start-6426f5e4.js","js":["start-6426f5e4.js","chunks/vendor-b8589598.js"],"css":[]},
 		nodes: [
 			() => Promise.resolve().then(() => require('../server/nodes/0.js')),
 			() => Promise.resolve().then(() => require('../server/nodes/1.js')),
