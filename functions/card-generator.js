@@ -1,6 +1,6 @@
-const templateImagePath   = "static/res/imgs/template.png";
-const circleImagePath     = "static/res/imgs/circle.png";
-const fontPath            = "static/res/fonts/font_24.fnt";
+const templateImagePath   = "/res/imgs/template.png";
+const circleImagePath     = "/res/imgs/circle.png";
+const fontPath            = "/res/fonts/font_24.fnt";
 
 const Jimp                = require("jimp");
 
@@ -42,7 +42,7 @@ const generateCard = (image, useRandomPoints = false) => {
   );
 
   //print a random descriptor
-  let descriptorPresets   = require("../static/res/json/descriptors.json").default;
+  let descriptorPresets   = require("/res/json/descriptors.json").default;
   let descriptor = descriptorPresets[Math.floor(Math.random()*descriptorPresets.length)];
 
   console.log("descriptorPresets: " + descriptorPresets + " | length: " + descriptorPresets.length);
@@ -61,7 +61,7 @@ const generateCard = (image, useRandomPoints = false) => {
     80
   );
 
-  let alignmentPresets    = require("../static/res/json/alignments.json").default;
+  let alignmentPresets    = require("/res/json/alignments.json").default;
 
   //print a random alignment
   let rng1 = Math.floor(Math.random()*alignmentPresets.length);
@@ -108,7 +108,7 @@ const generateCard = (image, useRandomPoints = false) => {
     );
   }
 
-  let questionPresets     = require("../static/res/json/questions.json").default;
+  let questionPresets     = require("/res/json/questions.json").default;
 
   //prints random prompts
   for(let i = 0; i < 6; i++) {
