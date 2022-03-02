@@ -2,9 +2,9 @@ const templateImagePath   = "/res/imgs/template.png";
 const circleImagePath     = "/res/imgs/circle.png";
 const fontPath            = "/res/fonts/font_24.fnt";
 
-const descriptorPresets   = require("../static/res/json/descriptors.json");
-const questionPresets     = require("../static/res/json/questions.json");
-const alignmentPresets    = require("../static/res/json/alignments.json");
+const descriptorPresets   = require("../../static/res/json/descriptors.json");
+const questionPresets     = require("../../static/res/json/questions.json");
+const alignmentPresets    = require("../../static/res/json/alignments.json");
 const Jimp                = require("jimp");
 
 const cardsToGenerate     = 8;
@@ -277,4 +277,11 @@ Jimp.read(templateImagePath, onLoadImage);
 Jimp.read(circleImagePath, onLoadCircle);
 Jimp.loadFont(fontPath, onLoadFont);
 
-module.exports.generateCards = generateCards;
+exports.handler = async () => {
+  let outputData = generateCards();
+
+  return {
+    statusCode: 200,
+    body: outputData,
+  };
+};
