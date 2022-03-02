@@ -42,7 +42,7 @@ const generateCard = (image, useRandomPoints = false) => {
   );
 
   //print a random descriptor
-  let descriptorPresets   = require("res/json/descriptors.json").default;
+  let descriptorPresets   = require("/res/json/descriptors.json").default;
   let descriptor = descriptorPresets[Math.floor(Math.random()*descriptorPresets.length)];
 
   console.log("descriptorPresets: " + descriptorPresets + " | length: " + descriptorPresets.length);
