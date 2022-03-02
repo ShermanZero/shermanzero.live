@@ -1,1 +1,1 @@
-module.exports = require('./src/netlify/functions/greeting.js')
+module.exports = require('./src/functions/greeting.js')

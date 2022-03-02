@@ -1,1 +1,1 @@
-module.exports = require('./src/netlify/functions/bundle.js')
+module.exports = require('./src/functions/bundle.js')

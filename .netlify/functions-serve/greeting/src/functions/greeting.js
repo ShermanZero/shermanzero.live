@@ -1,4 +1,4 @@
-// netlify/functions/greeting.cjs
+// functions/greeting.js
 exports.handler = async (ev, ctx) => {
   const mySecret = "big brain";
   return {

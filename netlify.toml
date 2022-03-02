@@ -2,3 +2,6 @@
   command = "npm run build"
   publish = "build/"
   functions = "functions/"
+
+[dev]
+  autoLaunch = false

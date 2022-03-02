@@ -15,6 +15,7 @@
   },
   "type": "module",
   "dependencies": {
-    "jimp": "^0.16.1"
+    "jimp": "^0.16.1",
+    "node-fetch": "^2.6.7"
   }
 }

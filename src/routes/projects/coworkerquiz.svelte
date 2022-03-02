@@ -6,9 +6,10 @@
     cardsPerPage = event.target.value;
   };
 
-  function generate() {
-    imageData = module.generateCards();
-  }
+  const handler = () =>
+    fetch("/.netlify/functions/card-generator", { headers: { accept: "Accept: application/json" } }).then((data) => {
+      imageData = data;
+    });
 </script>
 
 <div class="container">
@@ -29,7 +30,8 @@
       <label for="numPerPage">{cardsPerPage}</label>
     </span>
 
-    <button on:click={generate}>Generate</button>
+    <button on:click={handler}>Generate</button>
+
     {#if imageData}
       <img id="image" src={imageData} alt="output" />
     {/if}
