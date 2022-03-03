@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../Desktop/Dev/shermanzero.com/functions/greeting.js"],
-  "sourceRoot": "C:/Users/Admin/AppData/Local/Temp/tmp-8212-r4XUx3qlsrwg",
-  "sourcesContent": ["exports.handler = async(ev, ctx) => {\n  const mySecret = \"big brain\";\n  return {\n    statusCode: 200,\n    body: `hello world! I have a ${mySecret}`,\n  };\n};"],
-  "mappings": ";AAAA,QAAQ,UAAU,OAAM,IAAI,QAAQ;AAClC,QAAM,WAAW;AACjB,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM,yBAAyB;AAAA;AAAA;",
-  "names": []
-}

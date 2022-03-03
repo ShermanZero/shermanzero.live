@@ -40,6 +40,7 @@ const Coworkerquiz = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings
       <label for="${"numPerPage"}">${(0, import_index_1e54ea6c.e)(cardsPerPage)}</label></span>
 
     <button class="${"svelte-1ilzoy3"}">Generate</button>
+
     ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-1ilzoy3"}">` : ``}</div>
 </div>`;
 });

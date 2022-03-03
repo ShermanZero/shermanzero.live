@@ -7,9 +7,17 @@
   };
 
   const handler = () =>
-    fetch("/.netlify/functions/card-generator", { headers: { accept: "Accept: application/json" } }).then((data) => {
-      imageData = data;
-    });
+    fetch("/.netlify/functions/card-generator", {
+      method: "GET",
+      mode: "no-cors",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+    })
+      .then((r) => r.json())
+      .then((j) => (imageData = j.data));
 </script>
 
 <div class="container">

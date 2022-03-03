@@ -14,17 +14,8 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
-var __esm = (fn, res) => function __init() {
-  return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
-};
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
-var __export = (target, all) => {
-  __markAsModule(target);
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
 };
 
 // node_modules/@babel/runtime/helpers/interopRequireDefault.js
@@ -1093,7 +1084,7 @@ var require_any_base = __commonJS({
 var require_mkdirp = __commonJS({
   "node_modules/mkdirp/index.js"(exports2, module2) {
     var path = require("path");
-    var fs = require("fs");
+    var fs2 = require("fs");
     var _0777 = parseInt("0777", 8);
     module2.exports = mkdirP.mkdirp = mkdirP.mkdirP = mkdirP;
     function mkdirP(p, opts, f, made) {
@@ -1104,7 +1095,7 @@ var require_mkdirp = __commonJS({
         opts = { mode: opts };
       }
       var mode = opts.mode;
-      var xfs = opts.fs || fs;
+      var xfs = opts.fs || fs2;
       if (mode === void 0) {
         mode = _0777;
       }
@@ -1145,7 +1136,7 @@ var require_mkdirp = __commonJS({
         opts = { mode: opts };
       }
       var mode = opts.mode;
-      var xfs = opts.fs || fs;
+      var xfs = opts.fs || fs2;
       if (mode === void 0) {
         mode = _0777;
       }
@@ -20371,7 +20362,7 @@ var require_gifframe = __commonJS({
 var require_gifutil = __commonJS({
   "node_modules/gifwrap/src/gifutil.js"(exports2) {
     "use strict";
-    var fs = require("fs");
+    var fs2 = require("fs");
     var ImageQ = require_iq();
     var BitmapImage = require_bitmapimage();
     var { GifFrame } = require_gifframe();
@@ -20553,7 +20544,7 @@ var require_gifutil = __commonJS({
     }
     function _readBinary(path) {
       return new Promise((resolve, reject) => {
-        fs.readFile(path, (err, buffer) => {
+        fs2.readFile(path, (err, buffer) => {
           if (err) {
             return reject(err);
           }
@@ -20563,7 +20554,7 @@ var require_gifutil = __commonJS({
     }
     function _writeBinary(path, buffer) {
       return new Promise((resolve, reject) => {
-        fs.writeFile(path, buffer, (err) => {
+        fs2.writeFile(path, buffer, (err) => {
           if (err) {
             return reject(err);
           }
@@ -28493,7 +28484,7 @@ var require_types = __commonJS({
 var require_mime2 = __commonJS({
   "node_modules/mime/mime.js"(exports2, module2) {
     var path = require("path");
-    var fs = require("fs");
+    var fs2 = require("fs");
     function Mime() {
       this.types = Object.create(null);
       this.extensions = Object.create(null);
@@ -28514,7 +28505,7 @@ var require_mime2 = __commonJS({
     };
     Mime.prototype.load = function(file) {
       this._loading = file;
-      var map = {}, content = fs.readFileSync(file, "ascii"), lines = content.split(/[\r\n]+/);
+      var map = {}, content = fs2.readFileSync(file, "ascii"), lines = content.split(/[\r\n]+/);
       lines.forEach(function(line) {
         var fields = line.replace(/\s*#.*|^\s*|\s*$/g, "").split(/\s+/);
         map[fields.shift()] = fields;
@@ -28581,7 +28572,7 @@ var require_is_binary = __commonJS({
 // node_modules/load-bmfont/index.js
 var require_load_bmfont = __commonJS({
   "node_modules/load-bmfont/index.js"(exports2, module2) {
-    var fs = require("fs");
+    var fs2 = require("fs");
     var url = require("url");
     var path = require("path");
     var request = require_phin_compiled();
@@ -28630,7 +28621,7 @@ var require_load_bmfont = __commonJS({
       if (url.parse(file).host) {
         request(opt, handleData);
       } else {
-        fs.readFile(file, opt, handleData);
+        fs2.readFile(file, opt, handleData);
       }
     };
   }
@@ -29785,187 +29776,49 @@ var require_dist32 = __commonJS({
   }
 });
 
-// static/res/json/descriptors.json
-var descriptors_exports = {};
-__export(descriptors_exports, {
-  default: () => descriptors_default
-});
-var descriptors_default;
-var init_descriptors = __esm({
-  "static/res/json/descriptors.json"() {
-    descriptors_default = [
-      "stunning",
-      "astounding",
-      "phenomenal",
-      "exceptional",
-      "wonderful",
-      "miraculous",
-      "wondrous",
-      "extraordinary",
-      "rare",
-      "unique",
-      "sublime",
-      "amiable",
-      "outstanding",
-      "remarkable",
-      "striking",
-      "impressive",
-      "incredible",
-      "sensational",
-      "spectacular",
-      "staggering",
-      "fabulous",
-      "marvelous",
-      "stupendous",
-      "stupefying",
-      "amazing",
-      "shocking",
-      "eye-opening"
-    ];
-  }
-});
-
-// static/res/json/alignments.json
-var alignments_exports = {};
-__export(alignments_exports, {
-  default: () => alignments_default
-});
-var alignments_default;
-var init_alignments = __esm({
-  "static/res/json/alignments.json"() {
-    alignments_default = [
-      "e-boy",
-      "e-girl",
-      "tree",
-      "badger",
-      "t-rex",
-      "noodle",
-      "butter",
-      "flower",
-      "apple",
-      "suit",
-      "sandal",
-      "cheese",
-      "plate",
-      "watch",
-      "hat",
-      "pasta",
-      "onion",
-      "stove",
-      "nose",
-      "goat",
-      "pipe",
-      "sock",
-      "shoe",
-      "soda",
-      "pizza",
-      "sauce",
-      "spoon",
-      "pencil",
-      "box",
-      "car",
-      "truck",
-      "bus",
-      "train",
-      "parrot",
-      "panda",
-      "rice",
-      "pizza",
-      "bean",
-      "fan",
-      "laptop",
-      "mouse",
-      "table",
-      "chair",
-      "sofa",
-      "bed",
-      "lamp",
-      "cup",
-      "fork",
-      "knife",
-      "bowl",
-      "frog",
-      "rocket",
-      "boat",
-      "ball",
-      "book",
-      "pen",
-      "bread",
-      "clock",
-      "egg",
-      "melon",
-      "chef",
-      "pilot",
-      "pirate",
-      "ninja",
-      "robot",
-      "sheep",
-      "milk"
-    ];
-  }
-});
-
-// static/res/json/questions.json
-var questions_exports = {};
-__export(questions_exports, {
-  default: () => questions_default
-});
-var questions_default;
-var init_questions = __esm({
-  "static/res/json/questions.json"() {
-    questions_default = [
-      { q: "wordle god", p: 1 },
-      { q: "is pog", p: 2 },
-      { q: "would roblox 1v1", p: 3 },
-      { q: "throws hands", p: 1 },
-      { q: "up-to-date", p: 3 },
-      { q: "awareness", p: 2 },
-      { q: "confidence", p: 3 },
-      { q: "gamer", p: 1 },
-      { q: "poet", p: 3 },
-      { q: "brightens day", p: 4 },
-      { q: "night owl", p: 2 },
-      { q: "magician", p: 2 },
-      { q: "entrepenuer", p: 1 },
-      { q: "on-time", p: 1 },
-      { q: "dab-tastic", p: 3 },
-      { q: "great gambler", p: 5 },
-      { q: "musical genius", p: 2 },
-      { q: "qualtiy person", p: 3 },
-      { q: "mr/mrs-worldwide", p: 2 },
-      { q: "adaptable andy", p: 2 },
-      { q: "supportive sally", p: 2 },
-      { q: "quick-thinker", p: 2 },
-      { q: "resolute", p: 2 },
-      { q: "glass half full", p: 2 },
-      { q: "optometrist", p: 1 },
-      { q: "knows pigeons", p: 2 },
-      { q: "good at eating", p: 1 },
-      { q: "self-esteem", p: 3 },
-      { q: "morale booster", p: 3 },
-      { q: "life improver", p: 3 }
-    ];
-  }
-});
-
 // functions/card-generator.js
-var templateImagePath = "static/res/imgs/template.png";
-var circleImagePath = "static/res/imgs/circle.png";
-var fontPath = "static/res/fonts/font_24.fnt";
 var Jimp = require_dist32();
+var fs = require("fs").promises;
 var cardsToGenerate = 8;
 var IMAGE = null;
 var FONT = null;
 var CIRCLE = null;
 var cards = [];
-var loaded = false;
-var generateCard = (image, useRandomPoints = false) => {
+var generateDescriptor = async () => {
+  const data = await fs.readFile("./lib/json/descriptors.json", "utf8");
+  const json = JSON.parse(data);
+  let random = Math.floor(Math.random() * json.length);
+  return json[random];
+};
+var generateAlignments = async () => {
+  const data = await fs.readFile("./lib/json/alignments.json", "utf8");
+  const json = JSON.parse(data);
+  let random1 = Math.floor(Math.random() * json.length);
+  let random2 = random1;
+  while (random2 == random1) {
+    random2 = Math.floor(Math.random() * json.length);
+  }
+  return [json[random1], json[random2]];
+};
+var generateQuestions = async (numQuestions) => {
+  const data = await fs.readFile("./lib/json/questions.json", "utf8");
+  const json = JSON.parse(data);
+  let asked = [];
+  for (let i = 0; i < numQuestions; i++) {
+    let random = -1;
+    while (asked.includes(json[random]) || random == -1) {
+      random = Math.floor(Math.random() * json.length);
+    }
+    asked.push(json[random]);
+  }
+  return asked;
+};
+var generateCard = async (image, useRandomPoints = false) => {
   let startX = 442;
   let startY = 288;
   let maxWidth = 340;
   let maxHeight = 30;
   let lineHeight = 39;
-  let asked = [];
   let randRNG = Math.random() * 2 + "";
   randRNG = "x" + randRNG.substring(0, randRNG.indexOf(".") + 3);
   image.print(FONT, 325, 465, {
@@ -29973,23 +29826,16 @@ var generateCard = (image, useRandomPoints = false) => {
     alignmentX: Jimp.HORIZONTAL_ALIGN_LEFT,
     alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
   }, 40, 40);
-  let descriptorPresets = (init_descriptors(), descriptors_exports).default;
-  let descriptor = descriptorPresets[Math.floor(Math.random() * descriptorPresets.length)];
-  console.log("descriptorPresets: " + descriptorPresets + " | length: " + descriptorPresets.length);
+  const descriptor = await generateDescriptor();
   console.log("descriptor: " + descriptor);
   image.print(FONT, 320, 25, {
     text: descriptor.toUpperCase(),
     alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
     alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
   }, 400, 80);
-  let alignmentPresets = (init_alignments(), alignments_exports).default;
-  let rng1 = Math.floor(Math.random() * alignmentPresets.length);
-  let rng2 = rng1;
-  while (rng2 == rng1) {
-    rng2 = Math.floor(Math.random() * alignmentPresets.length);
-  }
-  let alignment1 = alignmentPresets[rng1];
-  let alignment2 = alignmentPresets[rng2];
+  const alignmentPresets = await generateAlignments();
+  const alignment1 = alignmentPresets[0];
+  const alignment2 = alignmentPresets[1];
   console.log("alignmentPresets: " + alignmentPresets);
   console.log("alignment1: " + alignment1);
   console.log("alignment2: " + alignment2);
@@ -30006,14 +29852,9 @@ var generateCard = (image, useRandomPoints = false) => {
       alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
     }, 60, 30);
   }
-  let questionPresets = (init_questions(), questions_exports).default;
+  const questionPresets = await generateQuestions(6);
   for (let i = 0; i < 6; i++) {
-    let rand = -1;
-    while (rand == -1 || asked.indexOf(rand) != -1) {
-      rand = Math.floor(Math.random() * questionPresets.length);
-    }
-    asked.push(rand);
-    let question = questionPresets[rand];
+    let question = questionPresets[i];
     if (useRandomPoints) {
       question.p = Math.ceil(Math.random() * 5);
     }
@@ -30081,13 +29922,13 @@ var checkLoaded = () => {
   loaded = true;
   console.log("!all loaded!");
 };
-var generateCards = () => {
+var generateCards = async () => {
   console.log("Generating " + cardsToGenerate + " cards...");
   console.log("\npopulating cards...");
   for (let i = 0; i < cardsToGenerate; i++) {
     console.log("\n  card [" + i + "]...");
     let clone = IMAGE.clone();
-    generateCard(clone, true);
+    await generateCard(clone, true);
     console.log("  done");
   }
   console.log("done");
@@ -30101,20 +29942,20 @@ var generateCards = () => {
   return outputData;
 };
 exports.handler = async (event, context) => {
-  await Jimp.read(templateImagePath).then((img) => {
+  await Jimp.read("./lib/imgs/template.png").then((img) => {
     IMAGE = img;
     console.log("template image loaded");
   });
-  await Jimp.read(circleImagePath).then((img) => {
+  await Jimp.read("./lib/imgs/circle.png").then((img) => {
     CIRCLE = img;
     console.log("circle image loaded");
   });
-  await Jimp.loadFont(fontPath).then((font) => {
+  await Jimp.loadFont("./lib/fonts/font_24.fnt").then((font) => {
     FONT = font;
     console.log("font loaded");
   });
   checkLoaded();
-  let outputData = generateCards();
+  const outputData = await generateCards();
   return {
     statusCode: 200,
     body: outputData

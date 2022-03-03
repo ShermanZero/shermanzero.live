@@ -7528,7 +7528,7 @@ ${rendered.css.code}`;
       __proto__: null,
       [Symbol.toStringTag]: "Module"
     });
-    var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    <script src="/functions/bundle.js" type="text/javascript" onload="loaded=1"><\/script>\r\n\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
+    var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
     var read = null;
     set_paths({ "base": "", "assets": "" });
     var get_hooks = (hooks) => ({
@@ -8136,6 +8136,7 @@ var require_coworkerquiz_svelte = __commonJS({
       <label for="${"numPerPage"}">${(0, import_index_1e54ea6c.e)(cardsPerPage)}</label></span>
 
     <button class="${"svelte-1ilzoy3"}">Generate</button>
+
     ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-1ilzoy3"}">` : ``}</div>
 </div>`;
     });
@@ -8181,8 +8182,8 @@ var require__6 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_coworkerquiz_svelte());
-    var entry = "pages/projects/coworkerquiz.svelte-6339dc8a.js";
-    var js = ["pages/projects/coworkerquiz.svelte-6339dc8a.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/projects/coworkerquiz.svelte-d4a0ef26.js";
+    var js = ["pages/projects/coworkerquiz.svelte-d4a0ef26.js", "chunks/vendor-b8589598.js"];
     var css = ["assets/pages/projects/coworkerquiz.svelte-25c656ab.css"];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8472,10 +8473,10 @@ var require__9 = __commonJS({
 var { init } = require_handler();
 exports.handler = init({
   appDir: "_app",
-  assets: new Set(["favicon.png", "global.css", "res/fonts/dH07_tfV5sRln3Z38OGbaBoL.ttf_0.png", "res/fonts/font.bmp", "res/fonts/font.ttf", "res/fonts/font_24.fnt", "res/imgs/circle.png", "res/imgs/cw_generic.png", "res/imgs/template.png", "res/json/alignments.json", "res/json/descriptors.json", "res/json/questions.json"]),
+  assets: new Set(["favicon.png", "global.css"]),
   _: {
-    mime: { ".png": "image/png", ".css": "text/css", ".bmp": "image/bmp", ".ttf": "font/ttf", ".json": "application/json" },
-    entry: { "file": "start-de72a57b.js", "js": ["start-de72a57b.js", "chunks/vendor-b8589598.js"], "css": [] },
+    mime: { ".png": "image/png", ".css": "text/css" },
+    entry: { "file": "start-da9cb78e.js", "js": ["start-da9cb78e.js", "chunks/vendor-b8589598.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),

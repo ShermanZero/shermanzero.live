@@ -1,8 +1,5 @@
-const templateImagePath   = "/res/imgs/template.png";
-const circleImagePath     = "/res/imgs/circle.png";
-const fontPath            = "/res/fonts/font_24.fnt";
-
-const Jimp                = require("jimp");
+const Jimp = require("jimp");
+const fs = require('fs').promises;
 
 const cardsToGenerate     = 8;
 
@@ -11,9 +8,48 @@ let FONT = null;
 let CIRCLE = null;
 
 let cards = [];
-let loaded = false;
 
-const generateCard = (image, useRandomPoints = false) => {
+const generateDescriptor = async() => {
+  const data = await fs.readFile("./lib/json/descriptors.json", "utf8");
+  const json = JSON.parse(data);
+
+  let random = Math.floor(Math.random() * json.length);
+  return json[random];
+}
+
+const generateAlignments = async() => {
+  const data = await fs.readFile("./lib/json/alignments.json", "utf8");
+  const json = JSON.parse(data);
+
+  let random1 = Math.floor(Math.random() * json.length);
+  let random2 = random1;
+
+  while(random2 == random1) {
+    random2 = Math.floor(Math.random() * json.length);
+  }
+
+  return [json[random1], json[random2]];
+}
+
+const generateQuestions = async(numQuestions) => {
+  const data = await fs.readFile("./lib/json/questions.json", "utf8");
+  const json = JSON.parse(data);
+
+  let asked = [];
+
+  for(let i = 0; i < numQuestions; i++) {
+    let random = -1;
+    while(asked.includes(json[random]) || random == -1) {
+      random = Math.floor(Math.random() * json.length);
+    }
+
+    asked.push(json[random]);
+  }
+
+  return asked;
+}
+
+const generateCard = async(image, useRandomPoints = false) => {
   let startX = 442;
   let startY = 288;
 
@@ -21,8 +57,6 @@ const generateCard = (image, useRandomPoints = false) => {
   let maxHeight = 30;
 
   let lineHeight = 39;
-
-  let asked = [];
 
   let randRNG = Math.random()*2+"";
   randRNG = "x"+randRNG.substring(0, randRNG.indexOf(".")+3);
@@ -42,10 +76,7 @@ const generateCard = (image, useRandomPoints = false) => {
   );
 
   //print a random descriptor
-  let descriptorPresets   = require("/res/json/descriptors.json").default;
-  let descriptor = descriptorPresets[Math.floor(Math.random()*descriptorPresets.length)];
-
-  console.log("descriptorPresets: " + descriptorPresets + " | length: " + descriptorPresets.length);
+  const descriptor = await generateDescriptor();
   console.log("descriptor: " + descriptor);
 
   image.print(
@@ -61,18 +92,11 @@ const generateCard = (image, useRandomPoints = false) => {
     80
   );
 
-  let alignmentPresets    = require("/res/json/alignments.json").default;
 
   //print a random alignment
-  let rng1 = Math.floor(Math.random()*alignmentPresets.length);
-  let rng2 = rng1;
-
-  while(rng2 == rng1) {
-    rng2 = Math.floor(Math.random()*alignmentPresets.length);
-  }
-
-  let alignment1 = alignmentPresets[rng1];
-  let alignment2 = alignmentPresets[rng2];
+  const alignmentPresets = await generateAlignments();
+  const alignment1 = alignmentPresets[0];
+  const alignment2 = alignmentPresets[1];
 
   console.log("alignmentPresets: " + alignmentPresets);
   console.log("alignment1: " + alignment1);
@@ -108,17 +132,11 @@ const generateCard = (image, useRandomPoints = false) => {
     );
   }
 
-  let questionPresets     = require("/res/json/questions.json").default;
+  //prints/generates random prompts/questions
+  const questionPresets = await generateQuestions(6);
 
-  //prints random prompts
   for(let i = 0; i < 6; i++) {
-    let rand = -1;
-    while(rand == -1 || asked.indexOf(rand) != -1) {
-      rand = Math.floor(Math.random() * questionPresets.length);
-    }
-
-    asked.push(rand);
-    let question = questionPresets[rand];
+    let question = questionPresets[i];
 
     if(useRandomPoints) {
       question.p = Math.ceil(Math.random()*5);
@@ -227,7 +245,7 @@ const checkLoaded = () => {
   console.log("!all loaded!");
 }
 
-const generateCards = () => {
+const generateCards = async() => {
   console.log("Generating " + cardsToGenerate + " cards...");
 
   console.log("\npopulating cards...");
@@ -235,7 +253,7 @@ const generateCards = () => {
     console.log("\n  card [" + i + "]...");
 
     let clone = IMAGE.clone();
-    generateCard(clone, true);
+    await generateCard(clone, true);
     console.log("  done");
   }
   console.log("done");
@@ -252,16 +270,16 @@ const generateCards = () => {
 }
 
 exports.handler = async (event, context) => {
-  await Jimp.read(templateImagePath).then((img) => { IMAGE = img; console.log("template image loaded"); });
-  await Jimp.read(circleImagePath).then((img) => { CIRCLE = img; console.log("circle image loaded"); });
-  await Jimp.loadFont(fontPath).then((font) => { FONT = font; console.log("font loaded"); });
+  await Jimp.read("./lib/imgs/template.png").then((img) => { IMAGE = img; console.log("template image loaded"); });
+  await Jimp.read("./lib/imgs/circle.png").then((img) => { CIRCLE = img; console.log("circle image loaded"); });
+  await Jimp.loadFont("./lib/fonts/font_24.fnt").then((font) => { FONT = font; console.log("font loaded"); });
 
   checkLoaded();
 
-  let outputData = generateCards();
+  const outputData = await generateCards();
 
   return {
     statusCode: 200,
-    body: outputData,
+    body: JSON.stringify({ data: outputData })
   };
 };

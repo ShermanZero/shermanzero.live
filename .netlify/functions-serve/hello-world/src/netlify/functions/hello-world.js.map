@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../Desktop/Dev/shermanzero.com/netlify/functions/hello-world.js"],
-  "sourceRoot": "C:/Users/Admin/AppData/Local/Temp/tmp-11472-G0FfTFsnvSt3",
-  "sourcesContent": ["export async function handler(ev, ctx) {\n  const mySecret = \"big brain\";\n  return {\n    statusCode: 200,\n    body: `hello world! I have a ${mySecret}`,\n  };\n};"],
-  "mappings": ";;;;;;;;;AAAA;AAAA;AAAA;AAAA,uBAA8B,IAAI,KAAK;AACrC,QAAM,WAAW;AACjB,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM,yBAAyB;AAAA;AAAA;",
-  "names": []
-}

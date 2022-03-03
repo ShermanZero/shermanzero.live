@@ -31,10 +31,10 @@ __export(stdin_exports, {
 });
 const manifest = {
   appDir: "_app",
-  assets: /* @__PURE__ */ new Set(["favicon.png", "global.css", "res/fonts/dH07_tfV5sRln3Z38OGbaBoL.ttf_0.png", "res/fonts/font.bmp", "res/fonts/font.ttf", "res/fonts/font_24.fnt", "res/imgs/circle.png", "res/imgs/cw_generic.png", "res/imgs/template.png", "res/json/alignments.json", "res/json/descriptors.json", "res/json/questions.json"]),
+  assets: /* @__PURE__ */ new Set(["favicon.png", "global.css"]),
   _: {
-    mime: { ".png": "image/png", ".css": "text/css", ".bmp": "image/bmp", ".ttf": "font/ttf", ".json": "application/json" },
-    entry: { "file": "start-de72a57b.js", "js": ["start-de72a57b.js", "chunks/vendor-b8589598.js"], "css": [] },
+    mime: { ".png": "image/png", ".css": "text/css" },
+    entry: { "file": "start-d7af483a.js", "js": ["start-d7af483a.js", "chunks/vendor-b8589598.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => __toESM(require("./nodes/0.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/1.js"))),
