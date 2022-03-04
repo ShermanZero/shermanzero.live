@@ -13,6 +13,9 @@
 
 <style>
   .wrapper {
+    position: relative;
+    z-index: 0;
+
     display: flex;
     flex-direction: column;
 

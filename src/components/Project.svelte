@@ -24,7 +24,7 @@
   <div
     class="project-card"
     on:click={goToProject}
-    transition:fly={{ duration: 500, delay: showDelay, x: 0, y: 50, opacity: 0, easing: quintOut }}
+    transition:fly={{ duration: 300, delay: showDelay, x: 0, y: 50, opacity: 0, easing: quintOut }}
   >
     <h1>{projectName}</h1>
     <h2>{description}</h2>
@@ -40,10 +40,13 @@
 
     position: relative;
 
+    min-width: 160px;
+    min-height: 160px;
+
     width: 20vw;
     height: 20vw;
 
-    border: 3px solid white;
+    border: 0px;
     border-radius: 5%;
 
     padding: 20px;
@@ -51,35 +54,36 @@
     transition: all 0.12s;
     cursor: pointer;
 
-    background-color: rgb(201, 201, 201);
+    background: linear-gradient(180deg, rgb(230, 230, 230) 0%, rgb(22, 20, 20, 0.1) 100%);
     color: black;
+
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+
+    overflow: hidden;
   }
 
   div:hover {
-    background-color: rgb(51, 51, 51);
-    transform: scale(1.1);
+    background: linear-gradient(180deg, rgb(187, 199, 202) 0%, rgba(66, 85, 82, 0.1) 100%);
 
-    box-shadow: 0px 0px 5px 2px black;
-  }
-
-  div:hover * {
-    color: white;
+    transform: translateY(10px);
   }
 
   .date {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Robot Condensed", sans-serif;
     font-weight: 600;
 
     width: 100%;
     font-size: 0.8em;
     text-align: right;
     margin: 0;
+    font-weight: 700;
+    font-style: italic;
 
     color: black;
   }
 
   h1 {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
     font-size: 1.3em;
     text-align: center;
     margin: 0;
@@ -89,6 +93,7 @@
     font-family: "Raleway", sans-serif;
     font-size: 0.8em;
     text-align: left;
+    font-weight: 600;
     margin: 0;
   }
 </style>

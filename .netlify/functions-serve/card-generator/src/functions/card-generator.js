@@ -29958,7 +29958,7 @@ exports.handler = async (event, context) => {
   const outputData = await generateCards();
   return {
     statusCode: 200,
-    body: outputData
+    body: JSON.stringify({ data: outputData })
   };
 };
 /*!

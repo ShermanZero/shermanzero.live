@@ -8182,8 +8182,8 @@ var require__6 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_coworkerquiz_svelte());
-    var entry = "pages/projects/coworkerquiz.svelte-d4a0ef26.js";
-    var js = ["pages/projects/coworkerquiz.svelte-d4a0ef26.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/projects/coworkerquiz.svelte-5eae066b.js";
+    var js = ["pages/projects/coworkerquiz.svelte-5eae066b.js", "chunks/vendor-b8589598.js"];
     var css = ["assets/pages/projects/coworkerquiz.svelte-25c656ab.css"];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8476,7 +8476,7 @@ exports.handler = init({
   assets: new Set(["favicon.png", "global.css"]),
   _: {
     mime: { ".png": "image/png", ".css": "text/css" },
-    entry: { "file": "start-da9cb78e.js", "js": ["start-da9cb78e.js", "chunks/vendor-b8589598.js"], "css": [] },
+    entry: { "file": "start-d7af483a.js", "js": ["start-d7af483a.js", "chunks/vendor-b8589598.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),
