@@ -130,7 +130,7 @@
     padding: 12px 10px;
     transition: all 0.12s;
 
-    text-shadow: 0px 5px 5px rgb(20, 20, 20);
+    text-shadow: 0px 5px 5px rgb(20, 20, 20, 0.3);
   }
 
   li a:hover {

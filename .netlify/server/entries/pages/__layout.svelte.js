@@ -27,17 +27,20 @@ __export(stdin_exports, {
 var import_index_1e54ea6c = require("../../chunks/index-1e54ea6c.js");
 var __layout_svelte_svelte_type_style_lang = "";
 const css = {
-  code: 'span.svelte-1nwmdbs.svelte-1nwmdbs{display:block;width:100%;margin:auto;text-align:center;margin:20px 0px;color:white;font-family:"Raleway", sans-serif}span.svelte-1nwmdbs a.svelte-1nwmdbs{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-1nwmdbs.svelte-1nwmdbs{width:180px;height:100%;position:fixed;background-color:rgb(20, 20, 20);margin-left:-180px;overflow:hidden;border-right:2px solid white}ul.svelte-1nwmdbs.svelte-1nwmdbs{margin:0;padding:0;width:100%;height:100%}li.svelte-1nwmdbs.svelte-1nwmdbs{margin:0;padding:10px 10px;width:100%;transition:all 0.1s}li.svelte-1nwmdbs.svelte-1nwmdbs:hover{cursor:pointer;background-color:white;padding:15px 10px;transform:scale(1.25) translateX(20px)}li.svelte-1nwmdbs:hover .svelte-1nwmdbs{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-1nwmdbs a.svelte-1nwmdbs{display:block;color:rgb(124, 185, 209);text-decoration:none;text-transform:uppercase;width:100%;height:100%}',
+  code: '@media only screen and (max-width: 800px){li.svelte-5jiwd.svelte-5jiwd{display:none}}span.svelte-5jiwd.svelte-5jiwd:not(#link){position:absolute;display:block;text-align:center;top:10px;left:10px;color:white;font-family:"Raleway", sans-serif}#link.svelte-5jiwd.svelte-5jiwd{margin-left:-5px;padding-left:0;color:rgb(105, 105, 105);font-style:italic}span.svelte-5jiwd a.svelte-5jiwd{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-5jiwd.svelte-5jiwd{width:100%;position:sticky;z-index:999;background-color:rgb(20, 20, 20);top:0;right:0;height:42px}ul.svelte-5jiwd.svelte-5jiwd{margin:0;padding:0;margin-right:20px;display:flex;flex-direction:row;justify-content:flex-end;width:100%;height:100%}li.svelte-5jiwd.svelte-5jiwd{flex-shrink:1;align-self:flex-end;list-style-type:none;margin:0;transition:all 0.1s}li.svelte-5jiwd.svelte-5jiwd:last-child{padding-right:25px}li.svelte-5jiwd.svelte-5jiwd:hover{background-color:white}li.svelte-5jiwd:hover .svelte-5jiwd{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-5jiwd a.svelte-5jiwd{display:block;color:rgb(161, 196, 199);text-decoration:none;text-transform:uppercase;width:100%;height:100%;padding:12px 10px;transition:all 0.12s;text-shadow:0px 5px 5px rgb(20, 20, 20, 0.3)}li.svelte-5jiwd a.svelte-5jiwd:hover{cursor:pointer;padding:12px 36px}',
   map: null
 };
 const _layout = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+  let hover;
   $$result.css.add(css);
-  return `<nav class="${"svelte-1nwmdbs"}"><span class="${"svelte-1nwmdbs"}"><a href="${"/"}" class="${"svelte-1nwmdbs"}">shermanzero.live</a></span>
-  <ul class="${"svelte-1nwmdbs"}"><li class="${"svelte-1nwmdbs"}"><a href="${"/api"}" class="${"svelte-1nwmdbs"}">API</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/downloads"}" class="${"svelte-1nwmdbs"}">Downloads</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/portfolio"}" class="${"svelte-1nwmdbs"}">Portfolio</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/projects"}" class="${"svelte-1nwmdbs"}">Projects</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/upcoming"}" class="${"svelte-1nwmdbs"}">Upcoming</a></li></ul></nav>
+  hover = null;
+  return `<nav class="${"svelte-5jiwd"}"><div><span class="${"svelte-5jiwd"}"><a href="${"/"}" class="${"svelte-5jiwd"}">shermanzero.live/
+        ${hover ? `<span id="${"link"}" class="${"svelte-5jiwd"}">${(0, import_index_1e54ea6c.e)(hover)}</span>` : ``}</a></span>
+    <ul id="${"navlist"}" class="${"svelte-5jiwd"}"><li class="${"svelte-5jiwd"}"><a href="${"/api"}" class="${"svelte-5jiwd"}">API</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/downloads"}" class="${"svelte-5jiwd"}">Downloads</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/portfolio"}" class="${"svelte-5jiwd"}">Portfolio</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/projects"}" class="${"svelte-5jiwd"}">Projects</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/upcoming"}" class="${"svelte-5jiwd"}">Upcoming</a></li></ul></div></nav>
 
 ${slots.default ? slots.default({}) : ``}`;
 });

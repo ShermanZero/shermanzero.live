@@ -27,21 +27,16 @@ __export(stdin_exports, {
 var import_index_1e54ea6c = require("../../../chunks/index-1e54ea6c.js");
 var coworkerquiz_svelte_svelte_type_style_lang = "";
 const css = {
-  code: '.container.svelte-1ilzoy3.svelte-1ilzoy3{padding:20px}img.svelte-1ilzoy3.svelte-1ilzoy3{margin-top:10px}.container.svelte-1ilzoy3>.wrapper.svelte-1ilzoy3{width:840px;padding:10px;display:flex;flex-direction:column}input.svelte-1ilzoy3.svelte-1ilzoy3{width:100%}span.svelte-1ilzoy3.svelte-1ilzoy3{display:flex;justify-content:space-between}button.svelte-1ilzoy3.svelte-1ilzoy3{width:100%;height:50px;background-color:#357b85;color:#fff;font-size:1.5rem;font-weight:bold;border:none;border-radius:5px;cursor:pointer;margin-top:20px;font-family:"Ubuntu", sans-serif;text-transform:uppercase;transition:all 0.1s}button.svelte-1ilzoy3.svelte-1ilzoy3:hover{background-color:#81cbda;color:black}',
+  code: '.container.svelte-16a5q79.svelte-16a5q79{padding:20px}img.svelte-16a5q79.svelte-16a5q79{margin-top:10px}.container.svelte-16a5q79>.wrapper.svelte-16a5q79{padding:10px;display:flex;flex-direction:column}button.svelte-16a5q79.svelte-16a5q79{width:100%;height:100px;background-color:#357b85;background:linear-gradient(30deg, #357b85 10%, #175058 90%);color:#fff;font-size:1.5rem;font-weight:bold;border:none;border-radius:5px;cursor:pointer;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding:20px;font-family:"Raleway", sans-serif;text-transform:uppercase;font-weight:800;transition:all 0.1s}button.svelte-16a5q79.svelte-16a5q79:hover{background-color:#81cbda;color:black}',
   map: null
 };
 const Coworkerquiz = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
   let imageData;
-  let cardsPerPage = 12;
   $$result.css.add(css);
   imageData = null;
-  return `<div class="${"container svelte-1ilzoy3"}"><div class="${"wrapper svelte-1ilzoy3"}"><input type="${"range"}" name="${"page"}" id="${"numPerPage"}" min="${"1"}" max="${"24"}"${(0, import_index_1e54ea6c.a)("value", cardsPerPage, 0)} class="${"svelte-1ilzoy3"}">
-    <span class="${"svelte-1ilzoy3"}"><label for="${"numPerPage"}">Cards/Page</label>
-      <label for="${"numPerPage"}">${(0, import_index_1e54ea6c.e)(cardsPerPage)}</label></span>
+  return `<div class="${"container svelte-16a5q79"}"><div class="${"wrapper svelte-16a5q79"}"><button class="${"svelte-16a5q79"}">Press To<br>Generate Positivity</button>
 
-    <button class="${"svelte-1ilzoy3"}">Generate</button>
-
-    ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-1ilzoy3"}">` : ``}</div>
+    ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-16a5q79"}">` : ``}</div>
 </div>`;
 });
 module.exports = __toCommonJS(stdin_exports);

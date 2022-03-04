@@ -33,7 +33,7 @@ __export(stdin_exports, {
   module: () => module2
 });
 var module2 = __toESM(require("../entries/pages/index.svelte.js"));
-const entry = "pages/index.svelte-a3c2e1ee.js";
-const js = ["pages/index.svelte-a3c2e1ee.js", "chunks/vendor-b8589598.js"];
+const entry = "pages/index.svelte-a6b27cde.js";
+const js = ["pages/index.svelte-a6b27cde.js", "chunks/vendor-90f40547.js"];
 const css = [];
 module.exports = __toCommonJS(stdin_exports);

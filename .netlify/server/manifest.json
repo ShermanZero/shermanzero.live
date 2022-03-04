@@ -15,7 +15,7 @@
       "_index-1e54ea6c.js"
     ],
     "css": [
-      "assets/entries/pages/__layout.svelte-4b6f0fe5.css"
+      "assets/entries/pages/__layout.svelte-70032caa.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -58,7 +58,7 @@
       "_index-1e54ea6c.js"
     ],
     "css": [
-      "assets/entries/pages/projects/coworkerquiz.svelte-ada53b24.css"
+      "assets/entries/pages/projects/coworkerquiz.svelte-8382eb2b.css"
     ]
   },
   "src/routes/projects.svelte": {
@@ -69,7 +69,7 @@
       "_index-1e54ea6c.js"
     ],
     "css": [
-      "assets/entries/pages/projects.svelte-5971c81b.css"
+      "assets/entries/pages/projects.svelte-4b0496cf.css"
     ]
   },
   "src/routes/upcoming.svelte": {

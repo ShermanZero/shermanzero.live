@@ -7528,7 +7528,7 @@ ${rendered.css.code}`;
       __proto__: null,
       [Symbol.toStringTag]: "Module"
     });
-    var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
+    var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
     var read = null;
     set_paths({ "base": "", "assets": "" });
     var get_hooks = (hooks) => ({
@@ -7684,17 +7684,20 @@ var require_layout_svelte = __commonJS({
     });
     var import_index_1e54ea6c = require_index_1e54ea6c();
     var css = {
-      code: 'span.svelte-1nwmdbs.svelte-1nwmdbs{display:block;width:100%;margin:auto;text-align:center;margin:20px 0px;color:white;font-family:"Raleway", sans-serif}span.svelte-1nwmdbs a.svelte-1nwmdbs{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-1nwmdbs.svelte-1nwmdbs{width:180px;height:100%;position:fixed;background-color:rgb(20, 20, 20);margin-left:-180px;overflow:hidden;border-right:2px solid white}ul.svelte-1nwmdbs.svelte-1nwmdbs{margin:0;padding:0;width:100%;height:100%}li.svelte-1nwmdbs.svelte-1nwmdbs{margin:0;padding:10px 10px;width:100%;transition:all 0.1s}li.svelte-1nwmdbs.svelte-1nwmdbs:hover{cursor:pointer;background-color:white;padding:15px 10px;transform:scale(1.25) translateX(20px)}li.svelte-1nwmdbs:hover .svelte-1nwmdbs{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-1nwmdbs a.svelte-1nwmdbs{display:block;color:rgb(124, 185, 209);text-decoration:none;text-transform:uppercase;width:100%;height:100%}',
+      code: '@media only screen and (max-width: 800px){li.svelte-809ro.svelte-809ro{display:none}}span.svelte-809ro.svelte-809ro:not(#link){position:absolute;display:block;text-align:center;top:10px;left:10px;color:white;font-family:"Raleway", sans-serif}#link.svelte-809ro.svelte-809ro{margin-left:-5px;padding-left:0;color:rgb(105, 105, 105);font-style:italic}span.svelte-809ro a.svelte-809ro{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-809ro.svelte-809ro{width:100%;position:sticky;z-index:999;background-color:rgb(20, 20, 20);top:0;right:0;height:42px}ul.svelte-809ro.svelte-809ro{margin:0;padding:0;margin-right:20px;display:flex;flex-direction:row;justify-content:flex-end;width:100%;height:100%}li.svelte-809ro.svelte-809ro{flex-shrink:1;align-self:flex-end;list-style-type:none;margin:0;transition:all 0.1s}li.svelte-809ro.svelte-809ro:last-child{padding-right:25px}li.svelte-809ro.svelte-809ro:hover{background-color:white}li.svelte-809ro:hover .svelte-809ro{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-809ro a.svelte-809ro{display:block;color:rgb(161, 196, 199);text-decoration:none;text-transform:uppercase;width:100%;height:100%;padding:12px 10px;transition:all 0.12s;text-shadow:0px 5px 5px rgb(20, 20, 20)}li.svelte-809ro a.svelte-809ro:hover{cursor:pointer;padding:12px 36px}',
       map: null
     };
     var _layout = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+      let hover;
       $$result.css.add(css);
-      return `<nav class="${"svelte-1nwmdbs"}"><span class="${"svelte-1nwmdbs"}"><a href="${"/"}" class="${"svelte-1nwmdbs"}">shermanzero.live</a></span>
-  <ul class="${"svelte-1nwmdbs"}"><li class="${"svelte-1nwmdbs"}"><a href="${"/api"}" class="${"svelte-1nwmdbs"}">API</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/downloads"}" class="${"svelte-1nwmdbs"}">Downloads</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/portfolio"}" class="${"svelte-1nwmdbs"}">Portfolio</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/projects"}" class="${"svelte-1nwmdbs"}">Projects</a></li>
-    <li class="${"svelte-1nwmdbs"}"><a href="${"/upcoming"}" class="${"svelte-1nwmdbs"}">Upcoming</a></li></ul></nav>
+      hover = null;
+      return `<nav class="${"svelte-809ro"}"><div><span class="${"svelte-809ro"}"><a href="${"/"}" class="${"svelte-809ro"}">shermanzero.live/
+        ${hover ? `<span id="${"link"}" class="${"svelte-809ro"}">${(0, import_index_1e54ea6c.e)(hover)}</span>` : ``}</a></span>
+    <ul id="${"navlist"}" class="${"svelte-809ro"}"><li class="${"svelte-809ro"}"><a href="${"/api"}" class="${"svelte-809ro"}">API</a></li>
+      <li class="${"svelte-809ro"}"><a href="${"/downloads"}" class="${"svelte-809ro"}">Downloads</a></li>
+      <li class="${"svelte-809ro"}"><a href="${"/portfolio"}" class="${"svelte-809ro"}">Portfolio</a></li>
+      <li class="${"svelte-809ro"}"><a href="${"/projects"}" class="${"svelte-809ro"}">Projects</a></li>
+      <li class="${"svelte-809ro"}"><a href="${"/upcoming"}" class="${"svelte-809ro"}">Upcoming</a></li></ul></div></nav>
 
 ${slots.default ? slots.default({}) : ``}`;
     });
@@ -7740,9 +7743,9 @@ var require__ = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_layout_svelte());
-    var entry = "pages/__layout.svelte-cf1126dd.js";
-    var js = ["pages/__layout.svelte-cf1126dd.js", "chunks/vendor-b8589598.js"];
-    var css = ["assets/pages/__layout.svelte-f5ff2c7f.css"];
+    var entry = "pages/__layout.svelte-d868a3b2.js";
+    var js = ["pages/__layout.svelte-d868a3b2.js", "chunks/vendor-90f40547.js"];
+    var css = ["assets/pages/__layout.svelte-1360a494.css"];
     module3.exports = __toCommonJS(stdin_exports);
   }
 });
@@ -7839,8 +7842,8 @@ var require__2 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_error_svelte());
-    var entry = "error.svelte-23df9f2b.js";
-    var js = ["error.svelte-23df9f2b.js", "chunks/vendor-b8589598.js"];
+    var entry = "error.svelte-8c2dfc6a.js";
+    var js = ["error.svelte-8c2dfc6a.js", "chunks/vendor-90f40547.js"];
     var css = [];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -7921,8 +7924,8 @@ var require__3 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_index_svelte());
-    var entry = "pages/index.svelte-a3c2e1ee.js";
-    var js = ["pages/index.svelte-a3c2e1ee.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/index.svelte-a6b27cde.js";
+    var js = ["pages/index.svelte-a6b27cde.js", "chunks/vendor-90f40547.js"];
     var css = [];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8003,8 +8006,8 @@ var require__4 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_downloads_svelte());
-    var entry = "pages/downloads.svelte-98c0f3f3.js";
-    var js = ["pages/downloads.svelte-98c0f3f3.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/downloads.svelte-d19214b7.js";
+    var js = ["pages/downloads.svelte-d19214b7.js", "chunks/vendor-90f40547.js"];
     var css = [];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8085,8 +8088,8 @@ var require__5 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_portfolio_svelte());
-    var entry = "pages/portfolio.svelte-646d293b.js";
-    var js = ["pages/portfolio.svelte-646d293b.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/portfolio.svelte-df1d2b6c.js";
+    var js = ["pages/portfolio.svelte-df1d2b6c.js", "chunks/vendor-90f40547.js"];
     var css = [];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8123,21 +8126,16 @@ var require_coworkerquiz_svelte = __commonJS({
     });
     var import_index_1e54ea6c = require_index_1e54ea6c();
     var css = {
-      code: '.container.svelte-1ilzoy3.svelte-1ilzoy3{padding:20px}img.svelte-1ilzoy3.svelte-1ilzoy3{margin-top:10px}.container.svelte-1ilzoy3>.wrapper.svelte-1ilzoy3{width:840px;padding:10px;display:flex;flex-direction:column}input.svelte-1ilzoy3.svelte-1ilzoy3{width:100%}span.svelte-1ilzoy3.svelte-1ilzoy3{display:flex;justify-content:space-between}button.svelte-1ilzoy3.svelte-1ilzoy3{width:100%;height:50px;background-color:#357b85;color:#fff;font-size:1.5rem;font-weight:bold;border:none;border-radius:5px;cursor:pointer;margin-top:20px;font-family:"Ubuntu", sans-serif;text-transform:uppercase;transition:all 0.1s}button.svelte-1ilzoy3.svelte-1ilzoy3:hover{background-color:#81cbda;color:black}',
+      code: '.container.svelte-16a5q79.svelte-16a5q79{padding:20px}img.svelte-16a5q79.svelte-16a5q79{margin-top:10px}.container.svelte-16a5q79>.wrapper.svelte-16a5q79{padding:10px;display:flex;flex-direction:column}button.svelte-16a5q79.svelte-16a5q79{width:100%;height:100px;background-color:#357b85;background:linear-gradient(30deg, #357b85 10%, #175058 90%);color:#fff;font-size:1.5rem;font-weight:bold;border:none;border-radius:5px;cursor:pointer;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding:20px;font-family:"Raleway", sans-serif;text-transform:uppercase;font-weight:800;transition:all 0.1s}button.svelte-16a5q79.svelte-16a5q79:hover{background-color:#81cbda;color:black}',
       map: null
     };
     var Coworkerquiz = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
       let imageData;
-      let cardsPerPage = 12;
       $$result.css.add(css);
       imageData = null;
-      return `<div class="${"container svelte-1ilzoy3"}"><div class="${"wrapper svelte-1ilzoy3"}"><input type="${"range"}" name="${"page"}" id="${"numPerPage"}" min="${"1"}" max="${"24"}"${(0, import_index_1e54ea6c.a)("value", cardsPerPage, 0)} class="${"svelte-1ilzoy3"}">
-    <span class="${"svelte-1ilzoy3"}"><label for="${"numPerPage"}">Cards/Page</label>
-      <label for="${"numPerPage"}">${(0, import_index_1e54ea6c.e)(cardsPerPage)}</label></span>
+      return `<div class="${"container svelte-16a5q79"}"><div class="${"wrapper svelte-16a5q79"}"><button class="${"svelte-16a5q79"}">Press To<br>Generate Positivity</button>
 
-    <button class="${"svelte-1ilzoy3"}">Generate</button>
-
-    ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-1ilzoy3"}">` : ``}</div>
+    ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-16a5q79"}">` : ``}</div>
 </div>`;
     });
     module2.exports = __toCommonJS(stdin_exports);
@@ -8182,9 +8180,9 @@ var require__6 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_coworkerquiz_svelte());
-    var entry = "pages/projects/coworkerquiz.svelte-5eae066b.js";
-    var js = ["pages/projects/coworkerquiz.svelte-5eae066b.js", "chunks/vendor-b8589598.js"];
-    var css = ["assets/pages/projects/coworkerquiz.svelte-25c656ab.css"];
+    var entry = "pages/projects/coworkerquiz.svelte-d40fcda6.js";
+    var js = ["pages/projects/coworkerquiz.svelte-d40fcda6.js", "chunks/vendor-90f40547.js"];
+    var css = ["assets/pages/projects/coworkerquiz.svelte-b1b43672.css"];
     module3.exports = __toCommonJS(stdin_exports);
   }
 });
@@ -8220,7 +8218,7 @@ var require_projects_svelte = __commonJS({
     });
     var import_index_1e54ea6c = require_index_1e54ea6c();
     var css$1 = {
-      code: 'div.svelte-1vaqwh6.svelte-1vaqwh6{display:flex;flex-direction:column;justify-content:space-between;position:relative;width:20vw;height:20vw;border:3px solid white;border-radius:5%;padding:20px;transition:all 0.12s;cursor:pointer;background-color:rgb(201, 201, 201);color:black}div.svelte-1vaqwh6.svelte-1vaqwh6:hover{background-color:rgb(51, 51, 51);transform:scale(1.1);box-shadow:0px 0px 5px 2px black}div.svelte-1vaqwh6:hover .svelte-1vaqwh6{color:white}.date.svelte-1vaqwh6.svelte-1vaqwh6{font-family:"Ubuntu", sans-serif;font-weight:600;width:100%;font-size:0.8em;text-align:right;margin:0;color:black}h1.svelte-1vaqwh6.svelte-1vaqwh6{font-family:"Raleway", sans-serif;font-size:1.3em;text-align:center;margin:0}h2.svelte-1vaqwh6.svelte-1vaqwh6{font-family:"Raleway", sans-serif;font-size:0.8em;text-align:left;margin:0}',
+      code: 'div.svelte-5d5ydx{display:flex;flex-direction:column;justify-content:space-between;position:relative;min-width:160px;min-height:160px;width:20vw;height:20vw;border:0px;border-radius:5%;padding:20px;transition:all 0.12s;cursor:pointer;background:linear-gradient(180deg, rgb(230, 230, 230) 0%, rgb(22, 20, 20, 0.1) 100%);color:black;box-shadow:0px 10px 20px rgba(0, 0, 0, 0.5);overflow:hidden}div.svelte-5d5ydx:hover{background:linear-gradient(180deg, rgb(187, 199, 202) 0%, rgba(66, 85, 82, 0.1) 100%);transform:translateY(10px)}.date.svelte-5d5ydx{font-family:"Robot Condensed", sans-serif;font-weight:600;width:100%;font-size:0.8em;text-align:right;margin:0;font-weight:700;font-style:italic;color:black}h1.svelte-5d5ydx{font-family:"Roboto Condensed", sans-serif;font-size:1.3em;text-align:center;margin:0}h2.svelte-5d5ydx{font-family:"Raleway", sans-serif;font-size:0.8em;text-align:left;font-weight:600;margin:0}',
       map: null
     };
     var Project = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
@@ -8243,12 +8241,12 @@ var require_projects_svelte = __commonJS({
       return `${``}`;
     });
     var css = {
-      code: ".wrapper.svelte-1fso326{display:flex;flex-direction:column;padding:40px}",
+      code: ".wrapper.svelte-oo3h4e{position:relative;z-index:0;display:flex;flex-direction:column;padding:40px}",
       map: null
     };
     var Projects = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css);
-      return `<div class="${"wrapper svelte-1fso326"}">${(0, import_index_1e54ea6c.v)(Project, "Project").$$render($$result, {
+      return `<div class="${"wrapper svelte-oo3h4e"}">${(0, import_index_1e54ea6c.v)(Project, "Project").$$render($$result, {
         projectName: "Coworker Quiz",
         projectID: "coworkerquiz",
         dateCreated: "02/26/22",
@@ -8298,9 +8296,9 @@ var require__7 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_projects_svelte());
-    var entry = "pages/projects.svelte-8d9cfbc6.js";
-    var js = ["pages/projects.svelte-8d9cfbc6.js", "chunks/vendor-b8589598.js"];
-    var css = ["assets/pages/projects.svelte-f7a2d150.css"];
+    var entry = "pages/projects.svelte-22f2cbd7.js";
+    var js = ["pages/projects.svelte-22f2cbd7.js", "chunks/vendor-90f40547.js"];
+    var css = ["assets/pages/projects.svelte-7064b4ec.css"];
     module3.exports = __toCommonJS(stdin_exports);
   }
 });
@@ -8380,8 +8378,8 @@ var require__8 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_upcoming_svelte());
-    var entry = "pages/upcoming.svelte-6fb280e8.js";
-    var js = ["pages/upcoming.svelte-6fb280e8.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/upcoming.svelte-c86df938.js";
+    var js = ["pages/upcoming.svelte-c86df938.js", "chunks/vendor-90f40547.js"];
     var css = [];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8462,8 +8460,8 @@ var require__9 = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_api_svelte());
-    var entry = "pages/api.svelte-5007ecbd.js";
-    var js = ["pages/api.svelte-5007ecbd.js", "chunks/vendor-b8589598.js"];
+    var entry = "pages/api.svelte-d68ff7f4.js";
+    var js = ["pages/api.svelte-d68ff7f4.js", "chunks/vendor-90f40547.js"];
     var css = [];
     module3.exports = __toCommonJS(stdin_exports);
   }
@@ -8476,7 +8474,7 @@ exports.handler = init({
   assets: new Set(["favicon.png", "global.css"]),
   _: {
     mime: { ".png": "image/png", ".css": "text/css" },
-    entry: { "file": "start-d7af483a.js", "js": ["start-d7af483a.js", "chunks/vendor-b8589598.js"], "css": [] },
+    entry: { "file": "start-96f6926d.js", "js": ["start-96f6926d.js", "chunks/vendor-90f40547.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),

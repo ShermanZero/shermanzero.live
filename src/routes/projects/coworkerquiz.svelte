@@ -22,7 +22,7 @@
 
 <div class="container">
   <div class="wrapper">
-    <button on:click={handler}>Generate Positivity</button>
+    <button on:click={handler}>Press To<br />Generate Positivity</button>
 
     {#if imageData}
       <img id="image" src={imageData} alt="output" />
