@@ -1,11 +1,11 @@
 <h1>Uh well hi... this is a bit awkward</h1>
-<h2>see</h2>
+<h2>see,</h2>
 <h3>the thing is</h3>
-<h4>my website is still under major development :' - )</h4>
+<h4>my website is still under major development</h4>
 <h5>
   So, many features/pages are not implemented. Feel free to check back however often you want. Progress is continuous,
   and I have big plans for the eventual state of the site in what will most likely be a few months. Why even have the
-  site live then? Great question! Why not? That's what I thought.
+  site live then? Great question! Why not? Exactly.
 </h5>
 <h5>
   In the meantime, head on over to <a href="/projects">/projects</a> to see my awesome library of projects I've uploaded
@@ -20,12 +20,14 @@
   h5 {
     font-family: "Raleway";
     text-align: center;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: 0 24px;
+    max-width: 500px;
   }
 
   h4 {
-    margin: 80px 0px;
+    margin: 40px auto;
+    font-style: italic;
   }
 
   h5 {
@@ -37,6 +39,6 @@
     font-family: "Raleway";
     font-size: 2.5em;
     text-align: center;
-    margin-top: 120px;
+    margin-top: 60px;
   }
 </style>

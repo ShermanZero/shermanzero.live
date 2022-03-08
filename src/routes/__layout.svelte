@@ -25,10 +25,10 @@
   fetchLastUpdate();
 </script>
 
-<div class="update">
+<footer class="update">
   <a href="https://github.com/ShermanZero/shermanzero.com" target="_">LATEST BUILD</a> ON [{lastUpdated}] -
   <q>{lastMessage}</q>
-</div>
+</footer>
 <nav>
   <div>
     <span
@@ -64,11 +64,19 @@
     background-color: lightgray;
     color: darkslategray;
 
-    position: absolute;
+    position: fixed;
     bottom: 12px;
     left: 12px;
 
     font-family: "Roboto Condensed", sans-serif;
+    opacity: 0.25;
+    transition: all 0.2s ease;
+
+    margin-right: 12px;
+  }
+
+  .update:hover {
+    opacity: 1;
   }
 
   .update a {
