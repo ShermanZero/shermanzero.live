@@ -7684,20 +7684,20 @@ var require_layout_svelte = __commonJS({
     });
     var import_index_1e54ea6c = require_index_1e54ea6c();
     var css = {
-      code: '@media only screen and (max-width: 800px){li.svelte-809ro.svelte-809ro{display:none}}span.svelte-809ro.svelte-809ro:not(#link){position:absolute;display:block;text-align:center;top:10px;left:10px;color:white;font-family:"Raleway", sans-serif}#link.svelte-809ro.svelte-809ro{margin-left:-5px;padding-left:0;color:rgb(105, 105, 105);font-style:italic}span.svelte-809ro a.svelte-809ro{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-809ro.svelte-809ro{width:100%;position:sticky;z-index:999;background-color:rgb(20, 20, 20);top:0;right:0;height:42px}ul.svelte-809ro.svelte-809ro{margin:0;padding:0;margin-right:20px;display:flex;flex-direction:row;justify-content:flex-end;width:100%;height:100%}li.svelte-809ro.svelte-809ro{flex-shrink:1;align-self:flex-end;list-style-type:none;margin:0;transition:all 0.1s}li.svelte-809ro.svelte-809ro:last-child{padding-right:25px}li.svelte-809ro.svelte-809ro:hover{background-color:white}li.svelte-809ro:hover .svelte-809ro{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-809ro a.svelte-809ro{display:block;color:rgb(161, 196, 199);text-decoration:none;text-transform:uppercase;width:100%;height:100%;padding:12px 10px;transition:all 0.12s;text-shadow:0px 5px 5px rgb(20, 20, 20)}li.svelte-809ro a.svelte-809ro:hover{cursor:pointer;padding:12px 36px}',
+      code: '@media only screen and (max-width: 800px){li.svelte-5jiwd.svelte-5jiwd{display:none}}span.svelte-5jiwd.svelte-5jiwd:not(#link){position:absolute;display:block;text-align:center;top:10px;left:10px;color:white;font-family:"Raleway", sans-serif}#link.svelte-5jiwd.svelte-5jiwd{margin-left:-5px;padding-left:0;color:rgb(105, 105, 105);font-style:italic}span.svelte-5jiwd a.svelte-5jiwd{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-5jiwd.svelte-5jiwd{width:100%;position:sticky;z-index:999;background-color:rgb(20, 20, 20);top:0;right:0;height:42px}ul.svelte-5jiwd.svelte-5jiwd{margin:0;padding:0;margin-right:20px;display:flex;flex-direction:row;justify-content:flex-end;width:100%;height:100%}li.svelte-5jiwd.svelte-5jiwd{flex-shrink:1;align-self:flex-end;list-style-type:none;margin:0;transition:all 0.1s}li.svelte-5jiwd.svelte-5jiwd:last-child{padding-right:25px}li.svelte-5jiwd.svelte-5jiwd:hover{background-color:white}li.svelte-5jiwd:hover .svelte-5jiwd{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-5jiwd a.svelte-5jiwd{display:block;color:rgb(161, 196, 199);text-decoration:none;text-transform:uppercase;width:100%;height:100%;padding:12px 10px;transition:all 0.12s;text-shadow:0px 5px 5px rgb(20, 20, 20, 0.3)}li.svelte-5jiwd a.svelte-5jiwd:hover{cursor:pointer;padding:12px 36px}',
       map: null
     };
     var _layout = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
       let hover;
       $$result.css.add(css);
       hover = null;
-      return `<nav class="${"svelte-809ro"}"><div><span class="${"svelte-809ro"}"><a href="${"/"}" class="${"svelte-809ro"}">shermanzero.live/
-        ${hover ? `<span id="${"link"}" class="${"svelte-809ro"}">${(0, import_index_1e54ea6c.e)(hover)}</span>` : ``}</a></span>
-    <ul id="${"navlist"}" class="${"svelte-809ro"}"><li class="${"svelte-809ro"}"><a href="${"/api"}" class="${"svelte-809ro"}">API</a></li>
-      <li class="${"svelte-809ro"}"><a href="${"/downloads"}" class="${"svelte-809ro"}">Downloads</a></li>
-      <li class="${"svelte-809ro"}"><a href="${"/portfolio"}" class="${"svelte-809ro"}">Portfolio</a></li>
-      <li class="${"svelte-809ro"}"><a href="${"/projects"}" class="${"svelte-809ro"}">Projects</a></li>
-      <li class="${"svelte-809ro"}"><a href="${"/upcoming"}" class="${"svelte-809ro"}">Upcoming</a></li></ul></div></nav>
+      return `<nav class="${"svelte-5jiwd"}"><div><span class="${"svelte-5jiwd"}"><a href="${"/"}" class="${"svelte-5jiwd"}">shermanzero.live/
+        ${hover ? `<span id="${"link"}" class="${"svelte-5jiwd"}">${(0, import_index_1e54ea6c.e)(hover)}</span>` : ``}</a></span>
+    <ul id="${"navlist"}" class="${"svelte-5jiwd"}"><li class="${"svelte-5jiwd"}"><a href="${"/api"}" class="${"svelte-5jiwd"}">API</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/downloads"}" class="${"svelte-5jiwd"}">Downloads</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/portfolio"}" class="${"svelte-5jiwd"}">Portfolio</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/projects"}" class="${"svelte-5jiwd"}">Projects</a></li>
+      <li class="${"svelte-5jiwd"}"><a href="${"/upcoming"}" class="${"svelte-5jiwd"}">Upcoming</a></li></ul></div></nav>
 
 ${slots.default ? slots.default({}) : ``}`;
     });
@@ -7743,9 +7743,9 @@ var require__ = __commonJS({
       module: () => module2
     });
     var module2 = __toESM(require_layout_svelte());
-    var entry = "pages/__layout.svelte-d868a3b2.js";
-    var js = ["pages/__layout.svelte-d868a3b2.js", "chunks/vendor-90f40547.js"];
-    var css = ["assets/pages/__layout.svelte-1360a494.css"];
+    var entry = "pages/__layout.svelte-d33e3448.js";
+    var js = ["pages/__layout.svelte-d33e3448.js", "chunks/vendor-90f40547.js"];
+    var css = ["assets/pages/__layout.svelte-a09f9463.css"];
     module3.exports = __toCommonJS(stdin_exports);
   }
 });
@@ -8474,7 +8474,7 @@ exports.handler = init({
   assets: new Set(["favicon.png", "global.css"]),
   _: {
     mime: { ".png": "image/png", ".css": "text/css" },
-    entry: { "file": "start-96f6926d.js", "js": ["start-96f6926d.js", "chunks/vendor-90f40547.js"], "css": [] },
+    entry: { "file": "start-91f395de.js", "js": ["start-91f395de.js", "chunks/vendor-90f40547.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),

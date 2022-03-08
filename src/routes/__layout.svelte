@@ -1,6 +1,19 @@
 <script>
   $: hover = null;
 
+  $: lastUpdated = null;
+  $: lastMessage = null;
+
+  const fetchLastUpdate = () => {
+    fetch("https://api.github.com/repos/shermanzero/shermanzero.com/branches/main")
+      .then((res) => res.json())
+      .then((data) => {
+        lastUpdated = data.commit.commit.committer.date;
+        lastUpdated = new Date(lastUpdated).toLocaleString();
+        lastMessage = data.commit.commit.message;
+      });
+  };
+
   const onMouseEnter = (e) => {
     hover = e.target.innerHTML.trim().toLowerCase();
   };
@@ -8,8 +21,14 @@
   const onMouseLeave = (e) => {
     hover = null;
   };
+
+  fetchLastUpdate();
 </script>
 
+<div class="update">
+  <a href="https://github.com/ShermanZero/shermanzero.com" target="_">LATEST BUILD</a> ON [{lastUpdated}] -
+  <q>{lastMessage}</q>
+</div>
 <nav>
   <div>
     <span
@@ -37,6 +56,24 @@
     li {
       display: none;
     }
+  }
+
+  .update {
+    padding: 15px;
+    border-radius: 5px;
+    background-color: lightgray;
+    color: darkslategray;
+
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+
+    font-family: "Roboto Condensed", sans-serif;
+  }
+
+  .update a {
+    text-decoration: none;
+    color: rgb(160, 72, 167);
   }
 
   span:not(#link) {

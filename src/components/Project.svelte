@@ -43,6 +43,9 @@
     min-width: 160px;
     min-height: 160px;
 
+    max-width: 200px;
+    max-height: 200px;
+
     width: 20vw;
     height: 20vw;
 
