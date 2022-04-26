@@ -2,6 +2,8 @@
   $: lastUpdated = null;
   $: lastMessage = null;
 
+  let showUpdated = false;
+
   $: icons = true;
 
   const fetchLastUpdate = () => {
@@ -67,7 +69,7 @@
 
 <slot />
 
-{#if lastUpdated && lastMessage}
+{#if lastUpdated && lastMessage && showUpdated}
   <footer class="update">
     <a href="https://github.com/ShermanZero/shermanzero.com" target="_">LATEST BUILD</a> ON [{lastUpdated}] -
     <q>{lastMessage}</q>
