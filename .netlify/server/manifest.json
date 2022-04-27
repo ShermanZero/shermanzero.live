@@ -15,7 +15,7 @@
       "_index-1e54ea6c.js"
     ],
     "css": [
-      "assets/entries/pages/__layout.svelte-70032caa.css"
+      "assets/entries/pages/__layout.svelte-6ad3617b.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -32,6 +32,20 @@
     "isEntry": true,
     "imports": [
       "_index-1e54ea6c.js"
+    ],
+    "css": [
+      "assets/entries/pages/index.svelte-ebb4a17b.css"
+    ]
+  },
+  "src/routes/invitation.svelte": {
+    "file": "entries/pages/invitation.svelte.js",
+    "src": "src/routes/invitation.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-1e54ea6c.js"
+    ],
+    "css": [
+      "assets/entries/pages/invitation.svelte-20ed177d.css"
     ]
   },
   "src/routes/downloads.svelte": {
@@ -69,7 +83,7 @@
       "_index-1e54ea6c.js"
     ],
     "css": [
-      "assets/entries/pages/projects.svelte-4b0496cf.css"
+      "assets/entries/pages/projects.svelte-3e912999.css"
     ]
   },
   "src/routes/upcoming.svelte": {
@@ -78,6 +92,17 @@
     "isEntry": true,
     "imports": [
       "_index-1e54ea6c.js"
+    ]
+  },
+  "src/routes/linzy.svelte": {
+    "file": "entries/pages/linzy.svelte.js",
+    "src": "src/routes/linzy.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-1e54ea6c.js"
+    ],
+    "css": [
+      "assets/entries/pages/linzy.svelte-5f2dacdb.css"
     ]
   },
   "src/routes/api.svelte": {

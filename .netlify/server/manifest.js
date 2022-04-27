@@ -31,10 +31,10 @@ __export(stdin_exports, {
 });
 const manifest = {
   appDir: "_app",
-  assets: /* @__PURE__ */ new Set(["favicon.png", "global.css"]),
+  assets: /* @__PURE__ */ new Set(["global.css", "pngs/04262022_amethyst.jpg", "svgs/circle_check.svg", "svgs/circle_x.svg", "svgs/favicon.svg", "svgs/nav/api.svg", "svgs/nav/downloads.svg", "svgs/nav/hamburger_menu.svg", "svgs/nav/portfolio.svg", "svgs/nav/projects.svg", "svgs/nav/socials.svg", "svgs/nav/upcoming.svg"]),
   _: {
-    mime: { ".png": "image/png", ".css": "text/css" },
-    entry: { "file": "start-91f395de.js", "js": ["start-91f395de.js", "chunks/vendor-90f40547.js"], "css": [] },
+    mime: { ".css": "text/css", ".jpg": "image/jpeg", ".svg": "image/svg+xml" },
+    entry: { "file": "start-9c1d7c68.js", "js": ["start-9c1d7c68.js", "chunks/vendor-43dc4268.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => __toESM(require("./nodes/0.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/1.js"))),
@@ -44,7 +44,9 @@ const manifest = {
       () => Promise.resolve().then(() => __toESM(require("./nodes/5.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/6.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/7.js"))),
-      () => Promise.resolve().then(() => __toESM(require("./nodes/8.js")))
+      () => Promise.resolve().then(() => __toESM(require("./nodes/8.js"))),
+      () => Promise.resolve().then(() => __toESM(require("./nodes/9.js"))),
+      () => Promise.resolve().then(() => __toESM(require("./nodes/10.js")))
     ],
     routes: [
       {
@@ -58,11 +60,20 @@ const manifest = {
       },
       {
         type: "page",
+        pattern: /^\/invitation\/?$/,
+        params: null,
+        path: "/invitation",
+        shadow: null,
+        a: [0, 3],
+        b: [1]
+      },
+      {
+        type: "page",
         pattern: /^\/downloads\/?$/,
         params: null,
         path: "/downloads",
         shadow: null,
-        a: [0, 3],
+        a: [0, 4],
         b: [1]
       },
       {
@@ -71,7 +82,7 @@ const manifest = {
         params: null,
         path: "/portfolio",
         shadow: null,
-        a: [0, 4],
+        a: [0, 5],
         b: [1]
       },
       {
@@ -80,7 +91,7 @@ const manifest = {
         params: null,
         path: "/projects/coworkerquiz",
         shadow: null,
-        a: [0, 5],
+        a: [0, 6],
         b: [1]
       },
       {
@@ -89,7 +100,7 @@ const manifest = {
         params: null,
         path: "/projects",
         shadow: null,
-        a: [0, 6],
+        a: [0, 7],
         b: [1]
       },
       {
@@ -98,7 +109,16 @@ const manifest = {
         params: null,
         path: "/upcoming",
         shadow: null,
-        a: [0, 7],
+        a: [0, 8],
+        b: [1]
+      },
+      {
+        type: "page",
+        pattern: /^\/linzy\/?$/,
+        params: null,
+        path: "/linzy",
+        shadow: null,
+        a: [0, 9],
         b: [1]
       },
       {
@@ -107,7 +127,7 @@ const manifest = {
         params: null,
         path: "/api",
         shadow: null,
-        a: [0, 8],
+        a: [0, 10],
         b: [1]
       }
     ]
