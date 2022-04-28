@@ -9,14 +9,14 @@
 
 <style>
   img {
-    width: 240px;
+    width: 150px;
     height: auto;
-    transform: translateY(-40px);
+    transform: translateY(-30px);
   }
 
   div {
-    width: 240px;
-    height: 240px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     border: 3px solid white;
     overflow: hidden;

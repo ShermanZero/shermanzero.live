@@ -5411,40 +5411,37 @@ Content-Type: ${v.type || "application/octet-stream"}\r
   }
 });
 
-// .netlify/server/chunks/index-1e54ea6c.js
-var require_index_1e54ea6c = __commonJS({
-  ".netlify/server/chunks/index-1e54ea6c.js"(exports2, module2) {
+// .netlify/server/chunks/index-930d8519.js
+var require_index_930d8519 = __commonJS({
+  ".netlify/server/chunks/index-930d8519.js"(exports2, module2) {
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
-      a: () => add_attribute,
+      a: () => createEventDispatcher,
+      b: () => add_attribute,
       c: () => create_ssr_component,
       e: () => escape,
       m: () => missing_component,
       s: () => setContext,
       v: () => validate_component
     });
+    module2.exports = __toCommonJS(stdin_exports);
     function run(fn) {
       return fn();
     }
@@ -5453,6 +5450,11 @@ var require_index_1e54ea6c = __commonJS({
     }
     function run_all(fns) {
       fns.forEach(run);
+    }
+    function custom_event(type, detail, bubbles = false) {
+      const e = document.createEvent("CustomEvent");
+      e.initCustomEvent(type, bubbles, false, detail);
+      return e;
     }
     var current_component;
     function set_current_component(component) {
@@ -5463,36 +5465,22 @@ var require_index_1e54ea6c = __commonJS({
         throw new Error("Function called outside component initialization");
       return current_component;
     }
+    function createEventDispatcher() {
+      const component = get_current_component();
+      return (type, detail) => {
+        const callbacks = component.$$.callbacks[type];
+        if (callbacks) {
+          const event = custom_event(type, detail);
+          callbacks.slice().forEach((fn) => {
+            fn.call(component, event);
+          });
+        }
+      };
+    }
     function setContext(key, context) {
       get_current_component().$$.context.set(key, context);
     }
     Promise.resolve();
-    var boolean_attributes = /* @__PURE__ */ new Set([
-      "allowfullscreen",
-      "allowpaymentrequest",
-      "async",
-      "autofocus",
-      "autoplay",
-      "checked",
-      "controls",
-      "default",
-      "defer",
-      "disabled",
-      "formnovalidate",
-      "hidden",
-      "ismap",
-      "loop",
-      "multiple",
-      "muted",
-      "nomodule",
-      "novalidate",
-      "open",
-      "playsinline",
-      "readonly",
-      "required",
-      "reversed",
-      "selected"
-    ]);
     var escaped = {
       '"': "&quot;",
       "'": "&#39;",
@@ -5502,6 +5490,9 @@ var require_index_1e54ea6c = __commonJS({
     };
     function escape(html) {
       return String(html).replace(/["'&<>]/g, (match) => escaped[match]);
+    }
+    function escape_attribute_value(value) {
+      return typeof value === "string" ? escape(value) : value;
     }
     var missing_component = {
       $$render: () => ""
@@ -5552,9 +5543,15 @@ var require_index_1e54ea6c = __commonJS({
     function add_attribute(name, value, boolean) {
       if (value == null || boolean && !value)
         return "";
-      return ` ${name}${value === true && boolean_attributes.has(name) ? "" : `=${typeof value === "string" ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
+      const assignment = boolean && value === true ? "" : `="${escape_attribute_value(value.toString())}"`;
+      return ` ${name}${assignment}`;
     }
-    module2.exports = __toCommonJS(stdin_exports);
+  }
+});
+
+// .netlify/server/chunks/hooks-1c45ba0b.js
+var require_hooks_1c45ba0b = __commonJS({
+  ".netlify/server/chunks/hooks-1c45ba0b.js"() {
   }
 });
 
@@ -5563,54 +5560,24 @@ var require_server = __commonJS({
   ".netlify/server/index.js"(exports2, module2) {
     var __create = Object.create;
     var __defProp2 = Object.defineProperty;
-    var __defProps2 = Object.defineProperties;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropDescs2 = Object.getOwnPropertyDescriptors;
     var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __getOwnPropSymbols2 = Object.getOwnPropertySymbols;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __propIsEnum2 = Object.prototype.propertyIsEnumerable;
-    var __defNormalProp2 = (obj, key2, value) => key2 in obj ? __defProp2(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
-    var __spreadValues2 = (a, b) => {
-      for (var prop in b || (b = {}))
-        if (__hasOwnProp2.call(b, prop))
-          __defNormalProp2(a, prop, b[prop]);
-      if (__getOwnPropSymbols2)
-        for (var prop of __getOwnPropSymbols2(b)) {
-          if (__propIsEnum2.call(b, prop))
-            __defNormalProp2(a, prop, b[prop]);
-        }
-      return a;
-    };
-    var __spreadProps2 = (a, b) => __defProps2(a, __getOwnPropDescs2(b));
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key2 of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key2) && (copyDefault || key2 !== "default"))
-            __defProp2(target, key2, { get: () => module22[key2], enumerable: !(desc = __getOwnPropDesc(module22, key2)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key2 of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key2) && key2 !== except)
+            __defProp2(to, key2, { get: () => from[key2], enumerable: !(desc = __getOwnPropDesc(from, key2)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module22, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module22 != null ? __create(__getProtoOf(module22)) : {}, "default", !isNodeMode && module22 && module22.__esModule ? { get: () => module22.default, enumerable: true } : { value: module22, enumerable: true })), module22);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
-    var stdin_exports = {};
-    __export(stdin_exports, {
-      Server: () => Server,
-      override: () => override
-    });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var __accessCheck2 = (obj, member, msg) => {
       if (!member.has(obj))
         throw TypeError("Cannot " + msg);
@@ -5629,6 +5596,13 @@ var require_server = __commonJS({
       setter ? setter.call(obj, value) : member.set(obj, value);
       return value;
     };
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      Server: () => Server,
+      override: () => override
+    });
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
     var _use_hashes;
     var _dev;
     var _script_needs_csp;
@@ -5636,16 +5610,47 @@ var require_server = __commonJS({
     var _directives;
     var _script_src;
     var _style_src;
+    var __defProp22 = Object.defineProperty;
+    var __defProps2 = Object.defineProperties;
+    var __getOwnPropDescs2 = Object.getOwnPropertyDescriptors;
+    var __getOwnPropSymbols2 = Object.getOwnPropertySymbols;
+    var __hasOwnProp22 = Object.prototype.hasOwnProperty;
+    var __propIsEnum2 = Object.prototype.propertyIsEnumerable;
+    var __defNormalProp2 = (obj, key2, value) => key2 in obj ? __defProp22(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
+    var __spreadValues2 = (a, b) => {
+      for (var prop in b || (b = {}))
+        if (__hasOwnProp22.call(b, prop))
+          __defNormalProp2(a, prop, b[prop]);
+      if (__getOwnPropSymbols2)
+        for (var prop of __getOwnPropSymbols2(b)) {
+          if (__propIsEnum2.call(b, prop))
+            __defNormalProp2(a, prop, b[prop]);
+        }
+      return a;
+    };
+    var __spreadProps2 = (a, b) => __defProps2(a, __getOwnPropDescs2(b));
+    var __objRest = (source, exclude) => {
+      var target = {};
+      for (var prop in source)
+        if (__hasOwnProp22.call(source, prop) && exclude.indexOf(prop) < 0)
+          target[prop] = source[prop];
+      if (source != null && __getOwnPropSymbols2)
+        for (var prop of __getOwnPropSymbols2(source)) {
+          if (exclude.indexOf(prop) < 0 && __propIsEnum2.call(source, prop))
+            target[prop] = source[prop];
+        }
+      return target;
+    };
     function afterUpdate() {
     }
-    var Root = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+    var Root = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       let { stores } = $$props;
       let { page } = $$props;
       let { components } = $$props;
       let { props_0 = null } = $$props;
       let { props_1 = null } = $$props;
       let { props_2 = null } = $$props;
-      (0, import_index_1e54ea6c.s)("__svelte__", stores);
+      (0, import_index_930d8519.s)("__svelte__", stores);
       afterUpdate(stores.page.notify);
       if ($$props.stores === void 0 && $$bindings.stores && stores !== void 0)
         $$bindings.stores(stores);
@@ -5665,15 +5670,15 @@ var require_server = __commonJS({
       return `
 
 
-${components[1] ? `${(0, import_index_1e54ea6c.v)(components[0] || import_index_1e54ea6c.m, "svelte:component").$$render($$result, Object.assign(props_0 || {}), {}, {
+${components[1] ? `${(0, import_index_930d8519.v)(components[0] || import_index_930d8519.m, "svelte:component").$$render($$result, Object.assign(props_0 || {}), {}, {
         default: () => {
-          return `${components[2] ? `${(0, import_index_1e54ea6c.v)(components[1] || import_index_1e54ea6c.m, "svelte:component").$$render($$result, Object.assign(props_1 || {}), {}, {
+          return `${components[2] ? `${(0, import_index_930d8519.v)(components[1] || import_index_930d8519.m, "svelte:component").$$render($$result, Object.assign(props_1 || {}), {}, {
             default: () => {
-              return `${(0, import_index_1e54ea6c.v)(components[2] || import_index_1e54ea6c.m, "svelte:component").$$render($$result, Object.assign(props_2 || {}), {}, {})}`;
+              return `${(0, import_index_930d8519.v)(components[2] || import_index_930d8519.m, "svelte:component").$$render($$result, Object.assign(props_2 || {}), {}, {})}`;
             }
-          })}` : `${(0, import_index_1e54ea6c.v)(components[1] || import_index_1e54ea6c.m, "svelte:component").$$render($$result, Object.assign(props_1 || {}), {}, {})}`}`;
+          })}` : `${(0, import_index_930d8519.v)(components[1] || import_index_930d8519.m, "svelte:component").$$render($$result, Object.assign(props_1 || {}), {}, {})}`}`;
         }
-      })}` : `${(0, import_index_1e54ea6c.v)(components[0] || import_index_1e54ea6c.m, "svelte:component").$$render($$result, Object.assign(props_0 || {}), {}, {})}`}
+      })}` : `${(0, import_index_930d8519.v)(components[0] || import_index_930d8519.m, "svelte:component").$$render($$result, Object.assign(props_0 || {}), {}, {})}`}
 
 ${``}`;
     });
@@ -5764,7 +5769,23 @@ ${``}`;
         handler = mod.get;
       }
       if (!handler) {
-        return;
+        const allowed = [];
+        for (const method2 in ["get", "post", "put", "patch"]) {
+          if (mod[method2])
+            allowed.push(method2.toUpperCase());
+        }
+        if (mod.del)
+          allowed.push("DELETE");
+        if (mod.get || mod.head)
+          allowed.push("HEAD");
+        return event.request.headers.get("x-sveltekit-load") ? new Response(void 0, {
+          status: 204
+        }) : new Response(`${event.request.method} method not allowed`, {
+          status: 405,
+          headers: {
+            allow: allowed.join(", ")
+          }
+        });
       }
       const response = await handler(event);
       const preface = `Invalid response from route ${event.url.pathname}`;
@@ -5772,7 +5793,7 @@ ${``}`;
         return error(`${preface}: expected an object, got ${typeof response}`);
       }
       if (response.fallthrough) {
-        return;
+        throw new Error("fallthrough is no longer supported. Use matchers instead: https://kit.svelte.dev/docs/routing#advanced-routing-matching");
       }
       const { status = 200, body = {} } = response;
       const headers = response.headers instanceof Headers ? new Headers(response.headers) : to_headers(response.headers);
@@ -6123,7 +6144,7 @@ ${``}`;
       if (!key[0])
         precompute();
       const out = init2.slice(0);
-      const array = encode(data);
+      const array = encode$1(data);
       for (let i = 0; i < array.length; i += 16) {
         const w = array.subarray(i, i + 16);
         let tmp;
@@ -6204,7 +6225,7 @@ ${``}`;
         bytes[i + 3] = a;
       }
     }
-    function encode(str) {
+    function encode$1(str) {
       const encoded = encoder.encode(str);
       const length = encoded.length * 8;
       const size = 512 * Math.ceil((length + 65) / 512);
@@ -6362,13 +6383,13 @@ ${``}`;
         return `<meta http-equiv="content-security-policy" content=${content}>`;
       }
     };
-    _use_hashes = /* @__PURE__ */ new WeakMap();
-    _dev = /* @__PURE__ */ new WeakMap();
-    _script_needs_csp = /* @__PURE__ */ new WeakMap();
-    _style_needs_csp = /* @__PURE__ */ new WeakMap();
-    _directives = /* @__PURE__ */ new WeakMap();
-    _script_src = /* @__PURE__ */ new WeakMap();
-    _style_src = /* @__PURE__ */ new WeakMap();
+    _use_hashes = new WeakMap();
+    _dev = new WeakMap();
+    _script_needs_csp = new WeakMap();
+    _style_needs_csp = new WeakMap();
+    _directives = new WeakMap();
+    _script_src = new WeakMap();
+    _style_src = new WeakMap();
     var updated = __spreadProps2(__spreadValues2({}, readable(false)), {
       check: () => false
     });
@@ -6379,9 +6400,8 @@ ${``}`;
       $session,
       page_config,
       status,
-      error: error2,
-      url,
-      params,
+      error: error2 = null,
+      event,
       resolve_opts,
       stuff
     }) {
@@ -6400,40 +6420,47 @@ ${``}`;
       let shadow_props;
       let rendered;
       let is_private = false;
-      let maxage;
+      let cache;
       if (error2) {
         error2.stack = options.get_stack(error2);
       }
       if (resolve_opts.ssr) {
         branch.forEach(({ node, props: props2, loaded, fetched, uses_credentials }) => {
+          var _a;
           if (node.css)
-            node.css.forEach((url2) => stylesheets.add(url2));
+            node.css.forEach((url) => stylesheets.add(url));
           if (node.js)
-            node.js.forEach((url2) => modulepreloads.add(url2));
+            node.js.forEach((url) => modulepreloads.add(url));
           if (node.styles)
             Object.entries(node.styles).forEach(([k, v]) => styles.set(k, v));
           if (fetched && page_config.hydrate)
             serialized_data.push(...fetched);
           if (props2)
             shadow_props = props2;
-          if (uses_credentials)
-            is_private = true;
-          maxage = loaded.maxage;
+          cache = loaded == null ? void 0 : loaded.cache;
+          is_private = (_a = cache == null ? void 0 : cache.private) != null ? _a : uses_credentials;
         });
         const session = writable($session);
         const props = {
           stores: {
             page: writable(null),
             navigating: writable(null),
-            session,
+            session: __spreadProps2(__spreadValues2({}, session), {
+              subscribe: (fn) => {
+                var _a;
+                is_private = (_a = cache == null ? void 0 : cache.private) != null ? _a : true;
+                return session.subscribe(fn);
+              }
+            }),
             updated
           },
           page: {
-            url: state.prerender ? create_prerendering_url_proxy(url) : url,
-            params,
-            status,
             error: error2,
-            stuff
+            params: event.params,
+            routeId: event.routeId,
+            status,
+            stuff,
+            url: state.prerender ? create_prerendering_url_proxy(event.url) : event.url
           },
           components: branch.map(({ node }) => node.module.default)
         };
@@ -6450,17 +6477,7 @@ ${``}`;
         for (let i = 0; i < branch.length; i += 1) {
           props[`props_${i}`] = await branch[i].loaded.props;
         }
-        let session_tracking_active = false;
-        const unsubscribe = session.subscribe(() => {
-          if (session_tracking_active)
-            is_private = true;
-        });
-        session_tracking_active = true;
-        try {
-          rendered = options.root.render(props);
-        } finally {
-          unsubscribe();
-        }
+        rendered = options.root.render(props);
       } else {
         rendered = { head: "", html: "", css: { code: "", map: null } };
       }
@@ -6490,7 +6507,8 @@ ${``}`;
 				nodes: [
 					${(branch || []).map(({ node }) => `import(${s(options.prefix + node.entry)})`).join(",\n						")}
 				],
-				params: ${devalue(params)}
+				params: ${devalue(event.params)},
+				routeId: ${s(event.routeId)}
 			}` : "null"}
 		});
 	`;
@@ -6516,7 +6534,7 @@ ${rendered.css.code}`;
         if (inlined_style) {
           const attributes = [];
           if (options.dev)
-            attributes.push(" data-svelte");
+            attributes.push(" data-sveltekit");
           if (csp.style_needs_nonce)
             attributes.push(` nonce="${csp.nonce}"`);
           csp.add_style(inlined_style);
@@ -6547,7 +6565,7 @@ ${rendered.css.code}`;
           }
           body += `
 		<script ${attributes.join(" ")}>${init_app}<\/script>`;
-          body += serialized_data.map(({ url: url2, body: body2, response }) => render_json_payload_script({ type: "data", url: url2, body: typeof body2 === "string" ? hash(body2) : void 0 }, response)).join("\n	");
+          body += serialized_data.map(({ url, body: body2, response }) => render_json_payload_script({ type: "data", url, body: typeof body2 === "string" ? hash(body2) : void 0 }, response)).join("\n	");
           if (shadow_props) {
             body += render_json_payload_script({ type: "props" }, shadow_props);
           }
@@ -6564,14 +6582,14 @@ ${rendered.css.code}`;
         if (csp_headers) {
           http_equiv.push(csp_headers);
         }
-        if (maxage) {
-          http_equiv.push(`<meta http-equiv="cache-control" content="max-age=${maxage}">`);
+        if (cache) {
+          http_equiv.push(`<meta http-equiv="cache-control" content="max-age=${cache.maxage}">`);
         }
         if (http_equiv.length > 0) {
           head = http_equiv.join("\n") + head;
         }
       }
-      const segments = url.pathname.slice(options.paths.base.length).split("/").slice(2);
+      const segments = event.url.pathname.slice(options.paths.base.length).split("/").slice(2);
       const assets2 = options.paths.assets || (segments.length > 0 ? segments.map(() => "..").join("/") : ".");
       const html = await resolve_opts.transformPage({
         html: options.template({ head, body, assets: assets2, nonce: csp.nonce })
@@ -6580,8 +6598,8 @@ ${rendered.css.code}`;
         "content-type": "text/html",
         etag: `"${hash(html)}"`
       });
-      if (maxage) {
-        headers.set("cache-control", `${is_private ? "private" : "public"}, max-age=${maxage}`);
+      if (cache) {
+        headers.set("cache-control", `${is_private ? "private" : "public"}, max-age=${cache.maxage}`);
       }
       if (!options.floc) {
         headers.set("permissions-policy", "interest-cohort=()");
@@ -6619,15 +6637,293 @@ ${rendered.css.code}`;
       }
       return serialized;
     }
+    var parse_1 = parse$1;
+    var serialize_1 = serialize;
+    var __toString = Object.prototype.toString;
+    var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+    function parse$1(str, options) {
+      if (typeof str !== "string") {
+        throw new TypeError("argument str must be a string");
+      }
+      var obj = {};
+      var opt = options || {};
+      var dec = opt.decode || decode;
+      var index = 0;
+      while (index < str.length) {
+        var eqIdx = str.indexOf("=", index);
+        if (eqIdx === -1) {
+          break;
+        }
+        var endIdx = str.indexOf(";", index);
+        if (endIdx === -1) {
+          endIdx = str.length;
+        } else if (endIdx < eqIdx) {
+          index = str.lastIndexOf(";", eqIdx - 1) + 1;
+          continue;
+        }
+        var key2 = str.slice(index, eqIdx).trim();
+        if (obj[key2] === void 0) {
+          var val = str.slice(eqIdx + 1, endIdx).trim();
+          if (val.charCodeAt(0) === 34) {
+            val = val.slice(1, -1);
+          }
+          obj[key2] = tryDecode(val, dec);
+        }
+        index = endIdx + 1;
+      }
+      return obj;
+    }
+    function serialize(name, val, options) {
+      var opt = options || {};
+      var enc = opt.encode || encode;
+      if (typeof enc !== "function") {
+        throw new TypeError("option encode is invalid");
+      }
+      if (!fieldContentRegExp.test(name)) {
+        throw new TypeError("argument name is invalid");
+      }
+      var value = enc(val);
+      if (value && !fieldContentRegExp.test(value)) {
+        throw new TypeError("argument val is invalid");
+      }
+      var str = name + "=" + value;
+      if (opt.maxAge != null) {
+        var maxAge = opt.maxAge - 0;
+        if (isNaN(maxAge) || !isFinite(maxAge)) {
+          throw new TypeError("option maxAge is invalid");
+        }
+        str += "; Max-Age=" + Math.floor(maxAge);
+      }
+      if (opt.domain) {
+        if (!fieldContentRegExp.test(opt.domain)) {
+          throw new TypeError("option domain is invalid");
+        }
+        str += "; Domain=" + opt.domain;
+      }
+      if (opt.path) {
+        if (!fieldContentRegExp.test(opt.path)) {
+          throw new TypeError("option path is invalid");
+        }
+        str += "; Path=" + opt.path;
+      }
+      if (opt.expires) {
+        var expires = opt.expires;
+        if (!isDate(expires) || isNaN(expires.valueOf())) {
+          throw new TypeError("option expires is invalid");
+        }
+        str += "; Expires=" + expires.toUTCString();
+      }
+      if (opt.httpOnly) {
+        str += "; HttpOnly";
+      }
+      if (opt.secure) {
+        str += "; Secure";
+      }
+      if (opt.priority) {
+        var priority = typeof opt.priority === "string" ? opt.priority.toLowerCase() : opt.priority;
+        switch (priority) {
+          case "low":
+            str += "; Priority=Low";
+            break;
+          case "medium":
+            str += "; Priority=Medium";
+            break;
+          case "high":
+            str += "; Priority=High";
+            break;
+          default:
+            throw new TypeError("option priority is invalid");
+        }
+      }
+      if (opt.sameSite) {
+        var sameSite = typeof opt.sameSite === "string" ? opt.sameSite.toLowerCase() : opt.sameSite;
+        switch (sameSite) {
+          case true:
+            str += "; SameSite=Strict";
+            break;
+          case "lax":
+            str += "; SameSite=Lax";
+            break;
+          case "strict":
+            str += "; SameSite=Strict";
+            break;
+          case "none":
+            str += "; SameSite=None";
+            break;
+          default:
+            throw new TypeError("option sameSite is invalid");
+        }
+      }
+      return str;
+    }
+    function decode(str) {
+      return str.indexOf("%") !== -1 ? decodeURIComponent(str) : str;
+    }
+    function encode(val) {
+      return encodeURIComponent(val);
+    }
+    function isDate(val) {
+      return __toString.call(val) === "[object Date]" || val instanceof Date;
+    }
+    function tryDecode(str, decode2) {
+      try {
+        return decode2(str);
+      } catch (e) {
+        return str;
+      }
+    }
+    var setCookie = { exports: {} };
+    var defaultParseOptions = {
+      decodeValues: true,
+      map: false,
+      silent: false
+    };
+    function isNonEmptyString(str) {
+      return typeof str === "string" && !!str.trim();
+    }
+    function parseString(setCookieValue, options) {
+      var parts = setCookieValue.split(";").filter(isNonEmptyString);
+      var nameValue = parts.shift().split("=");
+      var name = nameValue.shift();
+      var value = nameValue.join("=");
+      options = options ? Object.assign({}, defaultParseOptions, options) : defaultParseOptions;
+      try {
+        value = options.decodeValues ? decodeURIComponent(value) : value;
+      } catch (e) {
+        console.error("set-cookie-parser encountered an error while decoding a cookie with value '" + value + "'. Set options.decodeValues to false to disable this feature.", e);
+      }
+      var cookie = {
+        name,
+        value
+      };
+      parts.forEach(function(part) {
+        var sides = part.split("=");
+        var key2 = sides.shift().trimLeft().toLowerCase();
+        var value2 = sides.join("=");
+        if (key2 === "expires") {
+          cookie.expires = new Date(value2);
+        } else if (key2 === "max-age") {
+          cookie.maxAge = parseInt(value2, 10);
+        } else if (key2 === "secure") {
+          cookie.secure = true;
+        } else if (key2 === "httponly") {
+          cookie.httpOnly = true;
+        } else if (key2 === "samesite") {
+          cookie.sameSite = value2;
+        } else {
+          cookie[key2] = value2;
+        }
+      });
+      return cookie;
+    }
+    function parse(input, options) {
+      options = options ? Object.assign({}, defaultParseOptions, options) : defaultParseOptions;
+      if (!input) {
+        if (!options.map) {
+          return [];
+        } else {
+          return {};
+        }
+      }
+      if (input.headers && input.headers["set-cookie"]) {
+        input = input.headers["set-cookie"];
+      } else if (input.headers) {
+        var sch = input.headers[Object.keys(input.headers).find(function(key2) {
+          return key2.toLowerCase() === "set-cookie";
+        })];
+        if (!sch && input.headers.cookie && !options.silent) {
+          console.warn("Warning: set-cookie-parser appears to have been called on a request object. It is designed to parse Set-Cookie headers from responses, not Cookie headers from requests. Set the option {silent: true} to suppress this warning.");
+        }
+        input = sch;
+      }
+      if (!Array.isArray(input)) {
+        input = [input];
+      }
+      options = options ? Object.assign({}, defaultParseOptions, options) : defaultParseOptions;
+      if (!options.map) {
+        return input.filter(isNonEmptyString).map(function(str) {
+          return parseString(str, options);
+        });
+      } else {
+        var cookies = {};
+        return input.filter(isNonEmptyString).reduce(function(cookies2, str) {
+          var cookie = parseString(str, options);
+          cookies2[cookie.name] = cookie;
+          return cookies2;
+        }, cookies);
+      }
+    }
+    function splitCookiesString(cookiesString) {
+      if (Array.isArray(cookiesString)) {
+        return cookiesString;
+      }
+      if (typeof cookiesString !== "string") {
+        return [];
+      }
+      var cookiesStrings = [];
+      var pos = 0;
+      var start;
+      var ch;
+      var lastComma;
+      var nextStart;
+      var cookiesSeparatorFound;
+      function skipWhitespace() {
+        while (pos < cookiesString.length && /\s/.test(cookiesString.charAt(pos))) {
+          pos += 1;
+        }
+        return pos < cookiesString.length;
+      }
+      function notSpecialChar() {
+        ch = cookiesString.charAt(pos);
+        return ch !== "=" && ch !== ";" && ch !== ",";
+      }
+      while (pos < cookiesString.length) {
+        start = pos;
+        cookiesSeparatorFound = false;
+        while (skipWhitespace()) {
+          ch = cookiesString.charAt(pos);
+          if (ch === ",") {
+            lastComma = pos;
+            pos += 1;
+            skipWhitespace();
+            nextStart = pos;
+            while (pos < cookiesString.length && notSpecialChar()) {
+              pos += 1;
+            }
+            if (pos < cookiesString.length && cookiesString.charAt(pos) === "=") {
+              cookiesSeparatorFound = true;
+              pos = nextStart;
+              cookiesStrings.push(cookiesString.substring(start, lastComma));
+              start = pos;
+            } else {
+              pos = lastComma + 1;
+            }
+          } else {
+            pos += 1;
+          }
+        }
+        if (!cookiesSeparatorFound || pos >= cookiesString.length) {
+          cookiesStrings.push(cookiesString.substring(start, cookiesString.length));
+        }
+      }
+      return cookiesStrings;
+    }
+    setCookie.exports = parse;
+    setCookie.exports.parse = parse;
+    var parseString_1 = setCookie.exports.parseString = parseString;
+    var splitCookiesString_1 = setCookie.exports.splitCookiesString = splitCookiesString;
     function normalize(loaded) {
+      if (loaded.fallthrough) {
+        throw new Error("fallthrough is no longer supported. Use matchers instead: https://kit.svelte.dev/docs/routing#advanced-routing-matching");
+      }
+      if ("maxage" in loaded) {
+        throw new Error("maxage should be replaced with cache: { maxage }");
+      }
       const has_error_status = loaded.status && loaded.status >= 400 && loaded.status <= 599 && !loaded.redirect;
       if (loaded.error || has_error_status) {
         const status = loaded.status;
         if (!loaded.error && has_error_status) {
-          return {
-            status: status || 500,
-            error: new Error()
-          };
+          return { status: status || 500, error: new Error() };
         }
         const error2 = typeof loaded.error === "string" ? new Error(loaded.error) : loaded.error;
         if (!(error2 instanceof Error)) {
@@ -6653,6 +6949,14 @@ ${rendered.css.code}`;
           return {
             status: 500,
             error: new Error('"redirect" property returned from load() must be a string')
+          };
+        }
+      }
+      if (loaded.dependencies) {
+        if (!Array.isArray(loaded.dependencies) || loaded.dependencies.some((dep) => typeof dep !== "string")) {
+          return {
+            status: 500,
+            error: new Error('"dependencies" property returned from load() must be of type string[]')
           };
         }
       }
@@ -6694,18 +6998,32 @@ ${rendered.css.code}`;
         return path;
       if (trailing_slash === "never") {
         return path.endsWith("/") ? path.slice(0, -1) : path;
-      } else if (trailing_slash === "always" && /\/[^./]+$/.test(path)) {
+      } else if (trailing_slash === "always" && !path.endsWith("/")) {
         return path + "/";
       }
       return path;
+    }
+    function domain_matches(hostname, constraint) {
+      if (!constraint)
+        return true;
+      const normalized = constraint[0] === "." ? constraint.slice(1) : constraint;
+      if (hostname === normalized)
+        return true;
+      return hostname.endsWith("." + normalized);
+    }
+    function path_matches(path, constraint) {
+      if (!constraint)
+        return true;
+      const normalized = constraint.endsWith("/") ? constraint.slice(0, -1) : constraint;
+      if (path === normalized)
+        return true;
+      return path.startsWith(normalized + "/");
     }
     async function load_node({
       event,
       options,
       state,
       route,
-      url,
-      params,
       node,
       $session,
       stuff,
@@ -6717,13 +7035,14 @@ ${rendered.css.code}`;
       const { module: module22 } = node;
       let uses_credentials = false;
       const fetched = [];
-      let set_cookie_headers = [];
+      const cookies = parse_1(event.request.headers.get("cookie") || "");
+      const new_cookies = [];
       let loaded;
       const shadow = is_leaf ? await load_shadow_data(route, event, options, !!state.prerender) : {};
-      if (shadow.fallthrough)
-        return;
       if (shadow.cookies) {
-        set_cookie_headers.push(...shadow.cookies);
+        shadow.cookies.forEach((header) => {
+          new_cookies.push(parseString_1(header));
+        });
       }
       if (shadow.error) {
         loaded = {
@@ -6737,9 +7056,10 @@ ${rendered.css.code}`;
         };
       } else if (module22.load) {
         const load_input = {
-          url: state.prerender ? create_prerendering_url_proxy(url) : url,
-          params,
+          url: state.prerender ? create_prerendering_url_proxy(event.url) : event.url,
+          params: event.params,
           props: shadow.body || {},
+          routeId: event.routeId,
           get session() {
             uses_credentials = true;
             return $session;
@@ -6779,18 +7099,26 @@ ${rendered.css.code}`;
             if (is_asset || is_asset_html) {
               const file = is_asset ? filename : filename_html;
               if (options.read) {
-                const type = is_asset ? options.manifest._.mime[filename.slice(filename.lastIndexOf("."))] : "text/html";
+                const type = is_asset ? options.manifest.mimeTypes[filename.slice(filename.lastIndexOf("."))] : "text/html";
                 response = new Response(options.read(file), {
                   headers: type ? { "content-type": type } : {}
                 });
               } else {
-                response = await fetch(`${url.origin}/${file}`, opts);
+                response = await fetch(`${event.url.origin}/${file}`, opts);
               }
             } else if (is_root_relative(resolved)) {
               if (opts.credentials !== "omit") {
                 uses_credentials = true;
-                const cookie = event.request.headers.get("cookie");
                 const authorization = event.request.headers.get("authorization");
+                const combined_cookies = __spreadValues2({}, cookies);
+                for (const cookie2 of new_cookies) {
+                  if (!domain_matches(event.url.hostname, cookie2.domain))
+                    continue;
+                  if (!path_matches(resolved, cookie2.path))
+                    continue;
+                  combined_cookies[cookie2.name] = cookie2.value;
+                }
+                const cookie = Object.entries(combined_cookies).map(([name, value]) => `${name}=${value}`).join("; ");
                 if (cookie) {
                   opts.headers.set("cookie", cookie);
                 }
@@ -6801,10 +7129,9 @@ ${rendered.css.code}`;
               if (opts.body && typeof opts.body !== "string") {
                 throw new Error("Request body must be a string");
               }
-              response = await respond(new Request(new URL(requested, event.url).href, opts), options, {
-                fetched: requested,
+              response = await respond(new Request(new URL(requested, event.url).href, __spreadProps2(__spreadValues2({}, opts), { credentials: void 0 })), options, __spreadProps2(__spreadValues2({}, state), {
                 initiator: route
-              });
+              }));
               if (state.prerender) {
                 dependency = { response, body: null };
                 state.prerender.dependencies.set(resolved, dependency);
@@ -6822,15 +7149,17 @@ ${rendered.css.code}`;
               const external_request = new Request(requested, opts);
               response = await options.hooks.externalFetch.call(null, external_request);
             }
+            const set_cookie = response.headers.get("set-cookie");
+            if (set_cookie) {
+              new_cookies.push(...splitCookiesString_1(set_cookie).map((str) => parseString_1(str)));
+            }
             const proxy = new Proxy(response, {
               get(response2, key2, _receiver) {
                 async function text() {
                   const body = await response2.text();
                   const headers = {};
                   for (const [key3, value] of response2.headers) {
-                    if (key3 === "set-cookie") {
-                      set_cookie_headers = set_cookie_headers.concat(value);
-                    } else if (key3 !== "etag") {
+                    if (key3 !== "set-cookie" && key3 !== "etag") {
                       headers[key3] = value;
                     }
                   }
@@ -6877,7 +7206,9 @@ ${rendered.css.code}`;
             });
             return proxy;
           },
-          stuff: __spreadValues2({}, stuff)
+          stuff: __spreadValues2({}, stuff),
+          status: is_error ? status != null ? status : null : null,
+          error: is_error ? error2 != null ? error2 : null : null
         };
         if (options.dev) {
           Object.defineProperty(load_input, "page", {
@@ -6885,10 +7216,6 @@ ${rendered.css.code}`;
               throw new Error("`page` in `load` functions has been replaced by `url` and `params`");
             }
           });
-        }
-        if (is_error) {
-          load_input.status = status;
-          load_input.error = error2;
         }
         loaded = await module22.load.call(null, load_input);
         if (!loaded) {
@@ -6900,9 +7227,6 @@ ${rendered.css.code}`;
         };
       } else {
         loaded = {};
-      }
-      if (loaded.fallthrough && !is_error) {
-        return;
       }
       if (shadow.body && state.prerender) {
         const pathname = `${event.url.pathname.replace(/\/$/, "")}/__data.json`;
@@ -6918,7 +7242,10 @@ ${rendered.css.code}`;
         loaded: normalize(loaded),
         stuff: loaded.stuff || stuff,
         fetched,
-        set_cookie_headers,
+        set_cookie_headers: new_cookies.map((new_cookie) => {
+          const _a = new_cookie, { name, value } = _a, options2 = __objRest(_a, ["name", "value"]);
+          return serialize_1(name, value, options2);
+        }),
         uses_credentials
       };
     }
@@ -6946,8 +7273,9 @@ ${rendered.css.code}`;
         };
         if (!is_get) {
           const result = await handler(event);
-          if (result.fallthrough)
-            return result;
+          if (result.fallthrough) {
+            throw new Error("fallthrough is no longer supported. Use matchers instead: https://kit.svelte.dev/docs/routing#advanced-routing-matching");
+          }
           const { status, headers, body } = validate_shadow_output(result);
           data.status = status;
           add_cookies(data.cookies, headers);
@@ -6960,8 +7288,9 @@ ${rendered.css.code}`;
         const get = method === "head" && mod.head || mod.get;
         if (get) {
           const result = await get(event);
-          if (result.fallthrough)
-            return result;
+          if (result.fallthrough) {
+            throw new Error("fallthrough is no longer supported. Use matchers instead: https://kit.svelte.dev/docs/routing#advanced-routing-matching");
+          }
           const { status, headers, body } = validate_shadow_output(result);
           add_cookies(data.cookies, headers);
           data.status = status;
@@ -7020,37 +7349,38 @@ ${rendered.css.code}`;
       resolve_opts
     }) {
       try {
-        const default_layout = await options.manifest._.nodes[0]();
-        const default_error = await options.manifest._.nodes[1]();
-        const params = {};
-        const layout_loaded = await load_node({
-          event,
-          options,
-          state,
-          route: null,
-          url: event.url,
-          params,
-          node: default_layout,
-          $session,
-          stuff: {},
-          is_error: false,
-          is_leaf: false
-        });
-        const error_loaded = await load_node({
-          event,
-          options,
-          state,
-          route: null,
-          url: event.url,
-          params,
-          node: default_error,
-          $session,
-          stuff: layout_loaded ? layout_loaded.stuff : {},
-          is_error: true,
-          is_leaf: false,
-          status,
-          error: error2
-        });
+        const branch = [];
+        let stuff = {};
+        if (resolve_opts.ssr) {
+          const default_layout = await options.manifest._.nodes[0]();
+          const default_error = await options.manifest._.nodes[1]();
+          const layout_loaded = await load_node({
+            event,
+            options,
+            state,
+            route: null,
+            node: default_layout,
+            $session,
+            stuff: {},
+            is_error: false,
+            is_leaf: false
+          });
+          const error_loaded = await load_node({
+            event,
+            options,
+            state,
+            route: null,
+            node: default_error,
+            $session,
+            stuff: layout_loaded ? layout_loaded.stuff : {},
+            is_error: true,
+            is_leaf: false,
+            status,
+            error: error2
+          });
+          branch.push(layout_loaded, error_loaded);
+          stuff = error_loaded.stuff;
+        }
         return await render_response({
           options,
           state,
@@ -7059,12 +7389,11 @@ ${rendered.css.code}`;
             hydrate: options.hydrate,
             router: options.router
           },
-          stuff: error_loaded.stuff,
+          stuff,
           status,
           error: error2,
-          branch: [layout_loaded, error_loaded],
-          url: event.url,
-          params,
+          branch,
+          event,
           resolve_opts
         });
       } catch (err) {
@@ -7076,6 +7405,7 @@ ${rendered.css.code}`;
       }
     }
     async function respond$1(opts) {
+      var _a;
       const { event, options, state, $session, route, resolve_opts } = opts;
       let nodes;
       if (!resolve_opts.ssr) {
@@ -7086,12 +7416,13 @@ ${rendered.css.code}`;
             router: true
           },
           status: 200,
-          url: event.url,
+          error: null,
+          event,
           stuff: {}
         }));
       }
       try {
-        nodes = await Promise.all(route.a.map((n) => options.manifest._.nodes[n] && options.manifest._.nodes[n]()));
+        nodes = await Promise.all(route.a.map((n) => n == void 0 ? n : options.manifest._.nodes[n]()));
       } catch (err) {
         const error3 = coalesce_to_error(err);
         options.handle_error(error3, event);
@@ -7107,106 +7438,105 @@ ${rendered.css.code}`;
       }
       const leaf = nodes[nodes.length - 1].module;
       let page_config = get_page_config(leaf, options);
-      if (!leaf.prerender && state.prerender && !state.prerender.all) {
-        return new Response(void 0, {
-          status: 204
-        });
+      if (state.prerender) {
+        const should_prerender = (_a = leaf.prerender) != null ? _a : state.prerender.default;
+        if (!should_prerender) {
+          return new Response(void 0, {
+            status: 204
+          });
+        }
       }
       let branch = [];
       let status = 200;
-      let error2;
+      let error2 = null;
       let set_cookie_headers = [];
       let stuff = {};
-      ssr:
-        if (resolve_opts.ssr) {
-          for (let i = 0; i < nodes.length; i += 1) {
-            const node = nodes[i];
-            let loaded;
-            if (node) {
-              try {
-                loaded = await load_node(__spreadProps2(__spreadValues2({}, opts), {
-                  url: event.url,
-                  node,
-                  stuff,
-                  is_error: false,
-                  is_leaf: i === nodes.length - 1
-                }));
-                if (!loaded)
-                  return;
-                set_cookie_headers = set_cookie_headers.concat(loaded.set_cookie_headers);
-                if (loaded.loaded.redirect) {
-                  return with_cookies(new Response(void 0, {
-                    status: loaded.loaded.status,
-                    headers: {
-                      location: loaded.loaded.redirect
-                    }
-                  }), set_cookie_headers);
-                }
-                if (loaded.loaded.error) {
-                  ({ status, error: error2 } = loaded.loaded);
-                }
-              } catch (err) {
-                const e = coalesce_to_error(err);
-                options.handle_error(e, event);
-                status = 500;
-                error2 = e;
-              }
-              if (loaded && !error2) {
-                branch.push(loaded);
-              }
-              if (error2) {
-                while (i--) {
-                  if (route.b[i]) {
-                    const error_node = await options.manifest._.nodes[route.b[i]]();
-                    let node_loaded;
-                    let j = i;
-                    while (!(node_loaded = branch[j])) {
-                      j -= 1;
-                    }
-                    try {
-                      const error_loaded = await load_node(__spreadProps2(__spreadValues2({}, opts), {
-                        url: event.url,
-                        node: error_node,
-                        stuff: node_loaded.stuff,
-                        is_error: true,
-                        is_leaf: false,
-                        status,
-                        error: error2
-                      }));
-                      if (error_loaded.loaded.error) {
-                        continue;
-                      }
-                      page_config = get_page_config(error_node.module, options);
-                      branch = branch.slice(0, j + 1).concat(error_loaded);
-                      stuff = __spreadValues2(__spreadValues2({}, node_loaded.stuff), error_loaded.stuff);
-                      break ssr;
-                    } catch (err) {
-                      const e = coalesce_to_error(err);
-                      options.handle_error(e, event);
-                      continue;
-                    }
+      ssr: {
+        for (let i = 0; i < nodes.length; i += 1) {
+          const node = nodes[i];
+          let loaded;
+          if (node) {
+            try {
+              loaded = await load_node(__spreadProps2(__spreadValues2({}, opts), {
+                node,
+                stuff,
+                is_error: false,
+                is_leaf: i === nodes.length - 1
+              }));
+              set_cookie_headers = set_cookie_headers.concat(loaded.set_cookie_headers);
+              if (loaded.loaded.redirect) {
+                return with_cookies(new Response(void 0, {
+                  status: loaded.loaded.status,
+                  headers: {
+                    location: loaded.loaded.redirect
                   }
-                }
-                return with_cookies(await respond_with_error({
-                  event,
-                  options,
-                  state,
-                  $session,
-                  status,
-                  error: error2,
-                  resolve_opts
                 }), set_cookie_headers);
               }
+              if (loaded.loaded.error) {
+                ({ status, error: error2 } = loaded.loaded);
+              }
+            } catch (err) {
+              const e = coalesce_to_error(err);
+              options.handle_error(e, event);
+              status = 500;
+              error2 = e;
             }
-            if (loaded && loaded.loaded.stuff) {
-              stuff = __spreadValues2(__spreadValues2({}, stuff), loaded.loaded.stuff);
+            if (loaded && !error2) {
+              branch.push(loaded);
+            }
+            if (error2) {
+              while (i--) {
+                if (route.b[i]) {
+                  const index = route.b[i];
+                  const error_node = await options.manifest._.nodes[index]();
+                  let node_loaded;
+                  let j = i;
+                  while (!(node_loaded = branch[j])) {
+                    j -= 1;
+                  }
+                  try {
+                    const error_loaded = await load_node(__spreadProps2(__spreadValues2({}, opts), {
+                      node: error_node,
+                      stuff: node_loaded.stuff,
+                      is_error: true,
+                      is_leaf: false,
+                      status,
+                      error: error2
+                    }));
+                    if (error_loaded.loaded.error) {
+                      continue;
+                    }
+                    page_config = get_page_config(error_node.module, options);
+                    branch = branch.slice(0, j + 1).concat(error_loaded);
+                    stuff = __spreadValues2(__spreadValues2({}, node_loaded.stuff), error_loaded.stuff);
+                    break ssr;
+                  } catch (err) {
+                    const e = coalesce_to_error(err);
+                    options.handle_error(e, event);
+                    continue;
+                  }
+                }
+              }
+              return with_cookies(await respond_with_error({
+                event,
+                options,
+                state,
+                $session,
+                status,
+                error: error2,
+                resolve_opts
+              }), set_cookie_headers);
             }
           }
+          if (loaded && loaded.loaded.stuff) {
+            stuff = __spreadValues2(__spreadValues2({}, stuff), loaded.loaded.stuff);
+          }
         }
+      }
       try {
         return with_cookies(await render_response(__spreadProps2(__spreadValues2({}, opts), {
           stuff,
-          url: event.url,
+          event,
           page_config,
           status,
           error: error2,
@@ -7254,23 +7584,14 @@ ${rendered.css.code}`;
         }
       }
       const $session = await options.hooks.getSession(event);
-      const response = await respond$1({
+      return respond$1({
         event,
         options,
         state,
         $session,
         resolve_opts,
-        route,
-        params: event.params
+        route
       });
-      if (response) {
-        return response;
-      }
-      if (state.fetched) {
-        return new Response(`Bad request in load function: failed to fetch ${state.fetched}`, {
-          status: 500
-        });
-      }
     }
     function negotiate(accept, types) {
       const parts = accept.split(",").map((str, i) => {
@@ -7304,20 +7625,28 @@ ${rendered.css.code}`;
       }
       return accepted;
     }
+    function exec(match, names, types, matchers) {
+      const params = {};
+      for (let i = 0; i < names.length; i += 1) {
+        const name = names[i];
+        const type = types[i];
+        const value = match[i + 1] || "";
+        if (type) {
+          const matcher = matchers[type];
+          if (!matcher)
+            throw new Error(`Missing "${type}" param matcher`);
+          if (!matcher(value))
+            return;
+        }
+        params[name] = value;
+      }
+      return params;
+    }
     var DATA_SUFFIX = "/__data.json";
     var default_transform = ({ html }) => html;
-    async function respond(request, options, state = {}) {
-      var _a;
-      const url = new URL(request.url);
-      const normalized = normalize_path(url.pathname, options.trailing_slash);
-      if (normalized !== url.pathname) {
-        return new Response(void 0, {
-          status: 301,
-          headers: {
-            location: normalized + (url.search === "?" ? "" : url.search)
-          }
-        });
-      }
+    async function respond(request, options, state) {
+      var _a, _b, _c;
+      let url = new URL(request.url);
       const { parameter, allowed } = options.method_override;
       const method_override = (_a = url.searchParams.get(parameter)) == null ? void 0 : _a.toUpperCase();
       if (method_override) {
@@ -7341,12 +7670,62 @@ ${rendered.css.code}`;
           throw new Error(`${parameter}=${method_override} is only allowed with POST requests`);
         }
       }
+      let decoded = decodeURI(url.pathname);
+      let route = null;
+      let params = {};
+      if (options.paths.base && !((_b = state.prerender) == null ? void 0 : _b.fallback)) {
+        if (!decoded.startsWith(options.paths.base)) {
+          return new Response(void 0, { status: 404 });
+        }
+        decoded = decoded.slice(options.paths.base.length) || "/";
+      }
+      const is_data_request = decoded.endsWith(DATA_SUFFIX);
+      if (is_data_request) {
+        decoded = decoded.slice(0, -DATA_SUFFIX.length) || "/";
+        const normalized = normalize_path(url.pathname.slice(0, -DATA_SUFFIX.length), options.trailing_slash);
+        url = new URL(url.origin + normalized + url.search);
+      }
+      if (!state.prerender || !state.prerender.fallback) {
+        const matchers = await options.manifest._.matchers();
+        for (const candidate of options.manifest._.routes) {
+          const match = candidate.pattern.exec(decoded);
+          if (!match)
+            continue;
+          const matched = exec(match, candidate.names, candidate.types, matchers);
+          if (matched) {
+            route = candidate;
+            params = decode_params(matched);
+            break;
+          }
+        }
+      }
+      if ((route == null ? void 0 : route.type) === "page") {
+        const normalized = normalize_path(url.pathname, options.trailing_slash);
+        if (normalized !== url.pathname && !((_c = state.prerender) == null ? void 0 : _c.fallback)) {
+          return new Response(void 0, {
+            status: 301,
+            headers: {
+              location: (normalized.startsWith("//") ? url.origin + normalized : normalized) + (url.search === "?" ? "" : url.search)
+            }
+          });
+        }
+      }
       const event = {
-        request,
-        url,
-        params: {},
+        get clientAddress() {
+          if (!state.getClientAddress) {
+            throw new Error(`${"@sveltejs/adapter-netlify"} does not specify getClientAddress. Please raise an issue`);
+          }
+          Object.defineProperty(event, "clientAddress", {
+            value: state.getClientAddress()
+          });
+          return event.clientAddress;
+        },
         locals: {},
-        platform: state.platform
+        params,
+        platform: state.platform,
+        request,
+        routeId: route && route.id,
+        url
       };
       const removed = (property, replacement, suffix = "") => ({
         get: () => {
@@ -7384,60 +7763,35 @@ ${rendered.css.code}`;
             }
             if (state.prerender && state.prerender.fallback) {
               return await render_response({
-                url: event2.url,
-                params: event2.params,
+                event: event2,
                 options,
                 state,
                 $session: await options.hooks.getSession(event2),
                 page_config: { router: true, hydrate: true },
                 stuff: {},
                 status: 200,
+                error: null,
                 branch: [],
                 resolve_opts: __spreadProps2(__spreadValues2({}, resolve_opts), {
                   ssr: false
                 })
               });
             }
-            let decoded = decodeURI(event2.url.pathname);
-            if (options.paths.base) {
-              if (!decoded.startsWith(options.paths.base)) {
-                return new Response(void 0, { status: 404 });
-              }
-              decoded = decoded.slice(options.paths.base.length) || "/";
-            }
-            const is_data_request = decoded.endsWith(DATA_SUFFIX);
-            if (is_data_request) {
-              decoded = decoded.slice(0, -DATA_SUFFIX.length) || "/";
-              const normalized2 = normalize_path(url.pathname.slice(0, -DATA_SUFFIX.length), options.trailing_slash);
-              event2.url = new URL(event2.url.origin + normalized2 + event2.url.search);
-            }
-            for (const route of options.manifest._.routes) {
-              const match = route.pattern.exec(decoded);
-              if (!match)
-                continue;
-              event2.params = route.params ? decode_params(route.params(match)) : {};
+            if (route) {
               let response2;
               if (is_data_request && route.type === "page" && route.shadow) {
                 response2 = await render_endpoint(event2, await route.shadow());
-                if (request.headers.get("x-sveltekit-load") === "true") {
-                  if (response2) {
-                    if (response2.status >= 300 && response2.status < 400) {
-                      const location = response2.headers.get("location");
-                      if (location) {
-                        const headers = new Headers(response2.headers);
-                        headers.set("x-sveltekit-location", location);
-                        response2 = new Response(void 0, {
-                          status: 204,
-                          headers
-                        });
-                      }
+                if (request.headers.has("x-sveltekit-load")) {
+                  if (response2.status >= 300 && response2.status < 400) {
+                    const location = response2.headers.get("location");
+                    if (location) {
+                      const headers = new Headers(response2.headers);
+                      headers.set("x-sveltekit-location", location);
+                      response2 = new Response(void 0, {
+                        status: 204,
+                        headers
+                      });
                     }
-                  } else {
-                    response2 = new Response("{}", {
-                      headers: {
-                        "content-type": "application/json"
-                      }
-                    });
                   }
                 }
               } else {
@@ -7484,6 +7838,9 @@ ${rendered.css.code}`;
                 resolve_opts
               });
             }
+            if (state.prerender) {
+              return new Response("not found", { status: 404 });
+            }
             return await fetch(request);
           },
           get request() {
@@ -7524,19 +7881,9 @@ ${rendered.css.code}`;
     }
     function set_prerendering(value) {
     }
-    var user_hooks = /* @__PURE__ */ Object.freeze({
-      __proto__: null,
-      [Symbol.toStringTag]: "Module"
-    });
-    var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
+    var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="" />\r\n    <link rel="icon" type="image/svg+xml" href="' + assets2 + '/svgs/favicon.svg" />\r\n    <link rel="stylesheet" href="' + assets2 + '/global.css">\r\n\r\n    <!--- google fonts -->\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r\n    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">\r\n    <link rel="preconnect" href="https://fonts.googleapis.com">\r\n    <link href="https://fonts.googleapis.com/css2?family=Square+Peg&display=swap" rel="stylesheet">\r\n    <link href="https://fonts.googleapis.com/css2?family=Whisper&display=swap" rel="stylesheet">\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n    <main>" + body + "</main>\r\n	</body>\r\n</html>\r\n";
     var read = null;
     set_paths({ "base": "", "assets": "" });
-    var get_hooks = (hooks) => ({
-      getSession: hooks.getSession || (() => ({})),
-      handle: hooks.handle || (({ event, resolve: resolve2 }) => resolve2(event)),
-      handleError: hooks.handleError || (({ error: error2 }) => console.error(error2.stack)),
-      externalFetch: hooks.externalFetch || fetch
-    });
     var default_protocol = "https";
     function override(settings) {
       default_protocol = settings.protocol || default_protocol;
@@ -7546,7 +7893,6 @@ ${rendered.css.code}`;
     }
     var Server = class {
       constructor(manifest) {
-        const hooks = get_hooks(user_hooks);
         this.options = {
           amp: false,
           csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
@@ -7554,7 +7900,7 @@ ${rendered.css.code}`;
           floc: false,
           get_stack: (error2) => String(error2),
           handle_error: (error2, event) => {
-            hooks.handleError({
+            this.options.hooks.handleError({
               error: error2,
               event,
               get request() {
@@ -7563,7 +7909,7 @@ ${rendered.css.code}`;
             });
             error2.stack = this.options.get_stack(error2);
           },
-          hooks,
+          hooks: null,
           hydrate: true,
           manifest,
           method_override: { "parameter": "_method", "allowed": [] },
@@ -7579,20 +7925,28 @@ ${rendered.css.code}`;
           trailing_slash: "never"
         };
       }
-      respond(request, options = {}) {
+      async respond(request, options = {}) {
         if (!(request instanceof Request)) {
-          throw new Error("The first argument to app.render must be a Request object. See https://github.com/sveltejs/kit/pull/3384 for details");
+          throw new Error("The first argument to server.respond must be a Request object. See https://github.com/sveltejs/kit/pull/3384 for details");
+        }
+        if (!this.options.hooks) {
+          const module22 = await Promise.resolve().then(() => __toESM(require_hooks_1c45ba0b()));
+          this.options.hooks = {
+            getSession: module22.getSession || (() => ({})),
+            handle: module22.handle || (({ event, resolve: resolve2 }) => resolve2(event)),
+            handleError: module22.handleError || (({ error: error2 }) => console.error(error2.stack)),
+            externalFetch: module22.externalFetch || fetch
+          };
         }
         return respond(request, this.options, options);
       }
     };
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
-// .netlify/handler.js
-var require_handler = __commonJS({
-  ".netlify/handler.js"(exports2) {
+// .netlify/serverless.js
+var require_serverless = __commonJS({
+  ".netlify/serverless.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     require_shims();
@@ -7622,7 +7976,12 @@ var require_handler = __commonJS({
     function init2(manifest) {
       const server = new _0SERVER.Server(manifest);
       return async (event, context) => {
-        const rendered = await server.respond(to_request(event), { platform: { context } });
+        const rendered = await server.respond(to_request(event), {
+          platform: { context },
+          getClientAddress() {
+            return event.headers["x-nf-client-connection-ip"];
+          }
+        });
         const partial_response = __spreadValues({
           statusCode: rendered.status
         }, split_headers(rendered.headers));
@@ -7660,48 +8019,69 @@ var require_layout_svelte = __commonJS({
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       default: () => _layout
     });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
     var css = {
-      code: '@media only screen and (max-width: 800px){li.svelte-5jiwd.svelte-5jiwd{display:none}}span.svelte-5jiwd.svelte-5jiwd:not(#link){position:absolute;display:block;text-align:center;top:10px;left:10px;color:white;font-family:"Raleway", sans-serif}#link.svelte-5jiwd.svelte-5jiwd{margin-left:-5px;padding-left:0;color:rgb(105, 105, 105);font-style:italic}span.svelte-5jiwd a.svelte-5jiwd{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-5jiwd.svelte-5jiwd{width:100%;position:sticky;z-index:999;background-color:rgb(20, 20, 20);top:0;right:0;height:42px}ul.svelte-5jiwd.svelte-5jiwd{margin:0;padding:0;margin-right:20px;display:flex;flex-direction:row;justify-content:flex-end;width:100%;height:100%}li.svelte-5jiwd.svelte-5jiwd{flex-shrink:1;align-self:flex-end;list-style-type:none;margin:0;transition:all 0.1s}li.svelte-5jiwd.svelte-5jiwd:last-child{padding-right:25px}li.svelte-5jiwd.svelte-5jiwd:hover{background-color:white}li.svelte-5jiwd:hover .svelte-5jiwd{font-family:"Raleway", sans-serif;color:black;font-weight:800}li.svelte-5jiwd a.svelte-5jiwd{display:block;color:rgb(161, 196, 199);text-decoration:none;text-transform:uppercase;width:100%;height:100%;padding:12px 10px;transition:all 0.12s;text-shadow:0px 5px 5px rgb(20, 20, 20, 0.3)}li.svelte-5jiwd a.svelte-5jiwd:hover{cursor:pointer;padding:12px 36px}',
+      code: '@media only screen and (max-width: 800px){.text.svelte-5tp21g.svelte-5tp21g{display:none}.toggle.svelte-5tp21g.svelte-5tp21g{display:none}}.wrapper.svelte-5tp21g.svelte-5tp21g{width:100%;height:100%}.update.svelte-5tp21g.svelte-5tp21g{padding:15px;border-radius:5px;background-color:lightgray;color:darkslategray;position:fixed;bottom:12px;left:12px;font-family:"Roboto Condensed", sans-serif;opacity:0.25;transition:all 0.2s ease;margin-right:12px}.update.svelte-5tp21g.svelte-5tp21g:hover{opacity:1}.update.svelte-5tp21g a.svelte-5tp21g{text-decoration:none;color:rgb(160, 72, 167)}span.svelte-5tp21g.svelte-5tp21g{position:absolute;display:block;text-align:center;top:10px;left:10px;color:white;font-family:"Raleway", sans-serif}span.svelte-5tp21g a.svelte-5tp21g{font-family:"Raleway", sans-serif;margin:20px 0px;color:white;text-decoration:none;text-transform:lowercase}nav.svelte-5tp21g.svelte-5tp21g{width:100%;position:sticky;z-index:999;background-color:rgb(20, 20, 20);top:0;right:0;height:42px}ul.svelte-5tp21g.svelte-5tp21g{margin:0;padding:0;margin-right:20px;display:flex;flex-direction:row;justify-content:flex-end;width:100%;height:100%}li.svelte-5tp21g.svelte-5tp21g{flex-shrink:1;align-self:center;list-style-type:none;margin:0;border-radius:4px;padding:0px 4px;transition:all 0.1s;overflow:hidden}li.svelte-5tp21g.svelte-5tp21g:last-child{margin-right:25px}li.svelte-5tp21g.svelte-5tp21g:hover{background-color:white}.icon.svelte-5tp21g.svelte-5tp21g{transition:all 0.12s}.icon.svelte-5tp21g.svelte-5tp21g:hover{filter:invert(80%)}li.svelte-5tp21g:hover .svelte-5tp21g{font-family:"Raleway", sans-serif;color:black;font-weight:800;cursor:pointer}li.svelte-5tp21g a.svelte-5tp21g{display:block;color:rgb(161, 196, 199);text-decoration:none;text-transform:uppercase;font-size:0.8em;width:100%;height:100%;transition:all 0.12s;text-shadow:0px 5px 5px rgb(20, 20, 20, 0.3)}li.svelte-5tp21g a.svelte-5tp21g:hover{cursor:pointer;padding:12px 18px}.switch.svelte-5tp21g.svelte-5tp21g{position:relative;display:inline-block;width:40px;height:24px;margin:0;margin-right:6px;padding:0;transform:translateY(0px)}.switch.svelte-5tp21g input.svelte-5tp21g{opacity:0;width:0;height:0;margin:0;padding:0;transform:translateY(-5px)}.slider.svelte-5tp21g.svelte-5tp21g{top:0;left:0;right:0;bottom:0;background-color:#ccc;-webkit-transition:0.1s;transition:0.1s}.slider.svelte-5tp21g.svelte-5tp21g:before{position:absolute;content:"";height:16px;width:16px;left:4px;bottom:4px;background-color:white;-webkit-transition:0.1s;transition:0.1s}input.svelte-5tp21g:checked+.slider.svelte-5tp21g{background-color:#2196f3}input.svelte-5tp21g:focus+.slider.svelte-5tp21g{box-shadow:0 0 1px #2196f3}input.svelte-5tp21g:checked+.slider.svelte-5tp21g:before{-webkit-transform:translateX(16px);-ms-transform:translateX(16px);transform:translateX(16px)}a.svelte-5tp21g.svelte-5tp21g{padding:0}.slider.round.svelte-5tp21g.svelte-5tp21g{border-radius:34px}.slider.round.svelte-5tp21g.svelte-5tp21g:before{border-radius:50%}',
       map: null
     };
-    var _layout = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
-      let hover;
+    var showUpdated = false;
+    var _layout = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      let lastUpdated;
+      let lastMessage;
+      let icons;
+      const fetchLastUpdate = () => {
+        fetch("https://api.github.com/repos/shermanzero/shermanzero.com/branches/main").then((res) => res.json()).then((data) => {
+          if (data.commit) {
+            lastUpdated = data.commit.commit.committer.date;
+            lastUpdated = new Date(lastUpdated).toLocaleString();
+            lastMessage = data.commit.commit.message;
+          }
+        });
+      };
+      fetchLastUpdate();
       $$result.css.add(css);
-      hover = null;
-      return `<nav class="${"svelte-5jiwd"}"><div><span class="${"svelte-5jiwd"}"><a href="${"/"}" class="${"svelte-5jiwd"}">shermanzero.live/
-        ${hover ? `<span id="${"link"}" class="${"svelte-5jiwd"}">${(0, import_index_1e54ea6c.e)(hover)}</span>` : ``}</a></span>
-    <ul id="${"navlist"}" class="${"svelte-5jiwd"}"><li class="${"svelte-5jiwd"}"><a href="${"/api"}" class="${"svelte-5jiwd"}">API</a></li>
-      <li class="${"svelte-5jiwd"}"><a href="${"/downloads"}" class="${"svelte-5jiwd"}">Downloads</a></li>
-      <li class="${"svelte-5jiwd"}"><a href="${"/portfolio"}" class="${"svelte-5jiwd"}">Portfolio</a></li>
-      <li class="${"svelte-5jiwd"}"><a href="${"/projects"}" class="${"svelte-5jiwd"}">Projects</a></li>
-      <li class="${"svelte-5jiwd"}"><a href="${"/upcoming"}" class="${"svelte-5jiwd"}">Upcoming</a></li></ul></div></nav>
+      lastUpdated = null;
+      lastMessage = null;
+      icons = true;
+      return `<nav class="${"svelte-5tp21g"}"><div class="${"wrapper svelte-5tp21g"}"><span class="${"svelte-5tp21g"}"><a href="${"/"}" class="${"svelte-5tp21g"}">shermanzero.live</a></span>
 
-${slots.default ? slots.default({}) : ``}`;
+    <ul id="${"navlist"}" class="${"svelte-5tp21g"}"><li class="${"toggle svelte-5tp21g"}"><label class="${"switch svelte-5tp21g"}"><input type="${"checkbox"}" checked class="${"svelte-5tp21g"}">
+          <span class="${"slider round svelte-5tp21g"}"></span></label></li>
+      ${icons ? `<li class="${"svelte-5tp21g"}"><a href="${"/api"}" class="${"icon svelte-5tp21g"}"><img src="${"/svgs/nav/api.svg"}" width="${"28"}" alt="${"api"}" class="${"svelte-5tp21g"}"></a></li>
+        <li class="${"svelte-5tp21g"}"><a href="${"/downloads"}" class="${"icon svelte-5tp21g"}"><img src="${"/svgs/nav/downloads.svg"}" width="${"28"}" alt="${"downloads"}" class="${"svelte-5tp21g"}"></a></li>
+        <li class="${"svelte-5tp21g"}"><a href="${"/portfolio"}" class="${"icon svelte-5tp21g"}"><img src="${"/svgs/nav/portfolio.svg"}" width="${"28"}" alt="${"portfolio"}" class="${"svelte-5tp21g"}"></a></li>
+        <li class="${"svelte-5tp21g"}"><a href="${"/projects"}" class="${"icon svelte-5tp21g"}"><img src="${"/svgs/nav/projects.svg"}" width="${"28"}" alt="${"projects"}" class="${"svelte-5tp21g"}"></a></li>
+        <li class="${"svelte-5tp21g"}"><a href="${"/socials"}" class="${"icon svelte-5tp21g"}"><img src="${"/svgs/nav/socials.svg"}" width="${"28"}" alt="${"socials"}" class="${"svelte-5tp21g"}"></a></li>
+        <li class="${"svelte-5tp21g"}"><a href="${"/upcoming"}" class="${"icon svelte-5tp21g"}"><img src="${"/svgs/nav/upcoming.svg"}" width="${"28"}" alt="${"upcoming"}" class="${"svelte-5tp21g"}"></a></li>` : `<li class="${"text svelte-5tp21g"}"><a href="${"/api"}" class="${"svelte-5tp21g"}">API</a></li>
+        <li class="${"text svelte-5tp21g"}"><a href="${"/downloads"}" class="${"svelte-5tp21g"}">Downloads</a></li>
+        <li class="${"text svelte-5tp21g"}"><a href="${"/portfolio"}" class="${"svelte-5tp21g"}">Portfolio</a></li>
+        <li class="${"text svelte-5tp21g"}"><a href="${"/projects"}" class="${"svelte-5tp21g"}">Projects</a></li>
+        <li class="${"text svelte-5tp21g"}"><a href="${"/socials"}" class="${"svelte-5tp21g"}">Socials</a></li>
+        <li class="${"text svelte-5tp21g"}"><a href="${"/upcoming"}" class="${"svelte-5tp21g"}">Upcoming</a></li>`}</ul></div></nav>
+
+${slots.default ? slots.default({}) : ``}
+
+${lastUpdated && lastMessage && showUpdated ? `<footer class="${"update svelte-5tp21g"}"><a href="${"https://github.com/ShermanZero/shermanzero.com"}" target="${"_"}" class="${"svelte-5tp21g"}">LATEST BUILD</a> ON [${(0, import_index_930d8519.e)(lastUpdated)}] -
+    <q>${(0, import_index_930d8519.e)(lastMessage)}</q></footer>` : ``}`;
     });
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
@@ -7714,27 +8094,20 @@ var require__ = __commonJS({
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -7742,65 +8115,60 @@ var require__ = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_layout_svelte());
-    var entry = "pages/__layout.svelte-d33e3448.js";
-    var js = ["pages/__layout.svelte-d33e3448.js", "chunks/vendor-90f40547.js"];
-    var css = ["assets/pages/__layout.svelte-a09f9463.css"];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_layout_svelte());
+    var entry = "pages/__layout.svelte-c65a347e.js";
+    var js = ["pages/__layout.svelte-c65a347e.js", "chunks/index-518a10ef.js"];
+    var css = ["assets/pages/__layout.svelte-cc8d7fbb.css"];
   }
 });
 
-// .netlify/server/entries/pages/error.svelte.js
+// .netlify/server/entries/fallbacks/error.svelte.js
 var require_error_svelte = __commonJS({
-  ".netlify/server/entries/pages/error.svelte.js"(exports2, module2) {
+  ".netlify/server/entries/fallbacks/error.svelte.js"(exports2, module2) {
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       default: () => Error2,
       load: () => load
     });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
     function load({ error, status }) {
       return { props: { error, status } };
     }
-    var Error2 = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+    var Error2 = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error } = $$props;
       if ($$props.status === void 0 && $$bindings.status && status !== void 0)
         $$bindings.status(status);
       if ($$props.error === void 0 && $$bindings.error && error !== void 0)
         $$bindings.error(error);
-      return `<h1>${(0, import_index_1e54ea6c.e)(status)}</h1>
+      return `<h1>${(0, import_index_930d8519.e)(status)}</h1>
 
-<pre>${(0, import_index_1e54ea6c.e)(error.message)}</pre>
+<pre>${(0, import_index_930d8519.e)(error.message)}</pre>
 
 
 
-${error.frame ? `<pre>${(0, import_index_1e54ea6c.e)(error.frame)}</pre>` : ``}
-${error.stack ? `<pre>${(0, import_index_1e54ea6c.e)(error.stack)}</pre>` : ``}`;
+${error.frame ? `<pre>${(0, import_index_930d8519.e)(error.frame)}</pre>` : ``}
+${error.stack ? `<pre>${(0, import_index_930d8519.e)(error.stack)}</pre>` : ``}`;
     });
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
@@ -7813,27 +8181,20 @@ var require__2 = __commonJS({
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -7841,11 +8202,11 @@ var require__2 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_error_svelte());
-    var entry = "error.svelte-8c2dfc6a.js";
-    var js = ["error.svelte-8c2dfc6a.js", "chunks/vendor-90f40547.js"];
-    var css = [];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_error_svelte());
+    var entry = "error.svelte-5912f72b.js";
+    var js = ["error.svelte-5912f72b.js", "chunks/index-518a10ef.js"];
+    var css = [];
   }
 });
 
@@ -7856,66 +8217,69 @@ var require_index_svelte = __commonJS({
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       default: () => Routes
     });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
-    var Routes = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
-      return ``;
-    });
     module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var css = {
+      code: 'h1.svelte-1hja6im,h2.svelte-1hja6im,h3.svelte-1hja6im,h4.svelte-1hja6im,h5.svelte-1hja6im{font-family:"Raleway";text-align:center;margin:auto;padding:0 24px;max-width:500px}h4.svelte-1hja6im{margin:40px auto;font-style:italic}h5.svelte-1hja6im{margin-top:10px;padding:0px 15%}h1.svelte-1hja6im{font-family:"Raleway";font-size:2.5em;text-align:center;margin-top:60px}',
+      map: null
+    };
+    var Routes = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css);
+      return `<h1 class="${"svelte-1hja6im"}">Uh well hi... this is a bit awkward</h1>
+<h2 class="${"svelte-1hja6im"}">see,</h2>
+<h3 class="${"svelte-1hja6im"}">the thing is</h3>
+<h4 class="${"svelte-1hja6im"}">my website is still under major development</h4>
+<h5 class="${"svelte-1hja6im"}">So, many features/pages are not implemented. Feel free to check back however often you want. Progress is continuous,
+  and I have big plans for the eventual state of the site in what will most likely be a few months. Why even have the
+  site live then? Great question! Why not? Exactly.
+</h5>
+<h5 class="${"svelte-1hja6im"}">In the meantime, head on over to <a href="${"/projects"}">/projects</a> to see my awesome library of projects I&#39;ve uploaded
+  which currently consists of one thing!
+</h5>`;
+    });
   }
 });
 
-// .netlify/server/nodes/2.js
+// .netlify/server/nodes/4.js
 var require__3 = __commonJS({
-  ".netlify/server/nodes/2.js"(exports2, module3) {
+  ".netlify/server/nodes/4.js"(exports2, module3) {
     var __create = Object.create;
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -7923,11 +8287,81 @@ var require__3 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_index_svelte());
-    var entry = "pages/index.svelte-a6b27cde.js";
-    var js = ["pages/index.svelte-a6b27cde.js", "chunks/vendor-90f40547.js"];
-    var css = [];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_index_svelte());
+    var entry = "pages/index.svelte-368111dd.js";
+    var js = ["pages/index.svelte-368111dd.js", "chunks/index-518a10ef.js"];
+    var css = ["assets/pages/index.svelte-65b373a2.css"];
+  }
+});
+
+// .netlify/server/entries/pages/api.svelte.js
+var require_api_svelte = __commonJS({
+  ".netlify/server/entries/pages/api.svelte.js"(exports2, module2) {
+    var __defProp2 = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp2(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      default: () => Api
+    });
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var Api = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      return ``;
+    });
+  }
+});
+
+// .netlify/server/nodes/2.js
+var require__4 = __commonJS({
+  ".netlify/server/nodes/2.js"(exports2, module3) {
+    var __create = Object.create;
+    var __defProp2 = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __getProtoOf = Object.getPrototypeOf;
+    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp2(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      css: () => css,
+      entry: () => entry,
+      js: () => js,
+      module: () => module2
+    });
+    module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_api_svelte());
+    var entry = "pages/api.svelte-7047fff5.js";
+    var js = ["pages/api.svelte-7047fff5.js", "chunks/index-518a10ef.js"];
+    var css = [];
   }
 });
 
@@ -7938,38 +8372,33 @@ var require_downloads_svelte = __commonJS({
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       default: () => Downloads
     });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
-    var Downloads = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var Downloads = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
 // .netlify/server/nodes/3.js
-var require__4 = __commonJS({
+var require__5 = __commonJS({
   ".netlify/server/nodes/3.js"(exports2, module3) {
     var __create = Object.create;
     var __defProp2 = Object.defineProperty;
@@ -7977,27 +8406,20 @@ var require__4 = __commonJS({
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -8005,140 +8427,56 @@ var require__4 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_downloads_svelte());
-    var entry = "pages/downloads.svelte-d19214b7.js";
-    var js = ["pages/downloads.svelte-d19214b7.js", "chunks/vendor-90f40547.js"];
-    var css = [];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_downloads_svelte());
+    var entry = "pages/downloads.svelte-f0e10f8e.js";
+    var js = ["pages/downloads.svelte-f0e10f8e.js", "chunks/index-518a10ef.js"];
+    var css = [];
   }
 });
 
-// .netlify/server/entries/pages/portfolio.svelte.js
-var require_portfolio_svelte = __commonJS({
-  ".netlify/server/entries/pages/portfolio.svelte.js"(exports2, module2) {
+// .netlify/server/entries/pages/invitation.svelte.js
+var require_invitation_svelte = __commonJS({
+  ".netlify/server/entries/pages/invitation.svelte.js"(exports2, module2) {
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
-      default: () => Portfolio
-    });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
-    var Portfolio = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
-      return ``;
+      default: () => Invitation
     });
     module2.exports = __toCommonJS(stdin_exports);
-  }
-});
-
-// .netlify/server/nodes/4.js
-var require__5 = __commonJS({
-  ".netlify/server/nodes/4.js"(exports2, module3) {
-    var __create = Object.create;
-    var __defProp2 = Object.defineProperty;
-    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __getProtoOf = Object.getPrototypeOf;
-    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
-    var __export = (target, all) => {
-      for (var name in all)
-        __defProp2(target, name, { get: all[name], enumerable: true });
-    };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
-      }
-      return target;
-    };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
-    var stdin_exports = {};
-    __export(stdin_exports, {
-      css: () => css,
-      entry: () => entry,
-      js: () => js,
-      module: () => module2
-    });
-    var module2 = __toESM(require_portfolio_svelte());
-    var entry = "pages/portfolio.svelte-df1d2b6c.js";
-    var js = ["pages/portfolio.svelte-df1d2b6c.js", "chunks/vendor-90f40547.js"];
-    var css = [];
-    module3.exports = __toCommonJS(stdin_exports);
-  }
-});
-
-// .netlify/server/entries/pages/projects/coworkerquiz.svelte.js
-var require_coworkerquiz_svelte = __commonJS({
-  ".netlify/server/entries/pages/projects/coworkerquiz.svelte.js"(exports2, module2) {
-    var __defProp2 = Object.defineProperty;
-    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
-    var __export = (target, all) => {
-      for (var name in all)
-        __defProp2(target, name, { get: all[name], enumerable: true });
-    };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
-      }
-      return target;
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
-    var stdin_exports = {};
-    __export(stdin_exports, {
-      default: () => Coworkerquiz
-    });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
+    var import_index_930d8519 = require_index_930d8519();
     var css = {
-      code: '.container.svelte-16a5q79.svelte-16a5q79{padding:20px}img.svelte-16a5q79.svelte-16a5q79{margin-top:10px}.container.svelte-16a5q79>.wrapper.svelte-16a5q79{padding:10px;display:flex;flex-direction:column}button.svelte-16a5q79.svelte-16a5q79{width:100%;height:100px;background-color:#357b85;background:linear-gradient(30deg, #357b85 10%, #175058 90%);color:#fff;font-size:1.5rem;font-weight:bold;border:none;border-radius:5px;cursor:pointer;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding:20px;font-family:"Raleway", sans-serif;text-transform:uppercase;font-weight:800;transition:all 0.1s}button.svelte-16a5q79.svelte-16a5q79:hover{background-color:#81cbda;color:black}',
+      code: 'h3.svelte-89cie{text-transform:uppercase;font-family:"Raleway", sans-serif;font-weight:800;text-shadow:0px 0px 1px #000}div.svelte-89cie{width:100%;margin-top:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}ul.svelte-89cie{display:flex;flex-direction:row;list-style:none;padding:0;margin:0;border:none}li.svelte-89cie{margin:5px;border:none}input.svelte-89cie{width:60px;height:90px;border:none;border-radius:12px;outline:none;background:transparent;transition:all 0.12s;font-family:"Roboto Condensed", sans-serif;font-size:3em;font-weight:600;text-align:center;vertical-align:text-top;text-transform:uppercase;caret-color:transparent;background-color:rgb(94, 94, 94);box-shadow:0 5px 0px 0px rgb(63, 63, 63)}input.svelte-89cie::selection{background:transparent}input.svelte-89cie:focus{background-color:rgb(177, 177, 177)}input.svelte-89cie:valid:not(:focus){background-color:white}button.svelte-89cie{margin-top:25px;width:280px;padding:12px;border-radius:12px;font-family:"Raleway", sans-serif;font-weight:800;font-size:1.25em;box-shadow:0 5px 0px 0px rgb(63, 63, 63);outline:none;border:none}button.svelte-89cie:focus{outline:none}button.svelte-89cie:active{background-color:rgb(177, 177, 177);transform:translateY(5px);box-shadow:none}',
       map: null
     };
-    var Coworkerquiz = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
-      let imageData;
+    var Invitation = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css);
-      imageData = null;
-      return `<div class="${"container svelte-16a5q79"}"><div class="${"wrapper svelte-16a5q79"}"><button class="${"svelte-16a5q79"}">Press To<br>Generate Positivity</button>
+      return `<div class="${"svelte-89cie"}"><h3 class="${"svelte-89cie"}">Invite Code</h3>
 
-    ${imageData ? `<img id="${"image"}"${(0, import_index_1e54ea6c.a)("src", imageData, 0)} alt="${"output"}" class="${"svelte-16a5q79"}">` : ``}</div>
+  <ul class="${"svelte-89cie"}"><li class="${"svelte-89cie"}"><input id="${"in1"}" type="${"text"}" required maxlength="${"1"}" class="${"svelte-89cie"}"></li>
+    <li class="${"svelte-89cie"}"><input id="${"in2"}" type="${"text"}" required maxlength="${"1"}" class="${"svelte-89cie"}"></li>
+    <li class="${"svelte-89cie"}"><input id="${"in3"}" type="${"text"}" required maxlength="${"1"}" class="${"svelte-89cie"}"></li>
+    <li class="${"svelte-89cie"}"><input id="${"in4"}" type="${"text"}" required maxlength="${"1"}" class="${"svelte-89cie"}"></li></ul>
+
+  <button class="${"svelte-89cie"}">SUBMIT</button>
 </div>`;
     });
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
@@ -8151,27 +8489,20 @@ var require__6 = __commonJS({
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -8179,11 +8510,242 @@ var require__6 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_coworkerquiz_svelte());
-    var entry = "pages/projects/coworkerquiz.svelte-d40fcda6.js";
-    var js = ["pages/projects/coworkerquiz.svelte-d40fcda6.js", "chunks/vendor-90f40547.js"];
-    var css = ["assets/pages/projects/coworkerquiz.svelte-b1b43672.css"];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_invitation_svelte());
+    var entry = "pages/invitation.svelte-2f515d29.js";
+    var js = ["pages/invitation.svelte-2f515d29.js", "chunks/index-518a10ef.js"];
+    var css = ["assets/pages/invitation.svelte-d113c5ba.css"];
+  }
+});
+
+// .netlify/server/entries/pages/linzy.svelte.js
+var require_linzy_svelte = __commonJS({
+  ".netlify/server/entries/pages/linzy.svelte.js"(exports2, module2) {
+    var __defProp2 = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp2(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      default: () => Linzy
+    });
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var css$2 = {
+      code: '.title.svelte-1udikyq.svelte-1udikyq{box-shadow:0 -4px 8px #888888;text-align:center;padding:15px;border-radius:8px;margin:12px 24px;margin-bottom:0px;background-color:white;color:black;z-index:100}.title.selected.svelte-1udikyq.svelte-1udikyq{transition:all 0.12s;box-shadow:0 -4px 8px darkslategray;background-color:darkslategray;color:whitesmoke;border:2px solid white}.title.svelte-1udikyq img.svelte-1udikyq{transition:all 0.12s;transform:rotate(0deg);position:absolute;right:48px;filter:invert(40%);transform:translateY(4px)}.title.selected.svelte-1udikyq img.svelte-1udikyq{transform:rotate(90deg) translateX(12px);filter:invert(90%)}.title.svelte-1udikyq h1.svelte-1udikyq{margin:0;font-family:"Square Peg", cursive;line-height:1em}.title.svelte-1udikyq h2.svelte-1udikyq{font-family:"Square Peg";font-size:1rem;margin:0;text-transform:uppercase;line-height:0.25em}h1.svelte-1udikyq.svelte-1udikyq,h2.svelte-1udikyq.svelte-1udikyq{transition:all 0.12s}.title.selected.svelte-1udikyq h1.svelte-1udikyq,.title.selected.svelte-1udikyq h2.svelte-1udikyq{transform:translateX(-20%)}',
+      map: null
+    };
+    var JournalTitle = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      (0, import_index_930d8519.a)();
+      let { journalEntryTitle } = $$props;
+      let { journalEntryDay } = $$props;
+      if ($$props.journalEntryTitle === void 0 && $$bindings.journalEntryTitle && journalEntryTitle !== void 0)
+        $$bindings.journalEntryTitle(journalEntryTitle);
+      if ($$props.journalEntryDay === void 0 && $$bindings.journalEntryDay && journalEntryDay !== void 0)
+        $$bindings.journalEntryDay(journalEntryDay);
+      $$result.css.add(css$2);
+      return `<div class="${"title " + (0, import_index_930d8519.e)("") + " svelte-1udikyq"}"><img src="${"/svgs/chevron-right.svg"}" width="${"28"}" alt="${"expand"}" class="${"svelte-1udikyq"}">
+  <h2 class="${"svelte-1udikyq"}">${(0, import_index_930d8519.e)(journalEntryDay)}</h2>
+  <h1 class="${"svelte-1udikyq"}">${(0, import_index_930d8519.e)(journalEntryTitle)}</h1>
+</div>`;
+    });
+    var css$1 = {
+      code: ".viewport.svelte-w840h4{border:2px solid white;padding:12px;border-radius:8px;border-top:none;border-top-left-radius:0px;border-top-right-radius:0px;z-index:-200;background-color:rgba(255, 255, 255, 0.1);margin:0px 24px;margin-top:-2px}",
+      map: null
+    };
+    var JournalEntry = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      let { date = null } = $$props;
+      let { title = null } = $$props;
+      let { paragraphs = [] } = $$props;
+      let { images = [] } = $$props;
+      let { quote = null } = $$props;
+      if ($$props.date === void 0 && $$bindings.date && date !== void 0)
+        $$bindings.date(date);
+      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+        $$bindings.title(title);
+      if ($$props.paragraphs === void 0 && $$bindings.paragraphs && paragraphs !== void 0)
+        $$bindings.paragraphs(paragraphs);
+      if ($$props.images === void 0 && $$bindings.images && images !== void 0)
+        $$bindings.images(images);
+      if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0)
+        $$bindings.quote(quote);
+      $$result.css.add(css$1);
+      return `${(0, import_index_930d8519.v)(JournalTitle, "JournalTitle").$$render($$result, {
+        journalEntryDay: date,
+        journalEntryTitle: title
+      }, {}, {})}
+
+${``}`;
+    });
+    var css = {
+      code: 'h1.svelte-1266tco{text-align:center;font-family:"Square Peg", cursive;font-size:4em;font-weight:200;color:whitesmoke;margin-top:4px}',
+      map: null
+    };
+    var Linzy = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      const paragraphs_04262022 = [
+        "It was nice to talk to you and chill today.  I don\u2019t really feel like I\u2019m worth your time and that\u2019s a whole mental battle, but I know that if you didn\u2019t want to spend time with me then you wouldn\u2019t.  I enjoyed learning more about you, and it was really cool to see your books on witchcraft.  I hope someday you can teach me all about everything that interests you because I want to be more knowledgeable in those areas and better able to vibe with you.",
+        "The videos you shared with me of your kids melted my heart, they looked so happy and I\u2019ve never seen a mom play ball with her kids before.  I thought that was amazing and made me wish I had kids to teach and play ball with.  I\u2019m so sorry about your hands and I\u2019m glad you\u2019ll be able to get the help you need for them.  Your weed smelled good by the way hahah I was just vibing as much as awkward me can.  I was happy to just be there next to you and listen to you.  I didn\u2019t have much to say I know, but I really just wanted to be there as your support for whatever you needed.  It was nice to laugh with you and like always, to see you smile.",
+        "I\u2019m going to miss you a lot when you go to Arconic.  I don\u2019t know if I\u2019d ever see you again and that\u2019s a painful thought.  Thank you for the amethyst pendant.  I don\u2019t deserve anything, and accepting anything no matter how big or small is a hard thing for me to do.  I felt so bad and I will keep it safe until you want it back.",
+        "It really does mean a lot to me though, the gesture alone.  I have some plans for this page, and what I\u2019m going to try and do is keep journal entries/letters like this from every day about our interactions so that I don\u2019t forget, and maybe, hopefully so that you can have something to always look back through and remember our time together.  I can only hope that it may bring you some comfort and happiness.",
+        "I will probably expand on this idea more and more as time goes on, but that\u2019s my intention for it now.  I also want to include little pictures scattered through, and at the end of the entry I want to put a quote that resonates with me.  All of this will hopefully become a little boost to you"
+      ];
+      const images_04262022 = [null, null, "/pngs/04262022_amethyst.jpg"];
+      const paragraphs_04272022 = [
+        "Getting 5 hours of sleep and waking up at 5:30 wasn't really what I was planning on today, but I'm glad it happened so I could chat with you before you went to work.  Although, you did give me a craving for some iced coffee so rip me.  That's okay, I have some arnold palmer cooling down in the freezer that will be my best friend today.  All the meals you shared with me looked fucking amazing.  I have such a hard time expressing myself in person but I am constantly impressed/awed by you.  Raw oatmeal is where it's at.  Quaker's brown sugar and cinnamon man, used to live off of that as a kid.",
+        "My package is out for delivery so I'm hoping I'll have an excuse to stop by work before you leave today and give the thing to you.  I don't know if it'll end up working well or not, but I hope it does and that we both can find some use for it.  There's four to the pack I ordered so we're both getting two.  I'm exhausted so I might just go back to bed, but alternatively I could just play farming simulator.  I feel like such a weird fucking person.  I present myself as a hardass but I'm a fucking softie, I tell people about my nerdy shit but I'm an athlete and a redneck to an extent.  I find so many things interesting and I like to explore.  I'm always down to try anything and I love to learn, and I imagine this extremely large circle around me containing so many interests that aren't usually associated with each other.  For example, Overwatch is my main game and it's a competitive PvP fps, but then I'll turn right around and vibe tending to a virtual farm or driving trucks in Truck Simulator.",
+        "There's so much weird shit to me that I don't even understand.  It's nice though, to be able to relate to people because I'm not stuck in a box or stuck in my ways and I'm just a curious person really.  Most of my knowledge about anything is self-taught, even the nine years I've spent programming has been predominently my own motivation and countless hours slaving away into my own research.  My musical side is almost all self-taught, but I did take piano and guitar lessons when I was a little kid so that really just helps me be able to write faster because I know chords and techniques and a little theory and whatnot.",
+        "Thank you for coming over after work.  I was secretly hoping to see you and I may or may not have dragged myself out of bed at 4 to clean myself up in case you had offered.  I hope the alkaline filters help!  If they do they aren't too expensive, and they're supposed to last for quite a few gallons.  I have another surprise for you eventually, theoretically Friday but who actually knows when.  Either way, I'm excited to give because I really want to help push you into a better place and to yourself again.",
+        "I wanted to tell you today that when I first saw you I thought you were cute too but my constant fear of losing you to dumb shit prevents me from complimenting you privately 99% of the time.  Knowing me it would come out wrong and I'd just sit there feeling awkard as fuck.  You keep doing you though because you always look good and you deserve to feel confident in yourself.",
+        "I probably won't tell you that I published this.  It wasn't my intention to be like 'HEY CHECK IT OUT I WROTE MORE HEARTFELT SHIT TO/ABOUT YOU' every time I do, so this will just exist for whenever you see it.  As I'm writing this your boyfriend is probably home and I doubt I'll hear from you much the rest of the night.  It's been pretty fun to program this though.  I'm working towards making it more efficient and optimized and whatnot, and I have to continue writing more and more logic behind the scenes to make room for what I have planned.  For example before today there was no dropdown functionality programmed into journal entries, so that was like my little project for today.  I'm sure there are lots of bugs and whatnot, but as long as the experience is fairly smooth then it's not a pressing worry.",
+        "Anyway, I hope your night goes well and your boyfriend treats you the way you deserve to be treated.  I hope he turns his ways around and gives you the happiness you deserve.  I'll tell you every day but I feel for you and I hate seeing you so lost.  You're in a really hard position and I don't have the answers for you, but the only advice I can offer is to always put yourself first.  In relationships, out of relationships, you should and deserve to come first."
+      ];
+      const images_04272022 = [
+        "/pngs/04272022_food01.jpg",
+        "/pngs/04272022_food02.jpg",
+        null,
+        null,
+        null,
+        "/pngs/04272022_sameday_samebullshit.png"
+      ];
+      $$result.css.add(css);
+      return `<h1 class="${"svelte-1266tco"}">Linzy&#39;s Hideout</h1>
+
+${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
+        date: "Apr. 27th, 2022",
+        title: "Another Dime",
+        paragraphs: paragraphs_04272022,
+        images: images_04272022,
+        quote: "Friendship isn't a big thing, it's a million little things"
+      }, {}, {})}
+${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
+        date: "Apr. 26th, 2022",
+        title: "A Moment in Time",
+        paragraphs: paragraphs_04262022,
+        images: images_04262022,
+        quote: "Things are never quite as scary when you\u2019ve got a best friend"
+      }, {}, {})}`;
+    });
+  }
+});
+
+// .netlify/server/nodes/6.js
+var require__7 = __commonJS({
+  ".netlify/server/nodes/6.js"(exports2, module3) {
+    var __create = Object.create;
+    var __defProp2 = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __getProtoOf = Object.getPrototypeOf;
+    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp2(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      css: () => css,
+      entry: () => entry,
+      js: () => js,
+      module: () => module2
+    });
+    module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_linzy_svelte());
+    var entry = "pages/linzy.svelte-4210d131.js";
+    var js = ["pages/linzy.svelte-4210d131.js", "chunks/index-518a10ef.js", "chunks/index-566f6c1b.js"];
+    var css = ["assets/pages/linzy.svelte-4a5f5e23.css"];
+  }
+});
+
+// .netlify/server/entries/pages/portfolio.svelte.js
+var require_portfolio_svelte = __commonJS({
+  ".netlify/server/entries/pages/portfolio.svelte.js"(exports2, module2) {
+    var __defProp2 = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp2(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      default: () => Portfolio
+    });
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var Portfolio = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      return ``;
+    });
+  }
+});
+
+// .netlify/server/nodes/7.js
+var require__8 = __commonJS({
+  ".netlify/server/nodes/7.js"(exports2, module3) {
+    var __create = Object.create;
+    var __defProp2 = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __getProtoOf = Object.getPrototypeOf;
+    var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp2(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
+    var stdin_exports = {};
+    __export(stdin_exports, {
+      css: () => css,
+      entry: () => entry,
+      js: () => js,
+      module: () => module2
+    });
+    module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_portfolio_svelte());
+    var entry = "pages/portfolio.svelte-3e074047.js";
+    var js = ["pages/portfolio.svelte-3e074047.js", "chunks/index-518a10ef.js"];
+    var css = [];
   }
 });
 
@@ -8194,34 +8756,30 @@ var require_projects_svelte = __commonJS({
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       default: () => Projects
     });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
     var css$1 = {
-      code: 'div.svelte-5d5ydx{display:flex;flex-direction:column;justify-content:space-between;position:relative;min-width:160px;min-height:160px;width:20vw;height:20vw;border:0px;border-radius:5%;padding:20px;transition:all 0.12s;cursor:pointer;background:linear-gradient(180deg, rgb(230, 230, 230) 0%, rgb(22, 20, 20, 0.1) 100%);color:black;box-shadow:0px 10px 20px rgba(0, 0, 0, 0.5);overflow:hidden}div.svelte-5d5ydx:hover{background:linear-gradient(180deg, rgb(187, 199, 202) 0%, rgba(66, 85, 82, 0.1) 100%);transform:translateY(10px)}.date.svelte-5d5ydx{font-family:"Robot Condensed", sans-serif;font-weight:600;width:100%;font-size:0.8em;text-align:right;margin:0;font-weight:700;font-style:italic;color:black}h1.svelte-5d5ydx{font-family:"Roboto Condensed", sans-serif;font-size:1.3em;text-align:center;margin:0}h2.svelte-5d5ydx{font-family:"Raleway", sans-serif;font-size:0.8em;text-align:left;font-weight:600;margin:0}',
+      code: 'div.svelte-arz2au{display:flex;flex-direction:column;justify-content:space-between;position:relative;min-width:160px;min-height:160px;max-width:200px;max-height:200px;width:20vw;height:20vw;border:0px;border-radius:5%;padding:20px;transition:all 0.12s;cursor:pointer;background:linear-gradient(180deg, rgb(230, 230, 230) 0%, rgb(22, 20, 20, 0.1) 100%);color:black;box-shadow:0px 10px 20px rgba(0, 0, 0, 0.5);overflow:hidden}div.svelte-arz2au:hover{background:linear-gradient(180deg, rgb(187, 199, 202) 0%, rgba(66, 85, 82, 0.1) 100%);transform:translateY(10px)}.date.svelte-arz2au{font-family:"Robot Condensed", sans-serif;font-weight:600;width:100%;font-size:0.8em;text-align:right;margin:0;font-weight:700;font-style:italic;color:black}h1.svelte-arz2au{font-family:"Roboto Condensed", sans-serif;font-size:1.3em;text-align:center;margin:0}h2.svelte-arz2au{font-family:"Raleway", sans-serif;font-size:0.8em;text-align:left;font-weight:600;margin:0}',
       map: null
     };
-    var Project = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+    var Project = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       let { projectName } = $$props;
       let { projectID } = $$props;
       let { dateCreated = new Date().now } = $$props;
@@ -8244,9 +8802,9 @@ var require_projects_svelte = __commonJS({
       code: ".wrapper.svelte-oo3h4e{position:relative;z-index:0;display:flex;flex-direction:column;padding:40px}",
       map: null
     };
-    var Projects = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+    var Projects = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css);
-      return `<div class="${"wrapper svelte-oo3h4e"}">${(0, import_index_1e54ea6c.v)(Project, "Project").$$render($$result, {
+      return `<div class="${"wrapper svelte-oo3h4e"}">${(0, import_index_930d8519.v)(Project, "Project").$$render($$result, {
         projectName: "Coworker Quiz",
         projectID: "coworkerquiz",
         dateCreated: "02/26/22",
@@ -8254,40 +8812,32 @@ var require_projects_svelte = __commonJS({
       }, {}, {})}
 </div>`;
     });
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
-// .netlify/server/nodes/6.js
-var require__7 = __commonJS({
-  ".netlify/server/nodes/6.js"(exports2, module3) {
+// .netlify/server/nodes/9.js
+var require__9 = __commonJS({
+  ".netlify/server/nodes/9.js"(exports2, module3) {
     var __create = Object.create;
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -8295,11 +8845,11 @@ var require__7 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_projects_svelte());
-    var entry = "pages/projects.svelte-22f2cbd7.js";
-    var js = ["pages/projects.svelte-22f2cbd7.js", "chunks/vendor-90f40547.js"];
-    var css = ["assets/pages/projects.svelte-7064b4ec.css"];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_projects_svelte());
+    var entry = "pages/projects.svelte-b7060a33.js";
+    var js = ["pages/projects.svelte-b7060a33.js", "chunks/index-518a10ef.js", "chunks/index-566f6c1b.js"];
+    var css = ["assets/pages/projects.svelte-e7ff8128.css"];
   }
 });
 
@@ -8310,66 +8860,54 @@ var require_upcoming_svelte = __commonJS({
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       default: () => Upcoming
     });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
-    var Upcoming = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
+    module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var Upcoming = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       return ``;
     });
-    module2.exports = __toCommonJS(stdin_exports);
   }
 });
 
-// .netlify/server/nodes/7.js
-var require__8 = __commonJS({
-  ".netlify/server/nodes/7.js"(exports2, module3) {
+// .netlify/server/nodes/10.js
+var require__10 = __commonJS({
+  ".netlify/server/nodes/10.js"(exports2, module3) {
     var __create = Object.create;
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -8377,53 +8915,58 @@ var require__8 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_upcoming_svelte());
-    var entry = "pages/upcoming.svelte-c86df938.js";
-    var js = ["pages/upcoming.svelte-c86df938.js", "chunks/vendor-90f40547.js"];
-    var css = [];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_upcoming_svelte());
+    var entry = "pages/upcoming.svelte-fc3ef77a.js";
+    var js = ["pages/upcoming.svelte-fc3ef77a.js", "chunks/index-518a10ef.js"];
+    var css = [];
   }
 });
 
-// .netlify/server/entries/pages/api.svelte.js
-var require_api_svelte = __commonJS({
-  ".netlify/server/entries/pages/api.svelte.js"(exports2, module2) {
+// .netlify/server/entries/pages/projects/coworkerquiz.svelte.js
+var require_coworkerquiz_svelte = __commonJS({
+  ".netlify/server/entries/pages/projects/coworkerquiz.svelte.js"(exports2, module2) {
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module22, copyDefault, desc) => {
-      if (module22 && typeof module22 === "object" || typeof module22 === "function") {
-        for (let key of __getOwnPropNames(module22))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module22[key], enumerable: !(desc = __getOwnPropDesc(module22, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module22, temp) => {
-        return cache && cache.get(module22) || (temp = __reExport(__markAsModule({}), module22, 1), cache && cache.set(module22, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
-      default: () => Api
-    });
-    var import_index_1e54ea6c = require_index_1e54ea6c();
-    var Api = (0, import_index_1e54ea6c.c)(($$result, $$props, $$bindings, slots) => {
-      return ``;
+      default: () => Coworkerquiz
     });
     module2.exports = __toCommonJS(stdin_exports);
+    var import_index_930d8519 = require_index_930d8519();
+    var css = {
+      code: '.container.svelte-16a5q79.svelte-16a5q79{padding:20px}img.svelte-16a5q79.svelte-16a5q79{margin-top:10px}.container.svelte-16a5q79>.wrapper.svelte-16a5q79{padding:10px;display:flex;flex-direction:column}button.svelte-16a5q79.svelte-16a5q79{width:100%;height:100px;background-color:#357b85;background:linear-gradient(30deg, #357b85 10%, #175058 90%);color:#fff;font-size:1.5rem;font-weight:bold;border:none;border-radius:5px;cursor:pointer;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding:20px;font-family:"Raleway", sans-serif;text-transform:uppercase;font-weight:800;transition:all 0.1s}button.svelte-16a5q79.svelte-16a5q79:hover{background-color:#81cbda;color:black}',
+      map: null
+    };
+    var Coworkerquiz = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+      let imageData;
+      $$result.css.add(css);
+      imageData = null;
+      return `<div class="${"container svelte-16a5q79"}"><div class="${"wrapper svelte-16a5q79"}"><button class="${"svelte-16a5q79"}">Press To<br>Generate Positivity</button>
+
+    ${imageData ? `<img id="${"image"}"${(0, import_index_930d8519.b)("src", imageData, 0)} alt="${"output"}" class="${"svelte-16a5q79"}">` : ``}</div>
+</div>`;
+    });
   }
 });
 
 // .netlify/server/nodes/8.js
-var require__9 = __commonJS({
+var require__11 = __commonJS({
   ".netlify/server/nodes/8.js"(exports2, module3) {
     var __create = Object.create;
     var __defProp2 = Object.defineProperty;
@@ -8431,27 +8974,20 @@ var require__9 = __commonJS({
     var __getOwnPropNames = Object.getOwnPropertyNames;
     var __getProtoOf = Object.getPrototypeOf;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __markAsModule = (target) => __defProp2(target, "__esModule", { value: true });
     var __export = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
-    var __reExport = (target, module32, copyDefault, desc) => {
-      if (module32 && typeof module32 === "object" || typeof module32 === "function") {
-        for (let key of __getOwnPropNames(module32))
-          if (!__hasOwnProp2.call(target, key) && (copyDefault || key !== "default"))
-            __defProp2(target, key, { get: () => module32[key], enumerable: !(desc = __getOwnPropDesc(module32, key)) || desc.enumerable });
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp2.call(to, key) && key !== except)
+            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      return target;
+      return to;
     };
-    var __toESM = (module32, isNodeMode) => {
-      return __reExport(__markAsModule(__defProp2(module32 != null ? __create(__getProtoOf(module32)) : {}, "default", !isNodeMode && module32 && module32.__esModule ? { get: () => module32.default, enumerable: true } : { value: module32, enumerable: true })), module32);
-    };
-    var __toCommonJS = /* @__PURE__ */ ((cache) => {
-      return (module32, temp) => {
-        return cache && cache.get(module32) || (temp = __reExport(__markAsModule({}), module32, 1), cache && cache.set(module32, temp), temp);
-      };
-    })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp2(target, "default", { value: mod, enumerable: true }) : target, mod));
+    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
     var stdin_exports = {};
     __export(stdin_exports, {
       css: () => css,
@@ -8459,22 +8995,22 @@ var require__9 = __commonJS({
       js: () => js,
       module: () => module2
     });
-    var module2 = __toESM(require_api_svelte());
-    var entry = "pages/api.svelte-d68ff7f4.js";
-    var js = ["pages/api.svelte-d68ff7f4.js", "chunks/vendor-90f40547.js"];
-    var css = [];
     module3.exports = __toCommonJS(stdin_exports);
+    var module2 = __toESM(require_coworkerquiz_svelte());
+    var entry = "pages/projects/coworkerquiz.svelte-5057de3b.js";
+    var js = ["pages/projects/coworkerquiz.svelte-5057de3b.js", "chunks/index-518a10ef.js"];
+    var css = ["assets/pages/projects/coworkerquiz.svelte-b1b43672.css"];
   }
 });
 
 // .netlify/functions-internal/render.js
-var { init } = require_handler();
+var { init } = require_serverless();
 exports.handler = init({
   appDir: "_app",
-  assets: new Set(["favicon.png", "global.css"]),
+  assets: new Set(["global.css", "pngs/04262022_amethyst.jpg", "pngs/04272022_food01.jpg", "pngs/04272022_food02.jpg", "pngs/04272022_sameday_samebullshit.png", "svgs/chevron-right.svg", "svgs/circle_check.svg", "svgs/circle_x.svg", "svgs/favicon.svg", "svgs/nav/api.svg", "svgs/nav/downloads.svg", "svgs/nav/hamburger_menu.svg", "svgs/nav/portfolio.svg", "svgs/nav/projects.svg", "svgs/nav/socials.svg", "svgs/nav/upcoming.svg"]),
+  mimeTypes: { ".css": "text/css", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml" },
   _: {
-    mime: { ".png": "image/png", ".css": "text/css" },
-    entry: { "file": "start-91f395de.js", "js": ["start-91f395de.js", "chunks/vendor-90f40547.js"], "css": [] },
+    entry: { "file": "start-02a0c08a.js", "js": ["start-02a0c08a.js", "chunks/index-518a10ef.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),
@@ -8484,13 +9020,17 @@ exports.handler = init({
       () => Promise.resolve().then(() => require__6()),
       () => Promise.resolve().then(() => require__7()),
       () => Promise.resolve().then(() => require__8()),
-      () => Promise.resolve().then(() => require__9())
+      () => Promise.resolve().then(() => require__9()),
+      () => Promise.resolve().then(() => require__10()),
+      () => Promise.resolve().then(() => require__11())
     ],
     routes: [
       {
         type: "page",
+        id: "",
         pattern: /^\/$/,
-        params: null,
+        names: [],
+        types: [],
         path: "/",
         shadow: null,
         a: [0, 2],
@@ -8498,61 +9038,104 @@ exports.handler = init({
       },
       {
         type: "page",
-        pattern: /^\/downloads\/?$/,
-        params: null,
-        path: "/downloads",
+        id: "api",
+        pattern: /^\/api\/?$/,
+        names: [],
+        types: [],
+        path: "/api",
         shadow: null,
         a: [0, 3],
         b: [1]
       },
       {
         type: "page",
-        pattern: /^\/portfolio\/?$/,
-        params: null,
-        path: "/portfolio",
+        id: "downloads",
+        pattern: /^\/downloads\/?$/,
+        names: [],
+        types: [],
+        path: "/downloads",
         shadow: null,
         a: [0, 4],
         b: [1]
       },
       {
         type: "page",
-        pattern: /^\/projects\/coworkerquiz\/?$/,
-        params: null,
-        path: "/projects/coworkerquiz",
+        id: "invitation",
+        pattern: /^\/invitation\/?$/,
+        names: [],
+        types: [],
+        path: "/invitation",
         shadow: null,
         a: [0, 5],
         b: [1]
       },
       {
         type: "page",
-        pattern: /^\/projects\/?$/,
-        params: null,
-        path: "/projects",
+        id: "linzy",
+        pattern: /^\/linzy\/?$/,
+        names: [],
+        types: [],
+        path: "/linzy",
         shadow: null,
         a: [0, 6],
         b: [1]
       },
       {
         type: "page",
-        pattern: /^\/upcoming\/?$/,
-        params: null,
-        path: "/upcoming",
+        id: "portfolio",
+        pattern: /^\/portfolio\/?$/,
+        names: [],
+        types: [],
+        path: "/portfolio",
         shadow: null,
         a: [0, 7],
         b: [1]
       },
       {
         type: "page",
-        pattern: /^\/api\/?$/,
-        params: null,
-        path: "/api",
+        id: "projects",
+        pattern: /^\/projects\/?$/,
+        names: [],
+        types: [],
+        path: "/projects",
         shadow: null,
         a: [0, 8],
         b: [1]
+      },
+      {
+        type: "page",
+        id: "upcoming",
+        pattern: /^\/upcoming\/?$/,
+        names: [],
+        types: [],
+        path: "/upcoming",
+        shadow: null,
+        a: [0, 9],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "projects/coworkerquiz",
+        pattern: /^\/projects\/coworkerquiz\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/coworkerquiz",
+        shadow: null,
+        a: [0, 10],
+        b: [1]
       }
-    ]
+    ],
+    matchers: async () => {
+      return {};
+    }
   }
 });
+/*!
+ * cookie
+ * Copyright(c) 2012-2014 Roman Shtylman
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
 /*! fetch-blob. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
 /*! formdata-polyfill. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
 //# sourceMappingURL=render.js.map
