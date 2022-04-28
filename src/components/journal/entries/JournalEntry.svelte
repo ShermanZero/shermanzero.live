@@ -9,6 +9,7 @@
   export let date = null;
   export let title = null;
   export let paragraphs = [];
+  export let timestamps = [];
   export let images = [];
   export let quote = null;
 
@@ -23,6 +24,10 @@
 {#if view}
   <div class="viewport" transition:fly={{ duration: 400, delay: 0, x: 0, y: 20, opacity: 0, easing: quintOut }}>
     {#each paragraphs as paragraph, i}
+      {#if timestamps[i] != null}
+        <p>{timestamps[i]}</p>
+      {/if}
+
       {#if images[i] != null}
         <JournalLine {paragraph} imageSrc={images[i]} imageAlt="img" />
       {:else}
@@ -39,19 +44,24 @@
 <style>
   .viewport {
     border: 2px solid white;
-    padding: 12px;
+    padding: 6px;
     border-radius: 8px;
-
-    border-top: none;
-
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
 
     z-index: -200;
 
-    background-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, rgb(32, 34, 34) 0%, rgb(44, 39, 39));
 
-    margin: 0px 24px;
-    margin-top: -2px;
+    max-width: 600px;
+    width: 100%;
+    margin: 12px;
+  }
+
+  p {
+    font-family: "Square Peg", sans-serif;
+    font-weight: 400;
+    font-size: 1.4em;
+    line-height: 0;
+    opacity: 0.75;
+    margin-left: 16px;
   }
 </style>

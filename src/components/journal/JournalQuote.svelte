@@ -9,13 +9,17 @@
 <style>
   h3 {
     color: whitesmoke;
-    font-weight: 200;
+    font-weight: 600;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-family: "Whisper", cursive;
 
+    margin-left: 16px;
+    margin-right: 16px;
     margin-top: 32px;
-    border-top: 1px dotted white;
+    border: 1px dashed gray;
+    border-radius: 8px;
     padding: 16px;
+    box-shadow: 0 0px 12px rgba(0, 0, 0, 0.356);
   }
 </style>

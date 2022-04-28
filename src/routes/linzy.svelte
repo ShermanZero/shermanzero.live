@@ -28,6 +28,7 @@
   ];
   const images_04262022 = [null, null, "/pngs/04262022_amethyst.jpg"];
 
+  const timestamps_04272022 = ["9:13AM", null, null, "7:37PM"];
   const paragraphs_04272022 = [
     "Getting 5 hours of sleep and waking up at 5:30 wasn't really what I was planning on today, but I'm glad it happened so I could chat with you before you went to work.  Although, you did give me a craving for some iced coffee so rip me.  That's okay, I have some arnold palmer cooling down in the freezer that will be my best friend today.  All the meals you shared with me looked fucking amazing.  I have such a hard time expressing myself in person but I am constantly impressed/awed by you.  Raw oatmeal is where it's at.  Quaker's brown sugar and cinnamon man, used to live off of that as a kid.",
 
@@ -55,20 +56,23 @@
 
 <h1>Linzy's Hideout</h1>
 
-<JournalEntry
-  date="Apr. 27th, 2022"
-  title="Another Dime"
-  paragraphs={paragraphs_04272022}
-  images={images_04272022}
-  quote="Friendship isn't a big thing, it's a million little things"
-/>
-<JournalEntry
-  date="Apr. 26th, 2022"
-  title="A Moment in Time"
-  paragraphs={paragraphs_04262022}
-  images={images_04262022}
-  quote="Things are never quite as scary when you’ve got a best friend"
-/>
+<div class="wrapper">
+  <JournalEntry
+    date="Apr. 27th, 2022"
+    title="Another Dime"
+    paragraphs={paragraphs_04272022}
+    images={images_04272022}
+    timestamps={timestamps_04272022}
+    quote="Friendship isn't a big thing, it's a million little things"
+  />
+  <JournalEntry
+    date="Apr. 26th, 2022"
+    title="A Moment in Time"
+    paragraphs={paragraphs_04262022}
+    images={images_04262022}
+    quote="Things are never quite as scary when you’ve got a best friend"
+  />
+</div>
 
 <style>
   h1 {
@@ -78,5 +82,18 @@
     font-weight: 200;
     color: whitesmoke;
     margin-top: 4px;
+    margin-bottom: 0;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 520px;
+
+    margin: auto;
+    padding: 12px;
   }
 </style>

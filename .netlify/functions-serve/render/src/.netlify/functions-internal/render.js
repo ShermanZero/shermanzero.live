@@ -8545,7 +8545,7 @@ var require_linzy_svelte = __commonJS({
     module2.exports = __toCommonJS(stdin_exports);
     var import_index_930d8519 = require_index_930d8519();
     var css$2 = {
-      code: '.title.svelte-1udikyq.svelte-1udikyq{box-shadow:0 -4px 8px #888888;text-align:center;padding:15px;border-radius:8px;margin:12px 24px;margin-bottom:0px;background-color:white;color:black;z-index:100}.title.selected.svelte-1udikyq.svelte-1udikyq{transition:all 0.12s;box-shadow:0 -4px 8px darkslategray;background-color:darkslategray;color:whitesmoke;border:2px solid white}.title.svelte-1udikyq img.svelte-1udikyq{transition:all 0.12s;transform:rotate(0deg);position:absolute;right:48px;filter:invert(40%);transform:translateY(4px)}.title.selected.svelte-1udikyq img.svelte-1udikyq{transform:rotate(90deg) translateX(12px);filter:invert(90%)}.title.svelte-1udikyq h1.svelte-1udikyq{margin:0;font-family:"Square Peg", cursive;line-height:1em}.title.svelte-1udikyq h2.svelte-1udikyq{font-family:"Square Peg";font-size:1rem;margin:0;text-transform:uppercase;line-height:0.25em}h1.svelte-1udikyq.svelte-1udikyq,h2.svelte-1udikyq.svelte-1udikyq{transition:all 0.12s}.title.selected.svelte-1udikyq h1.svelte-1udikyq,.title.selected.svelte-1udikyq h2.svelte-1udikyq{transform:translateX(-20%)}',
+      code: '.title.svelte-posdqs.svelte-posdqs{position:relative;box-shadow:0 -4px 8px #888888;text-align:center;padding:15px;border-radius:8px;margin:12px;margin-bottom:0px;width:100%;background-color:white;color:black;z-index:100;max-width:600px}.title.selected.svelte-posdqs.svelte-posdqs{transition:all 0.12s;box-shadow:0 -4px 8px darkslategray;background-color:rgb(42, 33, 49);color:whitesmoke;border:2px solid white}.title.svelte-posdqs img.svelte-posdqs{transition:all 0.12s;transform:rotate(0deg);position:absolute;right:48px;filter:invert(40%);transform:translateY(4px)}.title.selected.svelte-posdqs img.svelte-posdqs{transform:rotate(90deg) translateX(12px);filter:invert(90%)}.title.svelte-posdqs h1.svelte-posdqs{margin:0;font-family:"Square Peg", cursive;line-height:1em}.title.svelte-posdqs h2.svelte-posdqs{font-family:"Square Peg";font-size:1rem;margin:0;text-transform:uppercase;line-height:0.25em}h1.svelte-posdqs.svelte-posdqs,h2.svelte-posdqs.svelte-posdqs{transition:all 0.12s}.title.selected.svelte-posdqs h1.svelte-posdqs,.title.selected.svelte-posdqs h2.svelte-posdqs{transform:translateX(-20%)}',
       map: null
     };
     var JournalTitle = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
@@ -8557,19 +8557,20 @@ var require_linzy_svelte = __commonJS({
       if ($$props.journalEntryDay === void 0 && $$bindings.journalEntryDay && journalEntryDay !== void 0)
         $$bindings.journalEntryDay(journalEntryDay);
       $$result.css.add(css$2);
-      return `<div class="${"title " + (0, import_index_930d8519.e)("") + " svelte-1udikyq"}"><img src="${"/svgs/chevron-right.svg"}" width="${"28"}" alt="${"expand"}" class="${"svelte-1udikyq"}">
-  <h2 class="${"svelte-1udikyq"}">${(0, import_index_930d8519.e)(journalEntryDay)}</h2>
-  <h1 class="${"svelte-1udikyq"}">${(0, import_index_930d8519.e)(journalEntryTitle)}</h1>
+      return `<div class="${"title " + (0, import_index_930d8519.e)("") + " svelte-posdqs"}"><img src="${"/svgs/chevron-right.svg"}" width="${"28"}" alt="${"expand"}" class="${"svelte-posdqs"}">
+  <h2 class="${"svelte-posdqs"}">${(0, import_index_930d8519.e)(journalEntryDay)}</h2>
+  <h1 class="${"svelte-posdqs"}">${(0, import_index_930d8519.e)(journalEntryTitle)}</h1>
 </div>`;
     });
     var css$1 = {
-      code: ".viewport.svelte-w840h4{border:2px solid white;padding:12px;border-radius:8px;border-top:none;border-top-left-radius:0px;border-top-right-radius:0px;z-index:-200;background-color:rgba(255, 255, 255, 0.1);margin:0px 24px;margin-top:-2px}",
+      code: '.viewport.svelte-1cp1tpk{border:2px solid white;padding:6px;border-radius:8px;z-index:-200;background:linear-gradient(to bottom, rgb(32, 34, 34) 0%, rgb(44, 39, 39));max-width:600px;width:100%;margin:12px}p.svelte-1cp1tpk{font-family:"Square Peg", sans-serif;font-weight:400;font-size:1.4em;line-height:0;opacity:0.75;margin-left:16px}',
       map: null
     };
     var JournalEntry = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
       let { date = null } = $$props;
       let { title = null } = $$props;
       let { paragraphs = [] } = $$props;
+      let { timestamps = [] } = $$props;
       let { images = [] } = $$props;
       let { quote = null } = $$props;
       if ($$props.date === void 0 && $$bindings.date && date !== void 0)
@@ -8578,6 +8579,8 @@ var require_linzy_svelte = __commonJS({
         $$bindings.title(title);
       if ($$props.paragraphs === void 0 && $$bindings.paragraphs && paragraphs !== void 0)
         $$bindings.paragraphs(paragraphs);
+      if ($$props.timestamps === void 0 && $$bindings.timestamps && timestamps !== void 0)
+        $$bindings.timestamps(timestamps);
       if ($$props.images === void 0 && $$bindings.images && images !== void 0)
         $$bindings.images(images);
       if ($$props.quote === void 0 && $$bindings.quote && quote !== void 0)
@@ -8591,7 +8594,7 @@ var require_linzy_svelte = __commonJS({
 ${``}`;
     });
     var css = {
-      code: 'h1.svelte-1266tco{text-align:center;font-family:"Square Peg", cursive;font-size:4em;font-weight:200;color:whitesmoke;margin-top:4px}',
+      code: 'h1.svelte-fycljy{text-align:center;font-family:"Square Peg", cursive;font-size:4em;font-weight:200;color:whitesmoke;margin-top:4px}div.svelte-fycljy{display:flex;flex-direction:column;align-items:center;margin:0 auto;width:80%;max-width:540px}',
       map: null
     };
     var Linzy = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
@@ -8603,6 +8606,7 @@ ${``}`;
         "I will probably expand on this idea more and more as time goes on, but that\u2019s my intention for it now.  I also want to include little pictures scattered through, and at the end of the entry I want to put a quote that resonates with me.  All of this will hopefully become a little boost to you"
       ];
       const images_04262022 = [null, null, "/pngs/04262022_amethyst.jpg"];
+      const timestamps_04272022 = ["9:13AM", null, null, "7:37PM"];
       const paragraphs_04272022 = [
         "Getting 5 hours of sleep and waking up at 5:30 wasn't really what I was planning on today, but I'm glad it happened so I could chat with you before you went to work.  Although, you did give me a craving for some iced coffee so rip me.  That's okay, I have some arnold palmer cooling down in the freezer that will be my best friend today.  All the meals you shared with me looked fucking amazing.  I have such a hard time expressing myself in person but I am constantly impressed/awed by you.  Raw oatmeal is where it's at.  Quaker's brown sugar and cinnamon man, used to live off of that as a kid.",
         "My package is out for delivery so I'm hoping I'll have an excuse to stop by work before you leave today and give the thing to you.  I don't know if it'll end up working well or not, but I hope it does and that we both can find some use for it.  There's four to the pack I ordered so we're both getting two.  I'm exhausted so I might just go back to bed, but alternatively I could just play farming simulator.  I feel like such a weird fucking person.  I present myself as a hardass but I'm a fucking softie, I tell people about my nerdy shit but I'm an athlete and a redneck to an extent.  I find so many things interesting and I like to explore.  I'm always down to try anything and I love to learn, and I imagine this extremely large circle around me containing so many interests that aren't usually associated with each other.  For example, Overwatch is my main game and it's a competitive PvP fps, but then I'll turn right around and vibe tending to a virtual farm or driving trucks in Truck Simulator.",
@@ -8621,22 +8625,24 @@ ${``}`;
         "/pngs/04272022_sameday_samebullshit.png"
       ];
       $$result.css.add(css);
-      return `<h1 class="${"svelte-1266tco"}">Linzy&#39;s Hideout</h1>
+      return `<h1 class="${"svelte-fycljy"}">Linzy&#39;s Hideout</h1>
 
-${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
+<div class="${"wrapper svelte-fycljy"}">${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
         date: "Apr. 27th, 2022",
         title: "Another Dime",
         paragraphs: paragraphs_04272022,
         images: images_04272022,
+        timestamps: timestamps_04272022,
         quote: "Friendship isn't a big thing, it's a million little things"
       }, {}, {})}
-${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
+  ${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
         date: "Apr. 26th, 2022",
         title: "A Moment in Time",
         paragraphs: paragraphs_04262022,
         images: images_04262022,
         quote: "Things are never quite as scary when you\u2019ve got a best friend"
-      }, {}, {})}`;
+      }, {}, {})}
+</div>`;
     });
   }
 });
@@ -8673,9 +8679,9 @@ var require__7 = __commonJS({
     });
     module3.exports = __toCommonJS(stdin_exports);
     var module2 = __toESM(require_linzy_svelte());
-    var entry = "pages/linzy.svelte-4210d131.js";
-    var js = ["pages/linzy.svelte-4210d131.js", "chunks/index-518a10ef.js", "chunks/index-566f6c1b.js"];
-    var css = ["assets/pages/linzy.svelte-4a5f5e23.css"];
+    var entry = "pages/linzy.svelte-d750a00c.js";
+    var js = ["pages/linzy.svelte-d750a00c.js", "chunks/index-518a10ef.js", "chunks/index-566f6c1b.js"];
+    var css = ["assets/pages/linzy.svelte-23662130.css"];
   }
 });
 
@@ -9010,7 +9016,7 @@ exports.handler = init({
   assets: new Set(["global.css", "pngs/04262022_amethyst.jpg", "pngs/04272022_food01.jpg", "pngs/04272022_food02.jpg", "pngs/04272022_sameday_samebullshit.png", "svgs/chevron-right.svg", "svgs/circle_check.svg", "svgs/circle_x.svg", "svgs/favicon.svg", "svgs/nav/api.svg", "svgs/nav/downloads.svg", "svgs/nav/hamburger_menu.svg", "svgs/nav/portfolio.svg", "svgs/nav/projects.svg", "svgs/nav/socials.svg", "svgs/nav/upcoming.svg"]),
   mimeTypes: { ".css": "text/css", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml" },
   _: {
-    entry: { "file": "start-02a0c08a.js", "js": ["start-02a0c08a.js", "chunks/index-518a10ef.js"], "css": [] },
+    entry: { "file": "start-e907a5fe.js", "js": ["start-e907a5fe.js", "chunks/index-518a10ef.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),

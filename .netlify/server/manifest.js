@@ -28,7 +28,7 @@ const manifest = {
   assets: /* @__PURE__ */ new Set(["global.css", "pngs/04262022_amethyst.jpg", "pngs/04272022_food01.jpg", "pngs/04272022_food02.jpg", "pngs/04272022_sameday_samebullshit.png", "svgs/chevron-right.svg", "svgs/circle_check.svg", "svgs/circle_x.svg", "svgs/favicon.svg", "svgs/nav/api.svg", "svgs/nav/downloads.svg", "svgs/nav/hamburger_menu.svg", "svgs/nav/portfolio.svg", "svgs/nav/projects.svg", "svgs/nav/socials.svg", "svgs/nav/upcoming.svg"]),
   mimeTypes: { ".css": "text/css", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml" },
   _: {
-    entry: { "file": "start-02a0c08a.js", "js": ["start-02a0c08a.js", "chunks/index-518a10ef.js"], "css": [] },
+    entry: { "file": "start-fc959c8b.js", "js": ["start-fc959c8b.js", "chunks/index-518a10ef.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => __toESM(require("./nodes/0.js"))),
       () => Promise.resolve().then(() => __toESM(require("./nodes/1.js"))),

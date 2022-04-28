@@ -23,6 +23,7 @@
 
 <style>
   .title {
+    position: relative;
     box-shadow: 0 -4px 8px #888888;
 
     text-align: center;
@@ -30,20 +31,22 @@
     padding: 15px;
     border-radius: 8px;
 
-    margin: 12px 24px;
+    margin: 12px;
     margin-bottom: 0px;
+    width: 100%;
 
     background-color: white;
     color: black;
 
     z-index: 100;
+    max-width: 600px;
   }
 
   .title.selected {
     transition: all 0.12s;
 
     box-shadow: 0 -4px 8px darkslategray;
-    background-color: darkslategray;
+    background-color: rgb(42, 33, 49);
     color: whitesmoke;
 
     border: 2px solid white;

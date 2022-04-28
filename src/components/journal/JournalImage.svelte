@@ -22,8 +22,8 @@
     overflow: hidden;
 
     float: right;
-    margin-right: 12px;
+    margin: 12px;
 
-    box-shadow: 0px 0px 20px white;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.548);
   }
 </style>
