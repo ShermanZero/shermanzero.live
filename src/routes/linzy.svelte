@@ -52,11 +52,30 @@
     null,
     "/pngs/04272022_sameday_samebullshit.png",
   ];
+
+  const timestamps_04282022 = ["2:21PM", null, null, "9:06 PM", null, "10:09 PM"];
+  const paragraphs_04282022 = [
+    "You’re a very sweet person.  Thank you for giving me some soap, idk whether to be offended or not.  I’m jk lmao but you really don’t have to give me anything.  No strings attached remember?  No expectation of you to give me anything at all in return for what I’ve given to you.  I give to you because I care about you and you probably do the same for me, but I just want to make sure in case not, that you don’t feel like you need to because there are literally zero strings.",
+    "It was nice to see you this morning.  You seemed a tiny bit off over FT and in person so I hope you’re okay.  I don’t want to analyze it too much.  I used to analyze every single thing and search for deeper meaning but I don’t much anymore.  If I started to analyze this morning I would undoubtedly get worried about our friendship and I don’t need to add more stress to my life.  If I get a gut feeling or I notice something that strikes me as a little off, I just tell myself I’m wrong and ignore it most of the time.  At the same time I do want to make sure you’re okay though, so I’ll definitely ask you, but also take what you tell me as face value because I can’t do the social games with people anymore of trying to find something that may or may not be there.",
+    "Thank you for the house tour by the way :) you’re really just welcoming me into your life with open arms and it makes me want to cry.  I don’t really know how to feel or how to act but I’ll just keep telling you that I appreciate you and am happy my shitty life put me in this shitty state in this shitty town so I got to meet not shitty you.",
+    "I wanted to come back in tonight to see you and idk why but I had a feeling you could use some tea.  Maybe I was wrong but hey it’s tea you can’t be mad at tea.  I had a boring night.  Just counting the hours really until I can sleep and work in the morning.  I hope your shift went smoothly.  You make me so concerned about your hands 😩 take care of yourself Linzy!! 😡 god I wish I had a shitton of money because I would literally just pay you every day not to work until you recover.",
+    "Side note I’ve never really looked at your car much but now that I’m sitting next to it in mine, it’s kinda sick.  Your gas cap is the tiniest thing I’ve ever seen lmfao.",
+    "I don’t deserve you or the way you treat me.  Thank you for the owl Linzy I don’t know how to tell you how much you mean to me.  You don’t need to get me anything ever, but you’re so kind and caring and thoughtful and sweet.  Thank you 💜",
+  ];
+  const images_04282022 = [null, null, null, null, "/pngs/04282022_owl.jpg"];
 </script>
 
 <h1>Linzy's Hideout</h1>
 
 <div class="wrapper">
+  <JournalEntry
+    date="Apr. 28th, 2022"
+    title="Why Me?"
+    paragraphs={paragraphs_04282022}
+    images={images_04282022}
+    timestamps={timestamps_04282022}
+    quote="There is nothing I would not do for those who are really my friends"
+  />
   <JournalEntry
     date="Apr. 27th, 2022"
     title="Another Dime"

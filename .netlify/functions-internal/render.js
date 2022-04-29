@@ -2,10 +2,10 @@ const { init } = require('../serverless.js');
 
 exports.handler = init({
 	appDir: "_app",
-	assets: new Set(["global.css","pngs/04262022_amethyst.jpg","pngs/04272022_food01.jpg","pngs/04272022_food02.jpg","pngs/04272022_sameday_samebullshit.png","svgs/chevron-right.svg","svgs/circle_check.svg","svgs/circle_x.svg","svgs/favicon.svg","svgs/nav/api.svg","svgs/nav/downloads.svg","svgs/nav/hamburger_menu.svg","svgs/nav/portfolio.svg","svgs/nav/projects.svg","svgs/nav/socials.svg","svgs/nav/upcoming.svg"]),
+	assets: new Set(["global.css","pngs/04262022_amethyst.jpg","pngs/04272022_food01.jpg","pngs/04272022_food02.jpg","pngs/04272022_sameday_samebullshit.png","pngs/04282022_owl.jpg","svgs/chevron-right.svg","svgs/circle_check.svg","svgs/circle_x.svg","svgs/favicon.svg","svgs/nav/api.svg","svgs/nav/downloads.svg","svgs/nav/hamburger_menu.svg","svgs/nav/portfolio.svg","svgs/nav/projects.svg","svgs/nav/socials.svg","svgs/nav/upcoming.svg"]),
 	mimeTypes: {".css":"text/css",".jpg":"image/jpeg",".png":"image/png",".svg":"image/svg+xml"},
 	_: {
-		entry: {"file":"start-fc959c8b.js","js":["start-fc959c8b.js","chunks/index-518a10ef.js"],"css":[]},
+		entry: {"file":"start-af83c7d6.js","js":["start-af83c7d6.js","chunks/index-518a10ef.js"],"css":[]},
 		nodes: [
 			() => Promise.resolve().then(() => require('../server/nodes/0.js')),
 			() => Promise.resolve().then(() => require('../server/nodes/1.js')),

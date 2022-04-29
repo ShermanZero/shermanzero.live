@@ -8594,7 +8594,7 @@ var require_linzy_svelte = __commonJS({
 ${``}`;
     });
     var css = {
-      code: 'h1.svelte-fycljy{text-align:center;font-family:"Square Peg", cursive;font-size:4em;font-weight:200;color:whitesmoke;margin-top:4px}div.svelte-fycljy{display:flex;flex-direction:column;align-items:center;margin:0 auto;width:80%;max-width:540px}',
+      code: 'h1.svelte-pdt7yx{text-align:center;font-family:"Square Peg", cursive;font-size:4em;font-weight:200;color:whitesmoke;margin-top:4px;margin-bottom:0}.wrapper.svelte-pdt7yx{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:520px;margin:auto;padding:12px}',
       map: null
     };
     var Linzy = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
@@ -8625,9 +8625,9 @@ ${``}`;
         "/pngs/04272022_sameday_samebullshit.png"
       ];
       $$result.css.add(css);
-      return `<h1 class="${"svelte-fycljy"}">Linzy&#39;s Hideout</h1>
+      return `<h1 class="${"svelte-pdt7yx"}">Linzy&#39;s Hideout</h1>
 
-<div class="${"wrapper svelte-fycljy"}">${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
+<div class="${"wrapper svelte-pdt7yx"}">${(0, import_index_930d8519.v)(JournalEntry, "JournalEntry").$$render($$result, {
         date: "Apr. 27th, 2022",
         title: "Another Dime",
         paragraphs: paragraphs_04272022,
@@ -8679,9 +8679,9 @@ var require__7 = __commonJS({
     });
     module3.exports = __toCommonJS(stdin_exports);
     var module2 = __toESM(require_linzy_svelte());
-    var entry = "pages/linzy.svelte-d750a00c.js";
-    var js = ["pages/linzy.svelte-d750a00c.js", "chunks/index-518a10ef.js", "chunks/index-566f6c1b.js"];
-    var css = ["assets/pages/linzy.svelte-23662130.css"];
+    var entry = "pages/linzy.svelte-d186523f.js";
+    var js = ["pages/linzy.svelte-d186523f.js", "chunks/index-518a10ef.js", "chunks/index-566f6c1b.js"];
+    var css = ["assets/pages/linzy.svelte-f8ba8265.css"];
   }
 });
 
@@ -9016,7 +9016,7 @@ exports.handler = init({
   assets: new Set(["global.css", "pngs/04262022_amethyst.jpg", "pngs/04272022_food01.jpg", "pngs/04272022_food02.jpg", "pngs/04272022_sameday_samebullshit.png", "svgs/chevron-right.svg", "svgs/circle_check.svg", "svgs/circle_x.svg", "svgs/favicon.svg", "svgs/nav/api.svg", "svgs/nav/downloads.svg", "svgs/nav/hamburger_menu.svg", "svgs/nav/portfolio.svg", "svgs/nav/projects.svg", "svgs/nav/socials.svg", "svgs/nav/upcoming.svg"]),
   mimeTypes: { ".css": "text/css", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml" },
   _: {
-    entry: { "file": "start-e907a5fe.js", "js": ["start-e907a5fe.js", "chunks/index-518a10ef.js"], "css": [] },
+    entry: { "file": "start-fc959c8b.js", "js": ["start-fc959c8b.js", "chunks/index-518a10ef.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => require__()),
       () => Promise.resolve().then(() => require__2()),
