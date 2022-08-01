@@ -22,7 +22,7 @@
     text-align: center;
     margin: auto;
     padding: 0 24px;
-    max-width: 500px;
+    max-width: 950px;
   }
 
   h4 {

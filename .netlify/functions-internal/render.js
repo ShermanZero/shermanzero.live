@@ -5,7 +5,7 @@ exports.handler = init({
 	assets: new Set(["global.css","pngs/04262022_amethyst.jpg","pngs/04272022_food01.jpg","pngs/04272022_food02.jpg","pngs/04272022_sameday_samebullshit.png","pngs/04282022_owl.jpg","svgs/chevron-right.svg","svgs/circle_check.svg","svgs/circle_x.svg","svgs/favicon.svg","svgs/nav/api.svg","svgs/nav/downloads.svg","svgs/nav/hamburger_menu.svg","svgs/nav/portfolio.svg","svgs/nav/projects.svg","svgs/nav/socials.svg","svgs/nav/upcoming.svg"]),
 	mimeTypes: {".css":"text/css",".jpg":"image/jpeg",".png":"image/png",".svg":"image/svg+xml"},
 	_: {
-		entry: {"file":"start-af83c7d6.js","js":["start-af83c7d6.js","chunks/index-518a10ef.js"],"css":[]},
+		entry: {"file":"_app/immutable/start-ad951c01.js","imports":["_app/immutable/start-ad951c01.js","_app/immutable/chunks/index-770fa6d7.js"],"stylesheets":[]},
 		nodes: [
 			() => Promise.resolve().then(() => require('../server/nodes/0.js')),
 			() => Promise.resolve().then(() => require('../server/nodes/1.js')),
@@ -17,6 +17,7 @@ exports.handler = init({
 			() => Promise.resolve().then(() => require('../server/nodes/7.js')),
 			() => Promise.resolve().then(() => require('../server/nodes/9.js')),
 			() => Promise.resolve().then(() => require('../server/nodes/10.js')),
+			() => Promise.resolve().then(() => require('../server/nodes/11.js')),
 			() => Promise.resolve().then(() => require('../server/nodes/8.js'))
 		],
 		routes: [
@@ -110,13 +111,24 @@ exports.handler = init({
 			},
 			{
 				type: 'page',
+				id: "vanessa",
+				pattern: /^\/vanessa\/?$/,
+				names: [],
+				types: [],
+				path: "/vanessa",
+				shadow: null,
+				a: [0,10],
+				b: [1]
+			},
+			{
+				type: 'page',
 				id: "projects/coworkerquiz",
 				pattern: /^\/projects\/coworkerquiz\/?$/,
 				names: [],
 				types: [],
 				path: "/projects/coworkerquiz",
 				shadow: null,
-				a: [0,10],
+				a: [0,11],
 				b: [1]
 			}
 		],

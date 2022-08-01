@@ -20,7 +20,7 @@ __export(stdin_exports, {
   default: () => Upcoming
 });
 module.exports = __toCommonJS(stdin_exports);
-var import_index_930d8519 = require("../../chunks/index-930d8519.js");
-const Upcoming = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+var import_index_e5e312d4 = require("../../_app/immutable/chunks/index-e5e312d4.js");
+const Upcoming = (0, import_index_e5e312d4.c)(($$result, $$props, $$bindings, slots) => {
   return ``;
 });

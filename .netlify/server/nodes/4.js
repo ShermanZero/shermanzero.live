@@ -16,17 +16,22 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var stdin_exports = {};
 __export(stdin_exports, {
-  css: () => css,
-  entry: () => entry,
-  js: () => js,
-  module: () => module2
+  file: () => file,
+  imports: () => imports,
+  index: () => index,
+  module: () => module2,
+  stylesheets: () => stylesheets
 });
 module.exports = __toCommonJS(stdin_exports);
 var module2 = __toESM(require("../entries/pages/index.svelte.js"));
-const entry = "pages/index.svelte-368111dd.js";
-const js = ["pages/index.svelte-368111dd.js", "chunks/index-518a10ef.js"];
-const css = ["assets/pages/index.svelte-65b373a2.css"];
+const index = 4;
+const file = "_app/immutable/pages/index.svelte-aca90280.js";
+const imports = ["_app/immutable/pages/index.svelte-aca90280.js", "_app/immutable/chunks/index-770fa6d7.js"];
+const stylesheets = ["_app/immutable/assets/index-eb4ff4c4.css"];

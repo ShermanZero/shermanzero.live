@@ -20,23 +20,23 @@ __export(stdin_exports, {
   default: () => Routes
 });
 module.exports = __toCommonJS(stdin_exports);
-var import_index_930d8519 = require("../../chunks/index-930d8519.js");
-var index_svelte_svelte_type_style_lang = "";
+var import_index_e5e312d4 = require("../../_app/immutable/chunks/index-e5e312d4.js");
+const index_svelte_svelte_type_style_lang = "";
 const css = {
-  code: 'h1.svelte-1hja6im,h2.svelte-1hja6im,h3.svelte-1hja6im,h4.svelte-1hja6im,h5.svelte-1hja6im{font-family:"Raleway";text-align:center;margin:auto;padding:0 24px;max-width:500px}h4.svelte-1hja6im{margin:40px auto;font-style:italic}h5.svelte-1hja6im{margin-top:10px;padding:0px 15%}h1.svelte-1hja6im{font-family:"Raleway";font-size:2.5em;text-align:center;margin-top:60px}',
+  code: 'h1.svelte-851gyl,h2.svelte-851gyl,h3.svelte-851gyl,h4.svelte-851gyl,h5.svelte-851gyl{font-family:"Raleway";text-align:center;margin:auto;padding:0 24px;max-width:950px}h4.svelte-851gyl{margin:40px auto;font-style:italic}h5.svelte-851gyl{margin-top:10px;padding:0px 15%}h1.svelte-851gyl{font-family:"Raleway";font-size:2.5em;text-align:center;margin-top:60px}',
   map: null
 };
-const Routes = (0, import_index_930d8519.c)(($$result, $$props, $$bindings, slots) => {
+const Routes = (0, import_index_e5e312d4.c)(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css);
-  return `<h1 class="${"svelte-1hja6im"}">Uh well hi... this is a bit awkward</h1>
-<h2 class="${"svelte-1hja6im"}">see,</h2>
-<h3 class="${"svelte-1hja6im"}">the thing is</h3>
-<h4 class="${"svelte-1hja6im"}">my website is still under major development</h4>
-<h5 class="${"svelte-1hja6im"}">So, many features/pages are not implemented. Feel free to check back however often you want. Progress is continuous,
+  return `<h1 class="${"svelte-851gyl"}">Uh well hi... this is a bit awkward</h1>
+<h2 class="${"svelte-851gyl"}">see,</h2>
+<h3 class="${"svelte-851gyl"}">the thing is</h3>
+<h4 class="${"svelte-851gyl"}">my website is still under major development</h4>
+<h5 class="${"svelte-851gyl"}">So, many features/pages are not implemented. Feel free to check back however often you want. Progress is continuous,
   and I have big plans for the eventual state of the site in what will most likely be a few months. Why even have the
   site live then? Great question! Why not? Exactly.
 </h5>
-<h5 class="${"svelte-1hja6im"}">In the meantime, head on over to <a href="${"/projects"}">/projects</a> to see my awesome library of projects I&#39;ve uploaded
+<h5 class="${"svelte-851gyl"}">In the meantime, head on over to <a href="${"/projects"}">/projects</a> to see my awesome library of projects I&#39;ve uploaded
   which currently consists of one thing!
 </h5>`;
 });
